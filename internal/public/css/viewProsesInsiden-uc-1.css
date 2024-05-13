@@ -1,0 +1,190 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+.uc-1-menambahkan-view-proses-insiden{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* SIDEBAR */
+.uc-1-menambahkan-view-proses-insiden-sidebar{
+    flex-grow: 1;
+    background-color:#05131D ;
+    margin: 0;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-sidebar-content{
+    color: white;
+    margin:50px 0px 35px 0px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-menambahkan-view-proses-insiden-sidebar-content-profile{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-sidebar-content h2{
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+}
+
+.uc-1-menambahkan-view-proses-insiden-sidebar-content h2:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-menambahkan-view-proses-insiden-sidebar-content a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.uc-1-menambahkan-view-proses-insiden-menu-item.active{
+    background-color: #39CDF0;
+}
+
+
+.uc-1-menambahkan-view-proses-insiden-menu-item-submenu a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+.uc-1-menambahkan-view-proses-insiden-menu-item-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color:#05131D;
+    border: 1px solid #ccc;
+    border: 0;
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+.uc-1-menambahkan-view-proses-insiden-menu-item-submenu li{
+    width: 100px;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-menu-item-submenu li:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-menambahkan-view-proses-insiden-menu-item.active .uc-1-menambahkan-view-proses-insiden-menu-item-submenu {
+    display: block;
+}
+
+.uc-1-menambahkan-view-proses-insiden-menu-item{
+    position: relative
+}
+
+/* MAIN ARTIKEL */
+.uc-1-menambahkan-view-proses-insiden-main{
+    flex-grow: 3;
+    padding: 15px 20px 15px 20px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-header img{
+    width: 251px;
+    height: 94.02px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-artikel{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.uc-1-menambahkan-view-proses-insiden-view-artikel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+
+}
+
+/* MENAMBAHKAN view-proses-insiden */
+.uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden{
+    background-color: white;
+    padding: 20px 30px 20px 30px;
+    flex-grow: 1;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden h2{
+    margin: 0px;
+    color:#34469A;
+    font-size: 24px;
+}
+
+.uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden-header{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* VIEW */
+
+
+/* BUTTON */
+.uc-1-menambahkan-view-proses-insiden-view-artikel-button{
+    float: right;
+}
+
+.uc-1-menambahkan-view-proses-insiden-view-artikel-button-list button{
+    padding: 10px 15px 10px 15px;
+    background-color: #34469A;
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 2px solid #34469A;
+}
+
+.uc-1-menambahkan-view-proses-insiden-view-artikel-button-list button:hover{
+    background-color:#39CDF0;
+    border: 2px solid #39CDF0;
+}
+
+
+
+
+@media (max-width: 1200px) {
+    .uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden-header{
+        margin-bottom: 20px;
+    }
+}

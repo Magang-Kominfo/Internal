@@ -1,0 +1,268 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+.uc-1-proses-insiden{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* SIDEBAR */
+.uc-1-proses-insiden-sidebar{
+    flex-grow: 1;
+    background-color:#05131D ;
+    margin: 0;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.uc-1-proses-insiden-sidebar-content{
+    color: white;
+    margin:50px 0px 35px 0px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-proses-insiden-sidebar-content-profile{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.uc-1-proses-insiden-sidebar-content h2{
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+}
+
+.uc-1-proses-insiden-sidebar-content h2:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-proses-insiden-sidebar-content a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.uc-1-proses-insiden-menu-item.active{
+    background-color: #39CDF0;
+}
+
+
+.uc-1-proses-insiden-menu-item-submenu a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+.uc-1-proses-insiden-menu-item-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color:#05131D;
+    border: 1px solid #ccc;
+    border: 0;
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+.uc-1-proses-insiden-menu-item-submenu li{
+    width: 100px;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.uc-1-proses-insiden-menu-item-submenu li:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-proses-insiden-menu-item.active .uc-1-proses-insiden-menu-item-submenu {
+    display: block;
+}
+
+.uc-1-proses-insiden-menu-item{
+    position: relative
+}
+
+/* MAIN ARTIKEL */
+.uc-1-proses-insiden-main{
+    flex-grow: 3;
+    padding: 15px 20px 15px 20px;
+}
+
+.uc-1-proses-insiden-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.uc-1-proses-insiden-header img{
+    width: 251px;
+    height: 94.02px;
+}
+
+.uc-1-proses-insiden-artikel{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.uc-1-proses-insiden-view-artikel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+
+}
+
+/* MENAMBAHKAN data-master */
+.uc-1-proses-insiden-view-artikel-data-master{
+    background-color: white;
+    padding: 20px 30px 20px 30px;
+    flex-grow: 1;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.uc-1-proses-insiden-view-artikel-data-master h1{
+    margin: 0px;
+    color:#34469A;
+    font-size: 34px;
+}
+
+.uc-1-proses-insiden-view-artikel-data-master-header{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* INPUT FIELD */
+.uc-1-proses-insiden-input-field{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.uc-1-proses-insiden-input-field label{
+    margin-bottom: 7px;
+    font-size: 16px;
+}
+
+.uc-1-proses-insiden-input-field-nomor-surat-insiden,
+.uc-1-proses-insiden-input-field-nomor-url,
+.uc-1-proses-insiden-input-field-status-insiden,
+.uc-1-proses-insiden-input-field-resiko-insiden,
+.uc-1-proses-insiden-input-field-tanggal-notifikasi,
+.uc-1-proses-insiden-input-field-tanggal-insiden-diselesaikan,
+.uc-1-proses-insiden-input-field-jam-temuan,
+.uc-1-proses-insiden-input-field-tanggal-surat-tte,
+.uc-1-proses-insiden-input-field-tanggal-suspend,
+.uc-1-proses-insiden-input-field-tanggal-pemulihan,
+.uc-1-proses-insiden-input-field-status-setelah-unsuspend,
+.uc-1-proses-insiden-input-field-jam-temuan-dikirim,
+.uc-1-proses-insiden-input-field-jam-insiden-diselesaikan,
+.uc-1-proses-insiden-input-field-jenis-insiden,
+.uc-1-proses-insiden-input-field-opd {
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-proses-insiden-input-field-nomor-surat-insiden input,
+.uc-1-proses-insiden-input-field-nomor-url input,
+.uc-1-proses-insiden-input-field-status-insiden select,
+.uc-1-proses-insiden-input-field-resiko-insiden select,
+.uc-1-proses-insiden-input-field-tanggal-notifikasi input,
+.uc-1-proses-insiden-input-field-tanggal-insiden-diselesaikan input,
+.uc-1-proses-insiden-input-field-jam-temuan input,
+.uc-1-proses-insiden-input-field-tanggal-surat-tte input,
+.uc-1-proses-insiden-input-field-tanggal-suspend input,
+.uc-1-proses-insiden-input-field-tanggal-pemulihan input,
+.uc-1-proses-insiden-input-field-status-setelah-unsuspend input,
+.uc-1-proses-insiden-input-field-jam-temuan-dikirim input,
+.uc-1-proses-insiden-input-field-jam-insiden-diselesaikan input,
+.uc-1-proses-insiden-input-field-jenis-insiden select,
+.uc-1-proses-insiden-input-field-opd select{
+    border-radius: 20px;
+    border: 1px solid #34469A;
+    height: 40px;
+    padding: 3px 20px 3px 20px;
+}
+
+.uc-1-proses-insiden-input-field-keterangan{
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-proses-insiden-input-field-keterangan textarea{
+    border-radius: 20px;
+    border: 1px solid #34469A;
+    padding: 20px 20px 20px 20px;
+}
+
+
+/* BUTTON */
+.uc-1-proses-insiden-view-artikel-footer-back a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.uc-1-proses-insiden-view-artikel-footer{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    margin-top: 75px;
+    gap: 21px;
+}
+
+.uc-1-proses-insiden-view-artikel-footer-back button{
+    padding: 10px 30px 10px 30px;
+    background-color: #F1F1F3;
+    color: #05131D;
+    font-size: 12px;
+    font-weight: bolder;
+    border-radius: 8px;
+    border: 2px solid #000000;
+}
+
+.uc-1-proses-insiden-view-artikel-footer-back button:hover{
+    background-color: #39CDF0;
+    border: 2px solid #39CDF0;
+}
+
+.uc-1-proses-insiden-view-artikel-footer-save button{
+    padding: 10px 30px 10px 30px;
+    background-color: #34469A;
+    color: white;
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 2px solid #34469A;
+}
+
+.uc-1-proses-insiden-view-artikel-footer-save button:hover{
+    background-color:#39CDF0;
+    border: 2px solid #39CDF0;
+}

@@ -1,0 +1,281 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* SIDEBAR */
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar{
+    flex-grow: 1;
+    background-color:#05131D ;
+    margin: 0;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar-content{
+    color: white;
+    margin:50px 0px 35px 0px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar-content-profile{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar-content h2{
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar-content h2:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-sidebar-content a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item.active{
+    background-color: #39CDF0;
+}
+
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color:#05131D;
+    border: 1px solid #ccc;
+    border: 0;
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu li{
+    width: 100px;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu li:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item.active .uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu {
+    display: block;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-menu-item{
+    position: relative
+}
+
+/* MAIN ARTIKEL */
+.uc-1-menambahkan-daftar-aset-aplikasi-main{
+    flex-grow: 3;
+    padding: 15px 20px 15px 20px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-header img{
+    width: 251px;
+    height: 94.02px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-artikel{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+
+}
+
+/* MENAMBAHKAN daftar-aset-aplikasi */
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi{
+    background-color: white;
+    padding: 20px 30px 20px 30px;
+    flex-grow: 1;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi h1{
+    margin: 0px;
+    color:#34469A;
+    font-size: 34px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-header{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* TABEL */
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-search input{
+    border-radius: 15px;
+    border: 1px solid #34469A;
+    height: 40px;
+    padding: 0px 20px 0px 20px;
+    margin-bottom: 20px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-search select{
+    border-radius: 15px;
+    border: 1px solid #34469A;
+    height: 40px;
+    padding: 0px 20px 0px 20px;
+    margin-bottom: 20px;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-search button{
+    padding: 10px 15px 10px 15px;
+    background-color: #34469A;
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+    border-radius: 15px;
+    border: 2px solid #34469A;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-search button:hover{
+    background-color:#39CDF0;
+    border: 2px solid #39CDF0;
+}
+
+
+.uc-1-menambahkan-daftar-aset-aplikasi-tabel{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.uc-1-tabel-id{
+    width: 100px;
+}
+
+.uc-1-tabel-id{
+    width: 8%;
+}
+
+.uc-1-tabel-id-data{
+    text-align: center;
+}
+
+.uc-1-tabel-view{
+    text-decoration: none;
+    color: #34469A;
+}
+
+.uc-1-tabel-deskripsi-data, .uc-1-tabel-nama-data, .uc-1-tabel-created-at-data, .uc-1-tabel-updated-at-data{
+    vertical-align: top;
+}
+
+.uc-1-tabel-proses-data{
+    vertical-align: top;
+    text-align: center;
+}
+
+.uc-1-menambahkan-daftar-aset-aplikasi-tabel th, .uc-1-menambahkan-daftar-aset-aplikasi-tabel td{
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.uc-1-tabel-proses-data-proses{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+/* BUTTON */
+
+.uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-button-save button{
+    padding: 10px 30px 10px 30px;
+    background-color: #34469A;
+    color: white;
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 2px solid #34469A;
+}
+
+
+.uc-1-tabel-proses-data-edit{
+    padding: 5px 15px 5px 15px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #F1DA57;
+    color: black;
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.uc-1-tabel-proses-data-edit:hover{
+    background-color: #05131D;
+    color: white;
+}
+
+.uc-1-tabel-proses-data-delete{
+    padding: 5px 15px 5px 15px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: red;
+    color: black;
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.uc-1-tabel-proses-data-delete:hover{
+    background-color: #05131D;
+    color: white;
+}
