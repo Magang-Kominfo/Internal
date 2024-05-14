@@ -173,8 +173,8 @@ body{
     color: #05131D;
     font-size: 12px;
     font-weight: bolder;
-    border-radius: 8px;
-    border: 2px solid #000000;
+    border-radius: 5px;
+    border: 2px solid #F1F1F3;
 }
 
 .uc-1-data-master-view-artikel-button-back button:hover{
@@ -188,7 +188,7 @@ body{
     color: white;
     font-weight: bolder;
     font-size: 12px;
-    border-radius: 8px;
+    border-radius: 5px;
     border: 2px solid #34469A;
 }
 
@@ -252,35 +252,18 @@ body{
 }
 
 .uc-1-tabel-proses-data-edit{
-    padding: 5px 10px 5px 10px;
+    padding: 8px 15px 8px 15px;
     text-align: center;
     vertical-align: middle;
     background-color: #F1DA57;
-    color: black;
+    color: white;
     font-weight: bolder;
     font-size: 12px;
-    border-radius: 8px;
-    border: 1px solid black;
-}
-
-.uc-1-tabel-proses-data-delete{
-    padding: 5px 10px 5px 10px;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #F04138;
-    color: black;
-    font-weight: bolder;
-    font-size: 12px;
-    border-radius: 8px;
-    border: 1px solid black;
+    border-radius: 5px;
+    border: none;
 }
 
 .uc-1-tabel-proses-data-edit:hover{
-    background-color: #05131D;
-    color: white;
-}
-
-.uc-1-tabel-proses-data-delete:hover{
     background-color: #05131D;
     color: white;
 }
@@ -289,4 +272,3 @@ body{
     border: 1px solid black;
     padding: 10px;
 }
-

@@ -195,15 +195,15 @@ body{
 }
 
 .uc-1-tabel-proses-data button{
-    padding: 5px 5px 5px 5px;
+    padding: 8px 15px 8px 15px;
     text-align: center;
     vertical-align: middle;
     background-color: #F1DA57;
-    color: black;
+    color: white;
     font-weight: bolder;
     font-size: 12px;
-    border-radius: 8px;
-    border: 1px solid black;
+    border-radius: 5px;
+    border: none;
 }
 
 .uc-1-tabel-proses-data button:hover{
@@ -224,16 +224,16 @@ body{
 .uc-1-menambahkan-daftar-insiden-view-artikel-button-back button{
     padding: 10px 30px 10px 30px;
     background-color: #F1F1F3;
-    color: #05131D;
+    color: black;
     font-size: 12px;
     font-weight: bolder;
-    border-radius: 8px;
-    border: 2px solid #000000;
+    border-radius: 5px;
+    border: none;
 }
 
 .uc-1-menambahkan-daftar-insiden-view-artikel-button-back button:hover{
     background-color: #39CDF0;
-    border: 2px solid #39CDF0;
+    border: none;
 }
 
 .uc-1-menambahkan-daftar-insiden-view-artikel-button-save button{
@@ -245,4 +245,6 @@ body{
     border-radius: 8px;
     border: 2px solid #34469A;
 }
+
+
 

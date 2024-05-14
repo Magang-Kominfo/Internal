@@ -63,6 +63,7 @@
             });
         });
         });
+
 </script>
 
 <body>
@@ -150,14 +151,6 @@
                                                 <div>
                                                     <a href="{{ route('edit-data-master', ['id' => $master_odp->odp_id]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
                                                 </div>
-                                                <div>
-                                                    <form action="{{ route('delete-data-master.delete', ['id' => $master_odp->odp_id]) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="uc-1-tabel-proses-data-delete" type="submit">Delete</button>
-                                                    </form>
-                                                </div>
-
                                             </div>
                                         </td>
                                     </tr>

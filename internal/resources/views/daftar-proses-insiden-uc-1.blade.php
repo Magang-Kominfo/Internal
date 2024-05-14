@@ -102,6 +102,31 @@
         });
     });
 
+    // notifikasi
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.deleteButton').forEach(button => {
+            button.addEventListener('click', function () {
+                const modal = this.closest('tr').querySelector('.deleteConfirm');
+                modal.style.display = "block";
+            });
+        });
+
+        document.querySelectorAll('.uc-1-delete-confirm-close, .cancelButton').forEach(button => {
+            button.addEventListener('click', function () {
+                const modal = this.closest('.deleteConfirm');
+                modal.style.display = "none";
+            });
+        });
+
+        window.addEventListener('click', function (event) {
+            document.querySelectorAll('.deleteConfirm').forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    });
+
 
 </script>
 
@@ -207,13 +232,30 @@
                                                 <div>
                                                     <a href="{{ route('edit-proses-insiden', ['id' => $insiden->insiden_id]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
                                                 </div>
-                                                <div>
-                                                    <form action="{{ route('delete-proses.softDelete', ['id' => $insiden->insiden_id]) }}" method="post">
-                                                     @csrf
-                                                     @method('DELETE')
-                                                        <button type="submit" class="uc-1-tabel-proses-data-delete">Delete</button>
-                                                    </form>
+                                                <div class="deleteForm">
+                                                    <button type="button" class="deleteButton uc-1-tabel-proses-data-delete">Hapus</button>
                                                 </div>
+
+                                                <div class="deleteConfirm uc-1-detele-confirm">
+                                                    <div class="uc-1-delete-confirm-content">
+                                                      <div class="uc-1-delete-confirm-header">
+                                                        <span class="uc-1-delete-confirm-close">&times;</span>
+                                                        <h2>Konfirmasi Hapus</h2>
+                                                      </div>
+                                                      <div class="uc-1-delete-confirm-body">
+                                                        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                                                      </div>
+                                                      <div class="uc-1-delete-confirm-footer">
+                                                        <button class="cancelButton uc-1-delete-confirm-batal">Batal Hapus</button>
+                                                        <form action="{{ route('delete-proses.softDelete', ['id' => $insiden->insiden_id]) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                               <button type="submit" class="uc-1-delete-confirm-hapus">Hapus</button>
+                                                           </form>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </td>
                                     </tr>
