@@ -5,6 +5,7 @@ use App\Http\Controllers\JenisInsidenController;
 use App\Http\Controllers\MasterOdpController;
 use App\Http\Controllers\InsidenController;
 use App\Http\Controllers\AsetAplikasiController;
+use App\Http\Controllers\JenisKategoriController;
 
 
 ## DASHBOARD
@@ -21,6 +22,9 @@ Route::get('/{id}/edit_aset_aplikasi',  [AsetAplikasiController::class, 'editFor
 Route::put('/{id}/edit_aset_aplikasi', [AsetAplikasiController::class, 'update'])->name('update-aset-aplikasi.update')->withoutMiddleware(['auth']);
 Route::delete('/{id}/delete_aset_aplikasi', [AsetAplikasiController::class, 'delete'])->name('delete-aset.softDelete');
 
+## KATEGORI ASET APLIKASI
+Route::get('/menambahkan_kategori_aset_aplikasi',  [JenisKategoriController::class, 'createForm'])->name('tambah-kategori-aset-aplikasi');
+Route::get('/daftar_kategori_aset_aplikasi',  [JenisKategoriController::class, 'daftarKategori'])->name('kategori-aset-aplikasi');
 
 # PROSES INSIDEN
 Route::get('/{id}/proses_insiden',  [InsidenController::class, 'view'])->name('view-proses-insiden');
@@ -30,7 +34,6 @@ Route::post('/proses_insiden', [InsidenController::class, 'store'])->name('prose
 Route::get('/{id}/edit_proses_insiden',  [InsidenController::class, 'editForm'])->name('edit-proses-insiden');
 Route::put('/{id}/edit_proses_insiden', [InsidenController::class, 'update'])->name('update-proses-insiden.update')->withoutMiddleware(['auth']);
 Route::delete('/{id}/delete_proses_insiden', [InsidenController::class, 'delete'])->name('delete-proses.softDelete');
-
 
 ## JENIS INSIDEN
 Route::get('/menambahkan_insiden',  [JenisInsidenController::class, 'createForm'])->name('tambah-insiden');

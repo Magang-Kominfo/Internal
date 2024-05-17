@@ -11,17 +11,17 @@ class JenisKategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function createForm()
     {
-        //
+        return view('menambahkan-jenis-aset-aplikasi-uc-1');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function daftarKategori()
     {
-        //
+        return view('daftar-jenis-aset-aplikasi-uc-1');
     }
 
     /**
@@ -29,7 +29,7 @@ class JenisKategoriController extends Controller
      */
     public function store(StoreJenis_kategoriRequest $request)
     {
-        //
+
     }
 
     /**

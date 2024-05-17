@@ -11,7 +11,7 @@ body{
 
 }
 
-.uc-1-data-master{
+.uc-1-jenis-aset-aplikasi{
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -21,7 +21,7 @@ body{
 
 
 /* SIDEBAR */
-.uc-1-data-master-sidebar{
+.uc-1-jenis-aset-aplikasi-sidebar{
     flex-grow: 1;
     background-color:#05131D ;
     margin: 0;
@@ -29,7 +29,7 @@ body{
     max-width: 150px;
 }
 
-.uc-1-data-master-sidebar-content{
+.uc-1-jenis-aset-aplikasi-sidebar-content{
     color: white;
     margin:50px 0px 35px 0px;
     font-size: 10px;
@@ -37,37 +37,37 @@ body{
     flex-direction: column;
 }
 
-.uc-1-data-master-sidebar-content-profile{
+.uc-1-jenis-aset-aplikasi-sidebar-content-profile{
     text-align: center;
     margin-bottom: 50px;
 }
 
-.uc-1-data-master-sidebar-content h2{
+.uc-1-jenis-aset-aplikasi-sidebar-content h2{
     padding: 20px 20px 20px 20px;
     margin: 0;
 }
 
-.uc-1-data-master-sidebar-content h2:hover{
+.uc-1-jenis-aset-aplikasi-sidebar-content h2:hover{
     background-color: #39CDF0;
 }
 
-.uc-1-data-master-sidebar-content a{
+.uc-1-jenis-aset-aplikasi-sidebar-content a{
     text-decoration: none;
     list-style-type: none;
     color: white;
 }
 
-.uc-1-data-master-menu-item.active{
+.uc-1-jenis-aset-aplikasi-menu-item.active{
     background-color: #39CDF0;
 }
 
 
-.uc-1-data-master-menu-item-submenu a{
+.uc-1-jenis-aset-aplikasi-menu-item-submenu a{
     text-decoration: none;
     list-style-type: none;
     color: white;
 }
-.uc-1-data-master-menu-item-submenu {
+.uc-1-jenis-aset-aplikasi-menu-item-submenu {
     display: none;
     position: absolute;
     top: 0;
@@ -82,49 +82,49 @@ body{
 
 }
 
-.uc-1-data-master-menu-item-submenu li{
+.uc-1-jenis-aset-aplikasi-menu-item-submenu li{
     width: 100px;
     padding: 10px;
     padding-left: 30px;
 }
 
-.uc-1-data-master-menu-item-submenu li:hover{
+.uc-1-jenis-aset-aplikasi-menu-item-submenu li:hover{
     background-color: #39CDF0;
 }
 
-.uc-1-data-master-menu-item.active .uc-1-data-master-menu-item-submenu {
+.uc-1-jenis-aset-aplikasi-menu-item.active .uc-1-jenis-aset-aplikasi-menu-item-submenu {
     display: block;
 }
 
-.uc-1-data-master-menu-item{
+.uc-1-jenis-aset-aplikasi-menu-item{
     position: relative
 }
 
 /* MAIN ARTIKEL */
-.uc-1-data-master-main{
+.uc-1-jenis-aset-aplikasi-main{
     flex-grow: 3;
     padding: 15px 20px 15px 20px;
 }
 
-.uc-1-data-master-header{
+.uc-1-jenis-aset-aplikasi-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 25px;
 }
 
-.uc-1-data-master-header img{
+.uc-1-jenis-aset-aplikasi-header img{
     width: 251px;
     height: 94.02px;
 }
 
-.uc-1-data-master-artikel{
+.uc-1-jenis-aset-aplikasi-artikel{
     display: flex;
     flex-direction: column;
 
 }
 
-.uc-1-data-master-view-artikel{
+.uc-1-jenis-aset-aplikasi-view-artikel{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -134,7 +134,7 @@ body{
 }
 
 /* MENAMBAHKAN data-master */
-.uc-1-data-master-view-artikel-data-master{
+.uc-1-jenis-aset-aplikasi-view-artikel-jenis-aset-aplikasi{
     background-color: white;
     padding: 20px 30px 20px 30px;
     flex-grow: 1;
@@ -142,13 +142,13 @@ body{
     border-radius: 10px;
 }
 
-.uc-1-data-master-view-artikel-data-master h1{
+.uc-1-jenis-aset-aplikasi-view-artikel-jenis-aset-aplikasi h1{
     margin: 0px;
     color:#34469A;
     font-size: 34px;
 }
 
-.uc-1-data-master-view-artikel-data-master-header{
+.uc-1-jenis-aset-aplikasi-view-artikel-jenis-aset-aplikasi-header{
     margin: 0;
     padding: 0;
     margin-bottom: 15px;
@@ -160,14 +160,14 @@ body{
 
 
 /* BUTTON */
-.uc-1-data-master-view-artikel-button{
+.uc-1-jenis-aset-aplikasi-view-artikel-button{
     float: right;
     display: flex;
     flex-direction: row;
     gap: 21px;
 }
 
-.uc-1-data-master-view-artikel-button-back button{
+.uc-1-jenis-aset-aplikasi-view-artikel-button-back button{
     padding: 10px 20px 10px 20px;
     background-color: #F1F1F3;
     color: #05131D;
@@ -177,12 +177,12 @@ body{
     border: 2px solid #F1F1F3;
 }
 
-.uc-1-data-master-view-artikel-button-back button:hover{
+.uc-1-jenis-aset-aplikasi-view-artikel-button-back button:hover{
     background-color: #39CDF0;
     border: 2px solid #39CDF0;
 }
 
-.uc-1-data-master-view-artikel-button-tambah button{
+.uc-1-jenis-aset-aplikasi-view-artikel-button-tambah button{
     padding: 10px 15px 10px 15px;
     background-color: #34469A;
     color: white;
@@ -192,13 +192,13 @@ body{
     border: 2px solid #34469A;
 }
 
-.uc-1-data-master-view-artikel-button-tambah button:hover{
+.uc-1-jenis-aset-aplikasi-view-artikel-button-tambah button:hover{
     background-color:#39CDF0;
     border: 2px solid #39CDF0;
 }
 
 /* TABEL */
-.uc-1-data-master-view-artikel-search input{
+.uc-1-jenis-aset-aplikasi-view-artikel-search input{
     border-radius: 15px;
     border: 1px solid #34469A;
     height: 40px;
@@ -207,7 +207,7 @@ body{
 }
 
 
-.uc-1-menambahkan-data-master-tabel{
+.uc-1-menambahkan-jenis-aset-aplikasi-tabel{
     border: 1px solid black;
     border-collapse: collapse;
     width: 100%;
@@ -268,7 +268,7 @@ body{
     color: white;
 }
 
-.uc-1-menambahkan-data-master-tabel th, .uc-1-menambahkan-data-master-tabel td{
+.uc-1-menambahkan-jenis-aset-aplikasi-tabel th, .uc-1-menambahkan-jenis-aset-aplikasi-tabel td{
     border: 1px solid black;
     padding: 10px;
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/menambahkanInsiden-uc-1.css">
-    <title>Menambahkan Insiden</title>
+    <title>Menambahkan Jenis Insiden</title>
 </head>
 
 <script>
@@ -70,7 +70,7 @@
                 <div class="uc-1-menambahkan-insiden-view-artikel">
                     <div class="uc-1-menambahkan-insiden-view-artikel-insiden">
                         <div class="uc-1-menambahkan-insiden-view-artikel-insiden-header">
-                            <h1>MENAMBAHKAN INSIDEN</h1>
+                            <h1>MENAMBAHKAN JENIS INSIDEN</h1>
                         </div>
 
                         <form action="{{ route('tambahkan-insiden.post') }}" method="post">
