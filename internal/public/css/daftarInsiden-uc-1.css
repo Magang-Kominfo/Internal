@@ -221,20 +221,21 @@ body{
     float: right;
 }
 
-.uc-1-menambahkan-daftar-insiden-view-artikel-button-back button{
-    padding: 10px 30px 10px 30px;
-    background-color: #F1F1F3;
-    color: black;
-    font-size: 12px;
+.uc-1-menambahkan-daftar-insiden-view-artikel-button-tambah button{
+    padding: 10px 15px 10px 15px;
+    background-color: #34469A;
+    color: white;
     font-weight: bolder;
+    font-size: 12px;
     border-radius: 5px;
-    border: none;
+    border: 2px solid #34469A;
 }
 
-.uc-1-menambahkan-daftar-insiden-view-artikel-button-back button:hover{
-    background-color: #39CDF0;
-    border: none;
+.uc-1-menambahkan-daftar-insiden-view-artikel-button-tambah button:hover{
+    background-color:#39CDF0;
+    border: 2px solid #39CDF0;
 }
+
 
 .uc-1-menambahkan-daftar-insiden-view-artikel-button-save button{
     padding: 10px 30px 10px 30px;

@@ -80,7 +80,7 @@
                     <h2>Aset Aplikasi</h2>
                     <ul class="uc-1-jenis-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
-                        <a href="{{ route('tambah-aset-aplikasi') }}"><li>Tambahkan Aset Aplikasi</li></a>
+                        <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-jenis-aset-aplikasi-menu-item">
@@ -88,7 +88,6 @@
                     <ul class="uc-1-jenis-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
-                        <a href="{{ route('tambah-insiden') }}"><li>Tambahkan Insiden</li></a>
                     </ul>
                 </div>
                 <div>
@@ -113,11 +112,8 @@
                         <div class="uc-1-jenis-aset-aplikasi-view-artikel-jenis-aset-aplikasi-header">
                             <h1>KATEGORI ASET APLIKASI</h1>
                             <div class="uc-1-jenis-aset-aplikasi-view-artikel-button">
-                                <div class="uc-1-jenis-aset-aplikasi-view-artikel-button-back">
-                                    <button>Back</button>
-                                </div>
                                 <div class="uc-1-jenis-aset-aplikasi-view-artikel-button-tambah">
-                                    <a href="{{ route('tambah-kategori-aset-aplikasi') }}"><button type="button">Create New</button></a>
+                                    <a href="{{ route('tambah-kategori-aset-aplikasi') }}"><button type="button">Tambah Kategori</button></a>
                                 </div>
                             </div>
 
@@ -126,6 +122,7 @@
                         <div class="uc-1-jenis-aset-aplikasi-view-artikel-search">
                             <input type="text" id="searchInput" placeholder="Cari...">
                         </div>
+
 
                         <div>
 
@@ -141,22 +138,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($jenis_kategoris as $jenis_kategori)
                                     <tr>
-                                        <td class="uc-1-tabel-id-data"></td>
-                                        <td class="uc-1-tabel-nama-data"></td>
-                                        <td class="uc-1-tabel-deskripsi-data"></td>
-                                        <td class="uc-1-tabel-created-at-data"></td>
-                                        <td class="uc-1-tabel-updated-at-data"></td>
+                                        <td class="uc-1-tabel-id-data">{{ $jenis_kategori->id_jenis_kategori }}</td>
+                                        <td class="uc-1-tabel-nama-data">{{ $jenis_kategori->nama_jenis_kategori }}</td>
+                                        <td class="uc-1-tabel-deskripsi-data">{{ $jenis_kategori->deskripsi_jenis_kategori }}</td>
+                                        <td class="uc-1-tabel-created-at-data">{{ $jenis_kategori->created_at }}</td>
+                                        <td class="uc-1-tabel-updated-at-data">{{ $jenis_kategori->updated_at }}</td>
                                         <td class="uc-1-tabel-proses-data">
                                             <div class="uc-1-tabel-proses-data-proses">
                                                 <div>
-                                                    <a href="#"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
+                                                    <a href="{{ route('edit-jenis-kategori-aset-aplikasi', ['id' => $jenis_kategori->id_jenis_kategori]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-
+                                    @endforeach
                                 </tbody>
                             </table>
 

@@ -14,7 +14,7 @@ class Aset_aplikasi extends Model
     protected $dates = ['deleted_at'];
     protected $primaryKey = 'id_aset_aplikasi';
     protected $fillable = [
-        'kategori_aset_aplikasi',
+        'aa_id_jenis_kategori_foreign',
         'nama_aset_aplikasi',
         'ip_aset_aplikasi',
         'server_aset_aplikasi',
@@ -23,6 +23,6 @@ class Aset_aplikasi extends Model
 
     public function jenis_kategoris()
     {
-        return $this->belongsTo(Jenis_kategori::class);
+        return $this->belongsTo(Jenis_kategori::class, 'aa_id_jenis_kategori_foreign');
     }
 }

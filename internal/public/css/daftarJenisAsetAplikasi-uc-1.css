@@ -167,21 +167,6 @@ body{
     gap: 21px;
 }
 
-.uc-1-jenis-aset-aplikasi-view-artikel-button-back button{
-    padding: 10px 20px 10px 20px;
-    background-color: #F1F1F3;
-    color: #05131D;
-    font-size: 12px;
-    font-weight: bolder;
-    border-radius: 5px;
-    border: 2px solid #F1F1F3;
-}
-
-.uc-1-jenis-aset-aplikasi-view-artikel-button-back button:hover{
-    background-color: #39CDF0;
-    border: 2px solid #39CDF0;
-}
-
 .uc-1-jenis-aset-aplikasi-view-artikel-button-tambah button{
     padding: 10px 15px 10px 15px;
     background-color: #34469A;

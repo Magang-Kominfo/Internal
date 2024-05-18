@@ -143,7 +143,7 @@
                     <h2>Aset Aplikasi</h2>
                     <ul class="uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
-                        <a href="{{ route('tambah-aset-aplikasi') }}"><li>Tambahkan Aset Aplikasi</li></a>
+                        <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-menambahkan-daftar-aset-aplikasi-menu-item">
@@ -151,7 +151,6 @@
                     <ul class="uc-1-menambahkan-daftar-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
-                        <a href="{{ route('tambah-insiden') }}"><li>Tambahkan Insiden</li></a>
                     </ul>
                 </div>
                 <div>
@@ -175,6 +174,10 @@
                     <div class="uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi">
                         <div class="uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-header">
                             <h1>DAFTAR ASET APLIKASI</h1>
+
+                            <div class="uc-1-daftar-aset-aplikasi-view-artikel-button-tambah">
+                                <a href="{{ route('tambah-aset-aplikasi') }}"><button type="button">Tambah Aset Aplikasi</button></a>
+                            </div>
                         </div>
 
                         <div class="uc-1-menambahkan-daftar-aset-aplikasi-view-artikel-daftar-aset-aplikasi-search">
@@ -209,7 +212,7 @@
                                     <tr>
                                         <td class="uc-1-tabel-id-data">{{ $aset_aplikasi->id_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-nama-data">{{ $aset_aplikasi->nama_aset_aplikasi }}</td>
-                                        <td class="uc-1-tabel-kategori-data">{{ $aset_aplikasi->kategori_aset_aplikasi }}</td>
+                                        <td class="uc-1-tabel-kategori-data">{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</td>
                                         <td class="uc-1-tabel-ip-data">{{ $aset_aplikasi->ip_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-server-data">{{ $aset_aplikasi->server_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-indeks-data">{{ $aset_aplikasi->indeks_kami_aset_aplikasi }}</td>

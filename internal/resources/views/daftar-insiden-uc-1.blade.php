@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/daftarInsiden-uc-1.css">
-    <title>Daftar Insiden</title>
+    <title>Daftar Jenis Insiden</title>
 </head>
 
 <script>
@@ -79,7 +79,7 @@
                     <h2>Aset Aplikasi</h2>
                     <ul class="uc-1-menambahkan-daftar-insiden-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
-                        <a href="{{ route('tambah-aset-aplikasi') }}"><li>Tambahkan Aset Aplikasi</li></a>
+                        <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-menambahkan-daftar-insiden-menu-item">
@@ -87,7 +87,6 @@
                     <ul class="uc-1-menambahkan-daftar-insiden-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
-                        <a href="{{ route('tambah-insiden') }}"><li>Tambahkan Insiden</li></a>
                     </ul>
                 </div>
                 <div>
@@ -110,10 +109,10 @@
                 <div class="uc-1-menambahkan-daftar-insiden-view-artikel">
                     <div class="uc-1-menambahkan-daftar-insiden-view-artikel-daftar-insiden">
                         <div class="uc-1-menambahkan-daftar-insiden-view-artikel-daftar-insiden-header">
-                            <h1>DAFTAR INSIDEN</h1>
+                            <h1>DAFTAR JENIS INSIDEN</h1>
                             <div class="uc-1-menambahkan-daftar-insiden-view-artikel-button">
-                                <div class="uc-1-menambahkan-daftar-insiden-view-artikel-button-back">
-                                    <a href="{{ route('dashboard') }}"><button type="button">Back</button></a>
+                                <div class="uc-1-menambahkan-daftar-insiden-view-artikel-button-tambah">
+                                    <a href="{{ route('tambah-insiden') }}"><button type="button">Tambah Jenis Insiden</button></a>
                                 </div>
                             </div>
                         </div>

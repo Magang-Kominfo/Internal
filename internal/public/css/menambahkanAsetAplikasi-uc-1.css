@@ -210,7 +210,7 @@ body{
     flex-direction: column;
 }
 
-.uc-1-menambahkan-aset-aplikasi-input-field-kategori input{
+.uc-1-menambahkan-aset-aplikasi-input-field-kategori select{
     border-radius: 20px;
     border: 1px solid #34469A;
     height: 40px;

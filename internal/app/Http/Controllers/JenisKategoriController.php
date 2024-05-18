@@ -21,7 +21,9 @@ class JenisKategoriController extends Controller
      */
     public function daftarKategori()
     {
-        return view('daftar-jenis-aset-aplikasi-uc-1');
+
+        $jenis_kategoris = Jenis_kategori::all();
+        return view('daftar-jenis-aset-aplikasi-uc-1', ['jenis_kategoris' => $jenis_kategoris]);
     }
 
     /**
@@ -29,7 +31,19 @@ class JenisKategoriController extends Controller
      */
     public function store(StoreJenis_kategoriRequest $request)
     {
+        $request->validate([
+            'nama_jenis_kategori' => 'required|string|max:255',
+            'deskripsi_jenis_kategori' => 'required|string',
+        ]);
 
+        // Simpan data ke dalam database
+        Jenis_kategori::create([
+            'nama_jenis_kategori' => $request->nama_jenis_kategori,
+            'deskripsi_jenis_kategori' => $request->deskripsi_jenis_kategori,
+        ]);
+
+        // Redirect dengan message jika berhasil
+        return redirect('/menambahkan_kategori_aset_aplikasi')->with('alert', 'Jenis kategori berhasil ditambahkan.');
     }
 
     /**
@@ -43,17 +57,29 @@ class JenisKategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Jenis_kategori $jenis_kategori)
+    public function editForm($id)
     {
-        //
+        $jenis_kategori = Jenis_kategori::findOrFail($id);
+        return view('daftar-jenis-aset-aplikasi-edit-uc-1',compact('jenis_kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJenis_kategoriRequest $request, Jenis_kategori $jenis_kategori)
+    public function update(UpdateJenis_kategoriRequest $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_jenis_kategori' => 'required|string|max:255',
+            'deskripsi_jenis_kategori' => 'required|string',
+        ]);
+
+        // Perbarui data di database
+        $jenis_kategori = Jenis_kategori::find($id);
+        $jenis_kategori->nama_jenis_kategori = $request->nama_jenis_kategori;
+        $jenis_kategori->deskripsi_jenis_kategori = $request->deskripsi_jenis_kategori;
+        $jenis_kategori->save();
+
+        return redirect('/daftar_kategori_aset_aplikasi')->with('alert', 'Data berhasil diperbarui');
     }
 
     /**

@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('aset_aplikasis', function (Blueprint $table) {
             $table->id('id_aset_aplikasi');
-            ## $table->unsignedBigInteger('aa_id_jenis_kategori_foreign')->nullable();
-            ## $table->foreign('aa_id_jenis_kategori_foreign')->references('id_jenis_kategori')->on('jenis_kategoris');
-            $table->string('kategori_aset_aplikasi');
+            $table->unsignedBigInteger('aa_id_jenis_kategori_foreign');
+            $table->foreign('aa_id_jenis_kategori_foreign')->references('id_jenis_kategori')->on('jenis_kategoris');
             $table->string('nama_aset_aplikasi');
             $table->string('ip_aset_aplikasi')->nullable();
             $table->string('server_aset_aplikasi')->nullable();
@@ -31,9 +30,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('aset_aplikasis');
-        /*Schema::table('insidens', function (Blueprint $table) {
+        Schema::table('aset_aplikasis', function (Blueprint $table) {
             $table->dropForeign(['aa_id_jenis_kategori_foreign']);
             $table->dropColumn('aa_id_jenis_kategori_foreign');;
-        });*/
+        });
     }
 };

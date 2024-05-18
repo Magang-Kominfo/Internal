@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aset_aplikasi;
 use App\Http\Requests\StoreAset_aplikasiRequest;
 use App\Http\Requests\UpdateAset_aplikasiRequest;
+use App\Models\Jenis_kategori;
 
 class AsetAplikasiController extends Controller
 {
@@ -21,7 +22,8 @@ class AsetAplikasiController extends Controller
      */
     public function createForm()
     {
-        return view('menambahkan-aset-aplikasi-uc-1');
+        $jenisKategoriList = Jenis_kategori::all();
+        return view('menambahkan-aset-aplikasi-uc-1', compact('jenisKategoriList'));
     }
 
     /**
@@ -31,20 +33,22 @@ class AsetAplikasiController extends Controller
     {
         $request->validate([
             'nama_aset_aplikasi' => 'required|string|max:255',
-            'kategori_aset_aplikasi' => 'required|string',
+            'aa_id_jenis_kategori_foreign' => 'required|exists:jenis_kategoris,id_jenis_kategori',
             'ip_aset_aplikasi' => 'nullable|string',
             'server_aset_aplikasi' => 'nullable|string',
             'indeks_kami_aset_aplikasi' => 'nullable|string',
         ]);
 
         // Simpan data ke dalam database
-        Aset_aplikasi::create([
-            'nama_aset_aplikasi' => $request->nama_aset_aplikasi,
-            'kategori_aset_aplikasi' => $request->kategori_aset_aplikasi,
-            'ip_aset_aplikasi' => $request->ip_aset_aplikasi,
-            'server_aset_aplikasi' => $request->server_aset_aplikasi,
-            'indeks_kami_aset_aplikasi' => $request->indeks_kami_aset_aplikasi,
-        ]);
+
+        $aset_aplikasi = new Aset_aplikasi;
+        $aset_aplikasi->nama_aset_aplikasi = $request->nama_aset_aplikasi;
+        $aset_aplikasi->aa_id_jenis_kategori_foreign = $request->aa_id_jenis_kategori_foreign;
+        $aset_aplikasi->ip_aset_aplikasi = $request->ip_aset_aplikasi;
+        $aset_aplikasi->server_aset_aplikasi = $request->server_aset_aplikasi;
+        $aset_aplikasi->indeks_kami_aset_aplikasi = $request->indeks_kami_aset_aplikasi;
+
+        $aset_aplikasi->save();
 
         // Redirect dengan message jika berhasil
         return redirect('/menambahkan_aset_aplikasi')->with('alert', 'Aset Aplikasi berhasil ditambahkan.');
@@ -53,7 +57,7 @@ class AsetAplikasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function daftarProsesInsiden()
+    public function daftarAsetAplikasi()
     {
         $aset_aplikasis = Aset_aplikasi::all();
         return view('daftar-aset-aplikasi-uc-1', ['aset_aplikasis' => $aset_aplikasis]);
@@ -64,8 +68,9 @@ class AsetAplikasiController extends Controller
      */
     public function editForm($id)
     {
+        $jenisKategoriList = Jenis_kategori::all();
         $aset_aplikasi = Aset_aplikasi::findOrFail($id);
-        return view('daftar-aset-aplikasi-edit-uc-1',compact('aset_aplikasi'));
+        return view('daftar-aset-aplikasi-edit-uc-1',compact('aset_aplikasi','jenisKategoriList'));
     }
 
     /**
@@ -75,7 +80,7 @@ class AsetAplikasiController extends Controller
     {
         $validatedData = $request->validate([
             'nama_aset_aplikasi' => 'required|string|max:255',
-            'kategori_aset_aplikasi' => 'required|string',
+            'aa_id_jenis_kategori_foreign' => 'required|exists:jenis_kategoris,id_jenis_kategori',
             'ip_aset_aplikasi' => 'nullable|string',
             'server_aset_aplikasi' => 'nullable|string',
             'indeks_kami_aset_aplikasi' => 'nullable|string',
@@ -83,7 +88,7 @@ class AsetAplikasiController extends Controller
         // Perbarui data di database
         $aset_aplikasi = Aset_aplikasi::find($id);
         $aset_aplikasi->nama_aset_aplikasi = $request->nama_aset_aplikasi;
-        $aset_aplikasi->kategori_aset_aplikasi = $request->kategori_aset_aplikasi;
+        $aset_aplikasi->aa_id_jenis_kategori_foreign = $request->aa_id_jenis_kategori_foreign;
         $aset_aplikasi->ip_aset_aplikasi = $request->ip_aset_aplikasi;
         $aset_aplikasi->server_aset_aplikasi = $request->server_aset_aplikasi;
         $aset_aplikasi->indeks_kami_aset_aplikasi = $request->indeks_kami_aset_aplikasi;

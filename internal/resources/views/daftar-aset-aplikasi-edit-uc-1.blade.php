@@ -40,7 +40,6 @@
                     <ul class="uc-1-menambahkan-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
                         <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
-                        <a href="{{ route('tambah-aset-aplikasi') }}"><li>Tambahkan Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-menambahkan-aset-aplikasi-menu-item">
@@ -48,7 +47,6 @@
                     <ul class="uc-1-menambahkan-aset-aplikasi-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
-                        <a href="{{ route('tambah-insiden') }}"><li>Tambahkan Insiden</li></a>
                     </ul>
                 </div>
                 <div>
@@ -84,8 +82,13 @@
                                 </div>
 
                                 <div class="uc-1-menambahkan-aset-aplikasi-input-field-kategori">
-                                    <label for="kategori_aset_aplikasi">Kategori Aset Aplikasi:</label>
-                                    <input type="text" id="kategori_aset_aplikasi" name="kategori_aset_aplikasi" value="{{ $aset_aplikasi->kategori_aset_aplikasi }}">
+                                    <label for="aa_id_jenis_kategori_foreign">Kategori Aset Aplikasi:</label>
+                                    <select name="aa_id_jenis_kategori_foreign" id="aa_id_jenis_kategori_foreign">
+                                        <option value="{{ $aset_aplikasi->aa_id_jenis_kategori_foreign }}">Pilih Kategori Aset Aplikasi</option>
+                                        @foreach($jenisKategoriList as $jenisKategori)
+                                            <option value="{{ $jenisKategori->id_jenis_kategori }}">{{ $jenisKategori->nama_jenis_kategori }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="uc-1-menambahkan-aset-aplikasi-input-field-ip">

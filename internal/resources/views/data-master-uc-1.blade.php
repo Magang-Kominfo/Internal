@@ -80,7 +80,7 @@
                     <h2>Aset Aplikasi</h2>
                     <ul class="uc-1-data-master-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
-                        <a href="{{ route('tambah-aset-aplikasi') }}"><li>Tambahkan Aset Aplikasi</li></a>
+                        <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-data-master-menu-item">
@@ -88,7 +88,6 @@
                     <ul class="uc-1-data-master-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
-                        <a href="{{ route('tambah-insiden') }}"><li>Tambahkan Insiden</li></a>
                     </ul>
                 </div>
                 <div>
@@ -113,11 +112,8 @@
                         <div class="uc-1-data-master-view-artikel-data-master-header">
                             <h1>DATA MASTER</h1>
                             <div class="uc-1-data-master-view-artikel-button">
-                                <div class="uc-1-data-master-view-artikel-button-back">
-                                    <button>Back</button>
-                                </div>
                                 <div class="uc-1-data-master-view-artikel-button-tambah">
-                                    <a href="{{ route('menambahkan-data-master') }}"><button type="button">Create New</button></a>
+                                    <a href="{{ route('menambahkan-data-master') }}"><button type="button">Tambah Instansi</button></a>
                                 </div>
                             </div>
 
