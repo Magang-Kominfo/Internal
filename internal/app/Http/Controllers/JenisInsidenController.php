@@ -21,7 +21,7 @@ class JenisInsidenController extends Controller
      */
     public function createForm()
     {
-        return view('menambahkan-insiden-uc-1');
+        return view('menambahkan-jenis-insiden-uc-1');
     }
 
     /**
@@ -41,16 +41,16 @@ class JenisInsidenController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/daftar_insiden')->with('alert', 'Insiden berhasil ditambahkan.');
+        return redirect('/menambahkan_insiden')->with('alert', 'Insiden berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function daftarInsiden()
+    public function daftarJenisInsiden()
     {
         $jenis_insidens = Jenis_insiden::all();
-        return view('daftar-insiden-uc-1', ['jenis_insidens' => $jenis_insidens]);
+        return view('daftar-jenis-insiden-uc-1', ['jenis_insidens' => $jenis_insidens]);
     }
 
     /**
@@ -61,7 +61,7 @@ class JenisInsidenController extends Controller
     public function editForm($id)
     {
         $jenis_insiden = Jenis_insiden::findOrFail($id);
-        return view('jenis-insiden-edit-uc-1',compact('jenis_insiden'));
+        return view('daftar-jenis-insiden-edit-uc-1',compact('jenis_insiden'));
     }
 
 

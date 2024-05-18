@@ -150,7 +150,7 @@
                 <div class="uc-1-menambahkan-daftar-proses-insiden-menu-item">
                     <h2>Insiden</h2>
                     <ul class="uc-1-menambahkan-daftar-proses-insiden-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>

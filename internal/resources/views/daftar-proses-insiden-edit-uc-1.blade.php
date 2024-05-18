@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../css/prosesInsiden-uc-1.css">
+    <link rel="stylesheet" type="text/css" href="../css/menambahkanProsesInsiden-uc-1.css">
     <title>Edit Proses Insiden</title>
 </head>
 
@@ -45,7 +45,7 @@
                 <div class="uc-1-proses-insiden-menu-item">
                     <h2>Insiden</h2>
                     <ul class="uc-1-proses-insiden-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>

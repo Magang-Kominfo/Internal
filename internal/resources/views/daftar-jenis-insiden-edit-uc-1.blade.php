@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../css/menambahkanInsiden-uc-1.css">
-    <title>Menambahkan Jenis Insiden</title>
+    <link rel="stylesheet" type="text/css" href="../css/menambahkanJenisInsiden-uc-1.css">
+    <title>Edit Data Master</title>
 </head>
 
 <script>
@@ -45,7 +45,7 @@
                 <div class="uc-1-menambahkan-insiden-menu-item">
                     <h2>Insiden</h2>
                     <ul class="uc-1-menambahkan-insiden-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>
@@ -69,34 +69,37 @@
                 <div class="uc-1-menambahkan-insiden-view-artikel">
                     <div class="uc-1-menambahkan-insiden-view-artikel-insiden">
                         <div class="uc-1-menambahkan-insiden-view-artikel-insiden-header">
-                            <h1>MENAMBAHKAN JENIS INSIDEN</h1>
+                            <h1>EDIT DATA MASTER</h1>
                         </div>
 
-                        <form action="{{ route('tambahkan-insiden.post') }}" method="post">
+                        <form action="{{ route('update-jenis-insiden.update', ['id' => $jenis_insiden->id_jenis_insiden]) }}" method="post">
                         @csrf
+                        @method('PUT')
                             <div class="uc-1-menambahkan-insiden-input-field">
                                     <div class="uc-1-menambahkan-insiden-input-field-nama">
                                         <label for="nama_insiden">Nama Insiden:</label>
-                                        <input type="text" name="nama_insiden" id="nama_insiden" >
+                                        <input type="text" name="nama_insiden" id="nama_insiden"  value="{{ $jenis_insiden->nama_insiden }}">
                                     </div>
 
                                     <div class="uc-1-menambahkan-insiden-input-field-deskripsi">
                                         <label for="deskripsi_insiden">Deskripsi Insiden:</label>
-                                        <textarea name="deskripsi_insiden" id="deskripsi_insiden" cols="30" rows="10"></textarea>
+                                        <textarea name="deskripsi_insiden" id="deskripsi_insiden" cols="30" rows="10">{{ $jenis_insiden->deskripsi_insiden }}</textarea>
                                     </div>
+
                             </div>
 
 
 
                             <div class="uc-1-menambahkan-insiden-view-artikel-footer">
                                 <div class="uc-1-menambahkan-insiden-view-artikel-footer-back">
-                                    <a href="{{ route('dashboard') }}"><button type="button">Back</button></a>
+                                    <a href="{{ route('daftar-insiden') }}"><button type="button">Back</button></a>
                                 </div>
 
                                 <div class="uc-1-menambahkan-insiden-view-artikel-footer-save">
                                     <button type="submit">Save</button>
                                 </div>
                             </div>
+
                         </form>
 
                     </div>

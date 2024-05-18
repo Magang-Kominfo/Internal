@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../css/editInsiden-uc-1.css">
-    <title>Edit Data Master</title>
+    <link rel="stylesheet" type="text/css" href="../css/menambahkanJenisInsiden-uc-1.css">
+    <title>Menambahkan Jenis Insiden</title>
 </head>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    const menuItems = document.querySelectorAll(".uc-1-edit-insiden-menu-item");
+    const menuItems = document.querySelectorAll(".uc-1-menambahkan-insiden-menu-item");
 
     menuItems.forEach(function(menuItem) {
         menuItem.addEventListener("click", function() {
@@ -26,26 +26,26 @@
 </script>
 
 <body>
-    <div class="uc-1-edit-insiden">
-        <div class="uc-1-edit-insiden-sidebar">
-            <div class="uc-1-edit-insiden-sidebar-content">
-                <div class="uc-1-edit-insiden-sidebar-content-profile">
+    <div class="uc-1-menambahkan-insiden">
+        <div class="uc-1-menambahkan-insiden-sidebar">
+            <div class="uc-1-menambahkan-insiden-sidebar-content">
+                <div class="uc-1-menambahkan-insiden-sidebar-content-profile">
                     <img src="" alt="profile">
                 </div>
                 <div>
                     <a href="{{ route('dashboard') }}"><h2>Dashboard</h2></a>
                 </div>
-                <div class="uc-1-edit-insiden-menu-item">
+                <div class="uc-1-menambahkan-insiden-menu-item">
                     <h2>Aset Aplikasi</h2>
-                    <ul class="uc-1-edit-insiden-menu-item-submenu">
+                    <ul class="uc-1-menambahkan-insiden-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
                         <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
-                <div class="uc-1-edit-insiden-menu-item">
+                <div class="uc-1-menambahkan-insiden-menu-item">
                     <h2>Insiden</h2>
-                    <ul class="uc-1-edit-insiden-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                    <ul class="uc-1-menambahkan-insiden-menu-item-submenu">
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>
@@ -58,48 +58,46 @@
             </div>
         </div>
 
-        <div class="uc-1-edit-insiden-main">
-            <div class="uc-1-edit-insiden-header">
+        <div class="uc-1-menambahkan-insiden-main">
+            <div class="uc-1-menambahkan-insiden-header">
                 <div>
                     <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
                 </div>
             </div>
 
-            <div class="uc-1-edit-insiden-artikel">
-                <div class="uc-1-edit-insiden-view-artikel">
-                    <div class="uc-1-edit-insiden-view-artikel-insiden">
-                        <div class="uc-1-edit-insiden-view-artikel-insiden-header">
-                            <h1>EDIT DATA MASTER</h1>
+            <div class="uc-1-menambahkan-insiden-artikel">
+                <div class="uc-1-menambahkan-insiden-view-artikel">
+                    <div class="uc-1-menambahkan-insiden-view-artikel-insiden">
+                        <div class="uc-1-menambahkan-insiden-view-artikel-insiden-header">
+                            <h1>MENAMBAHKAN JENIS INSIDEN</h1>
                         </div>
 
-                        <form action="{{ route('update-jenis-insiden.update', ['id' => $jenis_insiden->id_jenis_insiden]) }}" method="post">
+                        <form action="{{ route('tambahkan-insiden.post') }}" method="post">
                         @csrf
-                        @method('PUT')
-                            <div class="uc-1-edit-insiden-input-field">
-                                    <div class="uc-1-edit-insiden-input-field-nama">
+                            <div class="uc-1-menambahkan-insiden-input-field">
+                                    <div class="uc-1-menambahkan-insiden-input-field-nama">
                                         <label for="nama_insiden">Nama Insiden:</label>
-                                        <input type="text" name="nama_insiden" id="nama_insiden"  value="{{ $jenis_insiden->nama_insiden }}">
+                                        <input type="text" name="nama_insiden" id="nama_insiden" >
                                     </div>
 
-                                    <div class="uc-1-edit-insiden-input-field-deskripsi">
+                                    <div class="uc-1-menambahkan-insiden-input-field-deskripsi">
                                         <label for="deskripsi_insiden">Deskripsi Insiden:</label>
-                                        <textarea name="deskripsi_insiden" id="deskripsi_insiden" cols="30" rows="10">{{ $jenis_insiden->deskripsi_insiden }}</textarea>
+                                        <textarea name="deskripsi_insiden" id="deskripsi_insiden" cols="30" rows="10"></textarea>
                                     </div>
-
                             </div>
 
 
 
-                            <div class="uc-1-edit-insiden-view-artikel-footer">
-                                <div class="uc-1-edit-insiden-view-artikel-footer-back">
+                            <div class="uc-1-menambahkan-insiden-view-artikel-footer">
+
+                                <div class="uc-1-menambahkan-insiden-view-artikel-footer-back">
                                     <a href="{{ route('daftar-insiden') }}"><button type="button">Back</button></a>
                                 </div>
 
-                                <div class="uc-1-edit-insiden-view-artikel-footer-save">
+                                <div class="uc-1-menambahkan-insiden-view-artikel-footer-save">
                                     <button type="submit">Save</button>
                                 </div>
                             </div>
-
                         </form>
 
                     </div>

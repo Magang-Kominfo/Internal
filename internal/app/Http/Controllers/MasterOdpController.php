@@ -48,7 +48,7 @@ class MasterOdpController extends Controller
     public function daftarMasterOPD()
     {
         $master_odps = Master_odp::all();
-        return view('data-master-uc-1', ['master_odps' => $master_odps]);
+        return view('daftar-data-master-uc-1', ['master_odps' => $master_odps]);
     }
 
     /**
@@ -57,7 +57,7 @@ class MasterOdpController extends Controller
     public function editForm($id)
     {
         $master_odp = Master_odp::findOrFail($id);
-        return view('data-master-edit-uc-1',compact('master_odp'));
+        return view('daftar-data-master-edit-uc-1',compact('master_odp'));
     }
 
 

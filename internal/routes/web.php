@@ -6,12 +6,12 @@ use App\Http\Controllers\MasterOdpController;
 use App\Http\Controllers\InsidenController;
 use App\Http\Controllers\AsetAplikasiController;
 use App\Http\Controllers\JenisKategoriController;
+use App\Http\Controllers\Controller;
+
 
 
 ## DASHBOARD
-Route::get('/', function () {
-    return view('dashboard-uc-1');
-})->name('dashboard');
+Route::get('/dashboard',  [Controller::class, 'viewDashboard'])->name('dashboard');
 
 
 ## ASET APLIKASI
@@ -30,7 +30,7 @@ Route::get('/{id}/edit_kategori_aset_aplikasi',  [JenisKategoriController::class
 Route::put('/{id}/edit_kategori_aset_aplikasi', [JenisKategoriController::class, 'update'])->name('update-jenis-kategori-aset-aplikasi.update')->withoutMiddleware(['auth']);
 
 # PROSES INSIDEN
-Route::get('/{id}/proses_insiden',  [InsidenController::class, 'view'])->name('view-proses-insiden');
+Route::get('/{id}/proses_insiden',  [InsidenController::class, 'viewProsesInsiden'])->name('view-proses-insiden');
 Route::get('/daftar_proses_insiden',  [InsidenController::class, 'daftarProsesInsiden'])->name('proses-insiden');
 Route::get('/proses_insiden',  [InsidenController::class, 'createForm'])->name('tambah-proses-insiden');
 Route::post('/proses_insiden', [InsidenController::class, 'store'])->name('proses-insiden.post')->withoutMiddleware(['auth']);
@@ -41,7 +41,7 @@ Route::delete('/{id}/delete_proses_insiden', [InsidenController::class, 'delete'
 ## JENIS INSIDEN
 Route::get('/menambahkan_insiden',  [JenisInsidenController::class, 'createForm'])->name('tambah-insiden');
 Route::post('/menambahkan_insiden', [JenisInsidenController::class, 'store'])->name('tambahkan-insiden.post')->withoutMiddleware(['auth']);
-Route::get('/daftar_insiden', [JenisInsidenController::class, 'daftarInsiden'])->name('daftar-insiden');
+Route::get('/daftar_insiden', [JenisInsidenController::class, 'daftarJenisInsiden'])->name('daftar-insiden');
 Route::get('/{id}/edit_daftar_insiden',  [JenisInsidenController::class, 'editForm'])->name('edit-jenis-insiden');
 Route::put('/{id}/edit_daftar_insiden', [JenisInsidenController::class, 'update'])->name('update-jenis-insiden.update')->withoutMiddleware(['auth']);
 

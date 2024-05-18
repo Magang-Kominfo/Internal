@@ -13,7 +13,7 @@ class InsidenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function view($id)
+    public function viewProsesInsiden($id)
     {
         $insiden = Insiden::findOrFail($id);
         return view('view-proses-insiden-uc-1', ['insiden' => $insiden]);
@@ -26,7 +26,7 @@ class InsidenController extends Controller
     {
         $masterOdpList = Master_odp::all();
         $jenisInsidenList = Jenis_insiden::all();
-        return view('proses-insiden-uc-1', compact('masterOdpList','jenisInsidenList'));
+        return view('menambahkan-proses-insiden-uc-1', compact('masterOdpList','jenisInsidenList'));
 
     }
 

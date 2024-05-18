@@ -59,7 +59,7 @@
                 <div class="uc-1-menambahkan-aset-aplikasi-menu-item">
                     <h2>Insiden</h2>
                     <ul class="uc-1-menambahkan-aset-aplikasi-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>
@@ -139,6 +139,9 @@
 
 
                             <div class="uc-1-menambahkan-aset-aplikasi-view-artikel-footer">
+                                <div class="uc-1-aset-aplikasi-view-artikel-footer-back">
+                                    <a href="{{ route('aset-aplikasi') }}"><button type="button">Back</button></a>
+                                </div>
 
                                 <div class="uc-1-menambahkan-aset-aplikasi-view-artikel-footer-save">
                                     <button type="submit">Save</button>

@@ -45,7 +45,7 @@
                 <div class="uc-1-dashboard-menu-item">
                     <h2>Insiden</h2>
                     <ul class="uc-1-dashboard-menu-item-submenu">
-                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Insiden</li></a>
+                        <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>
@@ -73,94 +73,68 @@
                     <div class="uc-1-dashboard-view-artikel-insiden">
                         <div class="uc-1-dashboard-view-artikel-insiden-header">
                             <h1>INSIDEN</h1>
-                            <h4>View All</h4>
+                            <a href="{{ route('proses-insiden') }}"><h4>View All</h4></a>
                         </div>
 
-                        <div class="uc-1-dashboard-view-artikel-insiden-view">
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-header">
-                                <h4 style="margin: 0">Header Insiden</h4>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante. </p>
-                            </div>
-                        </div>
+                        @foreach ($insidens as $insiden)
 
                         <div class="uc-1-dashboard-view-artikel-insiden-view">
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-header">
-                                <h4 style="margin: 0">Header Insiden</h4>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante. </p>
-                            </div>
+                            <a class="uc-1-dashboard-view-artikel-insiden-view-item" href="{{ route('view-proses-insiden', ['id' => $insiden->insiden_id]) }}">
+                                <div class="uc-1-dashboard-view-artikel-insiden-view-header">
+                                    <h4 style="margin: 0">{{ $insiden->jenis_insidens->nama_insiden }}</h4>
+                                    <p>{{ $insiden->master_odps->nama_instansi }}</p>
+                                </div>
+                                <div class="uc-1-dashboard-view-artikel-insiden-view-date">
+
+                                    <p style="margin: 0">Created at: {{ $insiden->created_at }}</p>
+                                    <p style="margin: 0">Updated at: {{ $insiden->updated_at }}</p>
+                                    @if ($insiden->tanggal_insiden_diselesaikan !== null)
+                                        <p style="margin: 0">Tanggal Insiden diselesaikan: {{ $insiden->tanggal_insiden_diselesaikan }}</p>
+                                        <p style="margin: 0">Jam Insiden diselesaikan: {{ $insiden->jam_insiden_diselesaikan }}</p>
+                                    @endif
+
+                                    <p style="margin: 0px"> Resiko: {{ $insiden->resiko_insiden }}</p>
+                                    <p style="margin: 0px"> Status: {{ $insiden->status_insiden }}</p>
+                                </div>
+                                <div class="uc-1-dashboard-view-artikel-insiden-view-deskripsi">
+                                    <p style="margin: 15px 0px 0px 0px">Keterangan:</p>
+                                    <p>{{ $insiden->keterangan_insiden }} </p>
+                                </div>
+                            </a>
                         </div>
 
-                        <div class="uc-1-dashboard-view-artikel-insiden-view">
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-header">
-                                <h4 style="margin: 0">Header Insiden</h4>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-insiden-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante. </p>
-                            </div>
-                        </div>
+                        @endforeach
+
+
 
                         <div class="uc-1-dashboard-view-artikel-insiden-footer">
-                            <p>More...</p>
+                            <a href="{{ route('proses-insiden') }}"><p>More...</p></a>
                         </div>
                     </div>
 
                     <div class="uc-1-dashboard-view-artikel-aset-aplikasi">
                         <div class="uc-1-dashboard-view-artikel-aset-aplikasi-header">
                             <h1>ASET APLIKASI</h1>
-                            <h4>View All</h4>
+                            <a href="{{ route('aset-aplikasi') }}"><h4>View All</h4></a>
                         </div>
 
-                        <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view">
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-header">
-                                <h4 style="margin: 0">Header Aset Aplikasi</h4>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante.</p>
-                            </div>
-                        </div>
+                        @foreach ($aset_aplikasis as $aset_aplikasi)
 
-                        <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view">
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-header">
-                                <h4 style="margin: 0">Header Aset Aplikasi</h4>
+                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view">
+                                <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-header">
+                                    <h4 style="margin: 0">{{ $aset_aplikasi->nama_aset_aplikasi }}</h4>
+                                    <p>{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</p>
+                                </div>
+                                <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-date">
+                                    <p style="margin: 0">Created at: {{ $aset_aplikasi->created_at }}</p>
+                                    <p style="margin: 0">Updated at: {{ $aset_aplikasi->updated_at }}</p>
+                                </div>
                             </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante.</p>
-                            </div>
-                        </div>
 
-                        <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view">
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-header">
-                                <h4 style="margin: 0">Header Aset Aplikasi</h4>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-date">
-                                <p style="margin: 0">20 Maret 2024</p>
-                            </div>
-                            <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-deskripsi">
-                                <p style="margin: 15px 0px 0px 0px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sagittis libero. Vestibulum facilisis, dolor sit amet gravida convallis, odio urna condimentum metus, vel ultrices quam nunc sed ante.</p>
-                            </div>
-                        </div>
+                        @endforeach
 
                         <div class="uc-1-dashboard-view-artikel-aset-aplikasi-footer">
-                            <p>More...</p>
+                            <a href="{{ route('aset-aplikasi') }}"><h4><p>More...</p></h4></a>
                         </div>
                     </div>
                 </div>
