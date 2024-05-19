@@ -13,7 +13,7 @@ class JenisKategoriController extends Controller
      */
     public function createForm()
     {
-        return view('menambahkan-jenis-aset-aplikasi-uc-1');
+        return view('insiden-dan-aset-aplikasi.menambahkan-jenis-aset-aplikasi-uc-1');
     }
 
     /**
@@ -23,7 +23,7 @@ class JenisKategoriController extends Controller
     {
 
         $jenis_kategoris = Jenis_kategori::all();
-        return view('daftar-jenis-aset-aplikasi-uc-1', ['jenis_kategoris' => $jenis_kategoris]);
+        return view('insiden-dan-aset-aplikasi.daftar-jenis-aset-aplikasi-uc-1', ['jenis_kategoris' => $jenis_kategoris]);
     }
 
     /**
@@ -60,7 +60,7 @@ class JenisKategoriController extends Controller
     public function editForm($id)
     {
         $jenis_kategori = Jenis_kategori::findOrFail($id);
-        return view('daftar-jenis-aset-aplikasi-edit-uc-1',compact('jenis_kategori'));
+        return view('insiden-dan-aset-aplikasi.daftar-jenis-aset-aplikasi-edit-uc-1',compact('jenis_kategori'));
     }
 
     /**

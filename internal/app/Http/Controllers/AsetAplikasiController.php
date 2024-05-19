@@ -23,7 +23,7 @@ class AsetAplikasiController extends Controller
     public function createForm()
     {
         $jenisKategoriList = Jenis_kategori::all();
-        return view('menambahkan-aset-aplikasi-uc-1', compact('jenisKategoriList'));
+        return view('insiden-dan-aset-aplikasi.menambahkan-aset-aplikasi-uc-1', compact('jenisKategoriList'));
     }
 
     /**
@@ -60,7 +60,7 @@ class AsetAplikasiController extends Controller
     public function daftarAsetAplikasi()
     {
         $aset_aplikasis = Aset_aplikasi::all();
-        return view('daftar-aset-aplikasi-uc-1', ['aset_aplikasis' => $aset_aplikasis]);
+        return view('insiden-dan-aset-aplikasi.daftar-aset-aplikasi-uc-1', ['aset_aplikasis' => $aset_aplikasis]);
     }
 
     /**
@@ -70,7 +70,7 @@ class AsetAplikasiController extends Controller
     {
         $jenisKategoriList = Jenis_kategori::all();
         $aset_aplikasi = Aset_aplikasi::findOrFail($id);
-        return view('daftar-aset-aplikasi-edit-uc-1',compact('aset_aplikasi','jenisKategoriList'));
+        return view('insiden-dan-aset-aplikasi.daftar-aset-aplikasi-edit-uc-1',compact('aset_aplikasi','jenisKategoriList'));
     }
 
     /**

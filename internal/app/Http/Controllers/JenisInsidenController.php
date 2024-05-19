@@ -21,7 +21,7 @@ class JenisInsidenController extends Controller
      */
     public function createForm()
     {
-        return view('menambahkan-jenis-insiden-uc-1');
+        return view('insiden-dan-aset-aplikasi.menambahkan-jenis-insiden-uc-1');
     }
 
     /**
@@ -50,7 +50,7 @@ class JenisInsidenController extends Controller
     public function daftarJenisInsiden()
     {
         $jenis_insidens = Jenis_insiden::all();
-        return view('daftar-jenis-insiden-uc-1', ['jenis_insidens' => $jenis_insidens]);
+        return view('insiden-dan-aset-aplikasi.daftar-jenis-insiden-uc-1', ['jenis_insidens' => $jenis_insidens]);
     }
 
     /**
@@ -61,7 +61,7 @@ class JenisInsidenController extends Controller
     public function editForm($id)
     {
         $jenis_insiden = Jenis_insiden::findOrFail($id);
-        return view('daftar-jenis-insiden-edit-uc-1',compact('jenis_insiden'));
+        return view('insiden-dan-aset-aplikasi.daftar-jenis-insiden-edit-uc-1',compact('jenis_insiden'));
     }
 
 

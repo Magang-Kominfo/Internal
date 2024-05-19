@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../css/viewProsesInsiden-uc-1.css">
+    <link rel="stylesheet" type="text/css" href="../css/insiden-dan-aset-aplikasi-css/viewProsesInsiden-uc-1.css">
     <title>Daftar Proses Insiden</title>
 </head>
 

@@ -16,7 +16,7 @@ class InsidenController extends Controller
     public function viewProsesInsiden($id)
     {
         $insiden = Insiden::findOrFail($id);
-        return view('view-proses-insiden-uc-1', ['insiden' => $insiden]);
+        return view('insiden-dan-aset-aplikasi.view-proses-insiden-uc-1', ['insiden' => $insiden]);
     }
 
     /**
@@ -26,14 +26,14 @@ class InsidenController extends Controller
     {
         $masterOdpList = Master_odp::all();
         $jenisInsidenList = Jenis_insiden::all();
-        return view('menambahkan-proses-insiden-uc-1', compact('masterOdpList','jenisInsidenList'));
+        return view('insiden-dan-aset-aplikasi.menambahkan-proses-insiden-uc-1', compact('masterOdpList','jenisInsidenList'));
 
     }
 
     public function daftarProsesInsiden()
     {
         $insidens = Insiden::all();
-        return view('daftar-proses-insiden-uc-1', ['insidens' => $insidens]);
+        return view('insiden-dan-aset-aplikasi.daftar-proses-insiden-uc-1', ['insidens' => $insidens]);
 
     }
 
@@ -102,7 +102,7 @@ class InsidenController extends Controller
         $masterOdpList = Master_odp::all();
         $jenisInsidenList = Jenis_insiden::all();
         $insiden = Insiden::findOrFail($id);
-        return view('daftar-proses-insiden-edit-uc-1',compact('insiden','masterOdpList','jenisInsidenList'));
+        return view('insiden-dan-aset-aplikasi.daftar-proses-insiden-edit-uc-1',compact('insiden','masterOdpList','jenisInsidenList'));
     }
 
     /**
