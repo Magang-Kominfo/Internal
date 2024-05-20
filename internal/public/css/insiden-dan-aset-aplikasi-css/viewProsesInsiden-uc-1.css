@@ -41,6 +41,11 @@ body{
     margin-bottom: 50px;
 }
 
+.uc-1-menambahkan-view-proses-insiden-sidebar-content-profile svg{
+    height: 50px;
+    width: 50px;
+}s
+
 .uc-1-menambahkan-view-proses-insiden-sidebar-content h2{
     padding: 20px 20px 20px 20px;
     margin: 0;

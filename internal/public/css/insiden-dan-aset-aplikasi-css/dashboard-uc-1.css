@@ -39,7 +39,12 @@ body{
 
 .uc-1-dashboard-sidebar-content-profile{
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.uc-1-dashboard-sidebar-content-profile svg{
+    height: 50px;
+    width: 50px;
 }
 
 .uc-1-dashboard-sidebar-content h2{

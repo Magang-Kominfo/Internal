@@ -88,8 +88,13 @@ body{
 .admin-artikel-box{
     display: flex;
     flex-direction: column;
-    gap: 75px;
+    gap:30px;
     font-weight: bolder;
+}
+
+.admin-artikel-logo svg{
+    height: 75px;
+    width: 75px;
 }
 
 
