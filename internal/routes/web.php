@@ -7,12 +7,17 @@ use App\Http\Controllers\InsidenController;
 use App\Http\Controllers\AsetAplikasiController;
 use App\Http\Controllers\JenisKategoriController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 
+## ADMIN
+Route::get('/admin',  [Controller::class, 'viewDashboard'])->name('admin');
+Route::get('/admin/user_management',  [UserController::class, 'daftarUser'])->name('user-management');
+Route::get('/admin/menambahkan_user',  [UserController::class, 'createForm'])->name('tambah-user');
+Route::post('/admin/menambahkan_user',  [UserController::class, 'store'])->name('tambah-user.post');
+Route::delete('/{id}/delete_user', [UserController::class, 'delete'])->name('delete-user.softDelete');
 
-
-## DASHBOARD
-Route::get('/dashboard',  [Controller::class, 'viewDashboard'])->name('dashboard');
-
+## DASHBOARD INSIDEN
+Route::get('/dashboard',  [Controller::class, 'viewDashboardInsiden'])->name('dashboard');
 
 ## ASET APLIKASI
 Route::get('/menambahkan_aset_aplikasi',  [AsetAplikasiController::class, 'createForm'])->name('tambah-aset-aplikasi');

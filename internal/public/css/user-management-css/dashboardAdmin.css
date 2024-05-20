@@ -1,0 +1,97 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+.admin{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* HEADER */
+.admin-main{
+    flex-grow: 3;
+    padding: 15px 20px 15px 20px;
+}
+
+.admin-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.admin-header img{
+    width: 251px;
+    height: 94.02px;
+}
+
+
+.admin-header-top-right{
+    margin-right: 60px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+/* MAIN ARTIKEL */
+.admin-artikel{
+    display: flex;
+    flex-direction: column;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.admin-artikel-title{
+    color: #34469A;
+    text-align: center;
+}
+
+.admin-artikel-view{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+}
+
+.admin-artikel-view a{
+    text-decoration: none;
+    color: black;
+}
+
+.admin-artikel-view-box{
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    padding-top: 30px;
+    height: 150px;
+    width: 200px;
+}
+
+.admin-artikel-view-box:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.admin-artikel-box{
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+    font-weight: bolder;
+}
+
+
+
+
