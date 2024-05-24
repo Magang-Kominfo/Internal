@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/user-management-css/menambahkanUserManagement-admin.css">
-    <title>Menambahkan User</title>
+    <title>Edit User</title>
 </head>
 
 <body>
@@ -22,26 +22,27 @@
                 <div class="admin-user-management-view-artikel">
                     <div class="admin-user-management-view-artikel-content">
                         <div class="admin-user-management-view-artikel-content-header">
-                            <h1>MENAMBAHKAN USER</h1>
+                            <h1>EDIT USER</h1>
                         </div>
 
-                        <form action="{{ route('tambah-user.post') }}" method="post">
+                        <form action="{{ route('update-user-management.update', ['id' => $user->id_user]) }}" method="post">
                         @csrf
+                        @method('PUT')
                             <div class="admin-user-management-input-field">
                                 <div class="admin-user-management-input-field-id">
                                     <label for="id_user">ID User:</label>
-                                    <input type="text" name="id_user" id="id_user" >
+                                    <input type="text" name="id_user" id="id_user" value="{{ $user->id_user }}">
                                 </div>
 
                                 <div class="admin-user-management-input-field-nama">
                                     <label for="nama_user">Nama:</label>
-                                    <input type="text" name="nama_user" id="nama_user" >
+                                    <input type="text" name="nama_user" id="nama_user" value="{{ $user->nama_user }}">
                                 </div>
 
                                 <div class="admin-user-management-input-field-role">
                                     <label for="role">Role:</label>
                                     <select name="role" id="role">
-                                            <option value="">Pilih Role</option>
+                                            <option value="{{ $user->role }}">Role: {{ $user->role }} </option>
                                                 <option value="insiden">1. Insiden</option>
                                                 <option value="berita">2. Berita</option>
                                                 <option value="aset">3. Aset</option>
@@ -50,7 +51,7 @@
 
                                 <div class="admin-user-management-input-field-password">
                                     <label for="password">Password:</label>
-                                    <input type="text" name="password" id="password" >
+                                    <input type="text" name="password" id="password">
                                 </div>
                             </div>
 

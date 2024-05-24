@@ -89,36 +89,12 @@ body{
     font-size: 16px;
 }
 
-.admin-user-management-input-field-id{
+.admin-user-management-input-field-id, .admin-user-management-input-field-password, .admin-user-management-input-field-nama, .admin-user-management-input-field-role{
     display: flex;
     flex-direction: column;
 }
 
-.admin-user-management-input-field-id input{
-    border-radius: 20px;
-    border: 1px solid #34469A;
-    height: 40px;
-    padding: 3px 20px 3px 20px;
-}
-
-.admin-user-management-input-field-password{
-    display: flex;
-    flex-direction: column;
-}
-
-.admin-user-management-input-field-password input{
-    border-radius: 20px;
-    border: 1px solid #34469A;
-    height: 40px;
-    padding: 3px 20px 3px 20px;
-}
-
-.admin-user-management-input-field-role{
-    display: flex;
-    flex-direction: column;
-}
-
-.admin-user-management-input-field-role select{
+.admin-user-management-input-field-id input, .admin-user-management-input-field-password input, .admin-user-management-input-field-nama input, .admin-user-management-input-field-role select{
     border-radius: 20px;
     border: 1px solid #34469A;
     height: 40px;

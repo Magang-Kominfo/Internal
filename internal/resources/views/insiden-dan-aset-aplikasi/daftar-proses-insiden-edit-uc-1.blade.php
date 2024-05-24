@@ -108,7 +108,7 @@
                                     <div class="uc-1-proses-insiden-input-field-status-insiden">
                                         <label for="status_insiden">Status Insiden:</label>
                                         <select name="status_insiden" id="status_insiden">
-                                            <option"><b>{{ $insiden->status_insiden }}</b></option>
+                                            <option value="{{ $insiden->status_insiden }}"><b>{{ $insiden->status_insiden }}</b></option>
                                                 <option value="notifikasi">1. Notifikasi</option>
                                                 <option value="penanganan">2. Penanganan</option>
                                                 <option value="pemulihan">3. Pemulihan</option>
@@ -120,7 +120,7 @@
                                     <div class="uc-1-proses-insiden-input-field-resiko-insiden">
                                         <label for="resiko_insiden">Resiko Insiden:</label>
                                         <select name="resiko_insiden" id="resiko_insiden">
-                                            <option><b>{{ $insiden->resiko_insiden }}</b></option>
+                                            <option value="{{ $insiden->resiko_insiden }}"><b>{{ $insiden->resiko_insiden }}</b></option>
                                                 <option value="rendah">1. Rendah</option>
                                                 <option value="menengah">2. Menengah</option>
                                                 <option value="tinggi">3. Tinggi</option>
@@ -178,7 +178,7 @@
 
                                     <div class="uc-1-proses-insiden-input-field-keterangan">
                                         <label for="keterangan_insiden">Keterangan:</label>
-                                        <textarea name="keterangan_insiden" id="keterangan_insiden" cols="30" rows="10">{{ $insiden->keterangan_insiden }}</textarea>
+                                        <textarea name="keterangan_insiden" id="keterangan_insiden" cols="30" rows="10" value="{{ $insiden->keterangan_insiden }}">{{ $insiden->keterangan_insiden }}</textarea>
                                     </div>
 
 

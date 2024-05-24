@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('odp_id');
             $table->string('nama_instansi');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

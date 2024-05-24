@@ -32,6 +32,7 @@ class UserController extends Controller
     {
         $request->validate([
             'id_user' => 'required|string|max:255',
+            'nama_user' => 'nullable|string|max:255',
             'role' => 'required|string',
             'password' => 'required|string',
         ]);
@@ -39,12 +40,41 @@ class UserController extends Controller
         // Simpan data ke dalam database
         User::create([
             'id_user' => $request->id_user,
+            'nama_user'=>$request->nama_user,
             'role' => $request->role,
             'password' => $request->password,
         ]);
 
         // Redirect dengan message jika berhasil
         return redirect('/admin/user_management')->with('alert', 'User berhasil ditambahkan.');
+    }
+
+    public function editForm($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user-management.daftar-user-management-edit-admin',compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateUserRequest $request, $id)
+    {
+        $validatedData = $request->validate([
+            'id_user' => 'required|string|max:255',
+            'nama_user' => 'nullable|string|max:255',
+            'role' => 'required|string',
+            'password' => 'required|string',
+        ]);
+        // Perbarui data di database
+        $user = User::find($id);
+        $user->id_user = $request->id_user;
+        $user->nama_user = $request->nama_user;
+        $user->role = $request->role;
+        $user->password = $request->password;
+        $user->save();
+
+        return redirect('/admin/user_management')->with('alert', 'Data berhasil diperbarui');
     }
     /**
      * Remove the specified resource from storage.

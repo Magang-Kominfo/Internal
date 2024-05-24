@@ -15,6 +15,8 @@ Route::get('/admin/user_management',  [UserController::class, 'daftarUser'])->na
 Route::get('/admin/menambahkan_user',  [UserController::class, 'createForm'])->name('tambah-user');
 Route::post('/admin/menambahkan_user',  [UserController::class, 'store'])->name('tambah-user.post');
 Route::delete('/{id}/delete_user', [UserController::class, 'delete'])->name('delete-user.softDelete');
+Route::get('/{id}/edit_user_management',  [UserController::class, 'editForm'])->name('edit-user-management');
+Route::put('/{id}/edit_user_management', [UserController::class, 'update'])->name('update-user-management.update')->withoutMiddleware(['auth']);
 
 ## DASHBOARD INSIDEN
 Route::get('/dashboard',  [Controller::class, 'viewDashboardInsiden'])->name('dashboard');

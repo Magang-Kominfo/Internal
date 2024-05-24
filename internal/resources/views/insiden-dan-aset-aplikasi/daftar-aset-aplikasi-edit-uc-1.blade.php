@@ -104,7 +104,7 @@
                                 <div class="uc-1-menambahkan-aset-aplikasi-input-field-kami">
                                     <label for="indeks_kami_aset_aplikasi">Indeks KAMI:</label>
                                     <select name="indeks_kami_aset_aplikasi" id="indeks_kami_aset_aplikasi">
-                                        <option>{{ $aset_aplikasi->indeks_kami_aset_aplikasi }}</option>
+                                        <option value="{{ $aset_aplikasi->indeks_kami_aset_aplikasi }}">{{ $aset_aplikasi->indeks_kami_aset_aplikasi }}</option>
                                             <option value="I">Tingkat I</option>
                                             <option value="II">Tingkat II</option>
                                             <option value="III">Tingkat III</option>

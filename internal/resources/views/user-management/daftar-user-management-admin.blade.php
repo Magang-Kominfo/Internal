@@ -87,9 +87,13 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td class="admin-tabel-id-data">ID User: {{ $user->id_user }}</td>
+                                <td class="admin-tabel-nama-data">Nama: {{ $user->nama_user }}</td>
                                 <td class="admin-tabel-role-data">Role: Admin {{ $user->role }}</td>
                                 <td class="admin-tabel-proses-data">
                                     <div class="admin-tabel-proses-data-proses">
+                                        <div>
+                                            <a href="{{ route('edit-user-management', ['id' => $user->id_user]) }}"><button class="admin-tabel-proses-data-edit">Edit</button></a>
+                                        </div>
 
                                         <div class="deleteForm">
                                             <button type="button" class="deleteButton admin-tabel-proses-data-delete">Hapus</button>
@@ -106,11 +110,11 @@
                                               </div>
                                               <div class="admin-delete-confirm-footer">
                                                 <button class="cancelButton admin-delete-confirm-batal">Batal Hapus</button>
-                                                <form action="{{ route('delete-user.softDelete', ['id' => $user->id_user]) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                       <button type="submit" class="admin-delete-confirm-hapus">Hapus</button>
-                                                   </form>
+                                                    <form action="{{ route('delete-user.softDelete', ['id' => $user->id_user]) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="admin-delete-confirm-hapus">Hapus</button>
+                                                    </form>
                                               </div>
                                             </div>
                                         </div>

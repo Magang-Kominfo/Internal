@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_jenis_kategori');
             $table->text('deskripsi_jenis_kategori');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
