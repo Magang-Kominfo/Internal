@@ -18,8 +18,16 @@ Route::delete('/{id}/delete_user', [UserController::class, 'delete'])->name('del
 Route::get('/{id}/edit_user_management',  [UserController::class, 'editForm'])->name('edit-user-management');
 Route::put('/{id}/edit_user_management', [UserController::class, 'update'])->name('update-user-management.update')->withoutMiddleware(['auth']);
 
-## DASHBOARD INSIDEN
-Route::get('/dashboard',  [Controller::class, 'viewDashboardInsiden'])->name('dashboard');
+
+## USER
+Route::get('/user',  [Controller::class, 'userProfil'])->name('user-profile');
+Route::get('/',  [Controller::class, 'login'])->name('login');
+Route::post('/login',  [Controller::class, 'loginValidate'])->name('login.post');
+
+## DASHBOARD
+Route::get('/dashboard-insiden',  [Controller::class, 'viewDashboardInsiden'])->name('dashboard-insiden');
+Route::get('/dashboard-berita',  [Controller::class, 'viewDashboardBerita'])->name('dashboard-berita');
+Route::get('/dashboard-aset',  [Controller::class, 'viewDashboardAset'])->name('dashboard-aset');
 
 ## ASET APLIKASI
 Route::get('/menambahkan_aset_aplikasi',  [AsetAplikasiController::class, 'createForm'])->name('tambah-aset-aplikasi');

@@ -42,7 +42,7 @@ class UserController extends Controller
             'id_user' => $request->id_user,
             'nama_user'=>$request->nama_user,
             'role' => $request->role,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
 
         // Redirect dengan message jika berhasil
@@ -71,7 +71,7 @@ class UserController extends Controller
         $user->id_user = $request->id_user;
         $user->nama_user = $request->nama_user;
         $user->role = $request->role;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect('/admin/user_management')->with('alert', 'Data berhasil diperbarui');
