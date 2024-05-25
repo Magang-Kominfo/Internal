@@ -51,9 +51,5 @@ class User extends Authenticatable
         ];
     }
 
-    public function isAdmin()
-    {
-        return $this->id_user === '97625';
-    }
 
 }

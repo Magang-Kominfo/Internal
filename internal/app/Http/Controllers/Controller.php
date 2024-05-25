@@ -66,7 +66,7 @@ class Controller
                 return redirect()->intended('/dashboard-berita');
             } elseif ($userIdPrefix === '30') {
                 return redirect()->intended('/dashboard-aset');
-            }elseif ($userIdPrefix === '00') {
+            }elseif ($userIdPrefix === '90') {
                 return redirect()->intended('/admin');
             } else {
                 return back()->with('error', 'ID User tidak valid.');
