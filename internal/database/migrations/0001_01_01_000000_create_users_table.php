@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_user')->nullable();
             $table->string('role');
             $table->string('password');
-            $table->boolean('is_admin')->default(false)->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

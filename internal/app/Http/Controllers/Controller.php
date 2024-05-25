@@ -60,16 +60,18 @@ class Controller
             $user = Auth::user();
             $userIdPrefix = substr($user->id_user, 0, 2);
 
-            if ($userIdPrefix === '10') {
-                return redirect()->intended('/dashboard-insiden');
-            } elseif ($userIdPrefix === '20') {
-                return redirect()->intended('/dashboard-berita');
-            } elseif ($userIdPrefix === '30') {
-                return redirect()->intended('/dashboard-aset');
-            }elseif ($userIdPrefix === '90') {
+            if(auth()->user()->is_admin != true){
+                if ($userIdPrefix === '10') {
+                    return redirect()->intended('/dashboard-insiden');
+                } elseif ($userIdPrefix === '20') {
+                    return redirect()->intended('/dashboard-berita');
+                } elseif ($userIdPrefix === '30') {
+                    return redirect()->intended('/dashboard-aset');
+                } else {
+                    return back()->with('error', 'ID User tidak valid.');
+                }
+            }else{
                 return redirect()->intended('/admin');
-            } else {
-                return back()->with('error', 'ID User tidak valid.');
             }
         }
 

@@ -78,14 +78,14 @@ Route::middleware(['auth', 'user_insiden', 'admin'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'user_berita'])->group(function () {
+Route::middleware(['auth', 'user_berita', 'admin'])->group(function () {
     ## DASHBOARD
     Route::get('/dashboard-berita',  [Controller::class, 'viewDashboardBerita'])->name('dashboard-berita');
 });
 
 
 
-Route::middleware(['auth', 'user_aset'])->group(function () {
+Route::middleware(['auth', 'user_aset', 'admin'])->group(function () {
     ## DASHBOARD
     Route::get('/dashboard-aset',  [Controller::class, 'viewDashboardAset'])->name('dashboard-aset');
 });
