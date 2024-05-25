@@ -45,24 +45,35 @@ class Controller
 
     public function loginValidate(Request $request)
     {
+        $request->validate([
+            'id_user' => 'required|exists:users,id_user',
+        ],
+        [
+            'id_user.exists' => 'ID User salah.',
+        ]);
+
+
         $credentials = $request->only('id_user', 'password');
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             $user = Auth::user();
             $userIdPrefix = substr($user->id_user, 0, 2);
 
             if ($userIdPrefix === '10') {
-                return redirect()->route('dashboard-insiden');
+                return redirect()->intended('/dashboard-insiden');
             } elseif ($userIdPrefix === '20') {
-                return redirect()->route('dashboard-berita');
+                return redirect()->intended('/dashboard-berita');
             } elseif ($userIdPrefix === '30') {
-                return redirect()->route('dashboard-aset');
+                return redirect()->intended('/dashboard-aset');
+            }elseif ($userIdPrefix === '00') {
+                return redirect()->intended('/admin');
             } else {
-                return redirect()->route('login')->with('error', 'ID pengguna tidak valid.');
+                return back()->with('error', 'ID User tidak valid.');
             }
         }
 
-        return redirect()->route('login')->with('error', 'Kombinasi email dan password tidak valid.');
+        return back()->with('login-error', 'Login Failed');
     }
 
 }
