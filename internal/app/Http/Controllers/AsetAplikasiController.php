@@ -59,7 +59,7 @@ class AsetAplikasiController extends Controller
      */
     public function daftarAsetAplikasi()
     {
-        $aset_aplikasis = Aset_aplikasi::all();
+        $aset_aplikasis = Aset_aplikasi::paginate(5);
         return view('insiden-dan-aset-aplikasi.daftar-aset-aplikasi-uc-1', ['aset_aplikasis' => $aset_aplikasis]);
     }
 

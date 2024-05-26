@@ -22,7 +22,7 @@ class JenisKategoriController extends Controller
     public function daftarKategori()
     {
 
-        $jenis_kategoris = Jenis_kategori::all();
+        $jenis_kategoris = Jenis_kategori::paginate(5);
         return view('insiden-dan-aset-aplikasi.daftar-jenis-aset-aplikasi-uc-1', ['jenis_kategoris' => $jenis_kategoris]);
     }
 

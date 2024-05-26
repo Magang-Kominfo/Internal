@@ -49,7 +49,7 @@ class JenisInsidenController extends Controller
      */
     public function daftarJenisInsiden()
     {
-        $jenis_insidens = Jenis_insiden::all();
+        $jenis_insidens = Jenis_insiden::paginate(5);
         return view('insiden-dan-aset-aplikasi.daftar-jenis-insiden-uc-1', ['jenis_insidens' => $jenis_insidens]);
     }
 

@@ -32,7 +32,7 @@ class InsidenController extends Controller
 
     public function daftarProsesInsiden()
     {
-        $insidens = Insiden::all();
+        $insidens = Insiden::paginate(5);
         return view('insiden-dan-aset-aplikasi.daftar-proses-insiden-uc-1', ['insidens' => $insidens]);
 
     }

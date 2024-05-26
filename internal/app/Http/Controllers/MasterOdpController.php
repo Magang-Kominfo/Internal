@@ -47,7 +47,7 @@ class MasterOdpController extends Controller
      */
     public function daftarMasterOPD()
     {
-        $master_odps = Master_odp::all();
+        $master_odps = Master_odp::paginate(5);
         return view('insiden-dan-aset-aplikasi.daftar-data-master-uc-1', ['master_odps' => $master_odps]);
     }
 

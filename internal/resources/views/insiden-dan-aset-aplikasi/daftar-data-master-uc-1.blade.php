@@ -154,6 +154,10 @@
                                 </tbody>
                             </table>
 
+                            <div class="pagination" style="margin-top: 20px">
+                                {{ $master_odps->links('vendor.pagination.default') }}
+                            </div>
+
                         </div>
 
                         <div>

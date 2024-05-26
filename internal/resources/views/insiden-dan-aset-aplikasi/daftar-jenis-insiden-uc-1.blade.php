@@ -153,7 +153,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
+                            <div class="pagination" style="margin-top: 20px">
+                                {{ $jenis_insidens->links('vendor.pagination.default') }}
+                            </div>
                         </div>
 
                     </div>

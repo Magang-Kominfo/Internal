@@ -254,7 +254,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
+                            <div class="pagination" style="margin-top: 20px">
+                                {{ $aset_aplikasis->links('vendor.pagination.default') }}
+                            </div>
                         </div>
 
                     </div>

@@ -11,7 +11,7 @@ class UpdateMaster_odpRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

@@ -156,7 +156,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
+                            <div class="pagination" style="margin-top: 20px">
+                                {{ $jenis_kategoris->links('vendor.pagination.default') }}
+                            </div>
                         </div>
 
                         <div>
