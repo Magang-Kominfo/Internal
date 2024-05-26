@@ -15,6 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->check() && auth()->user()->is_admin == true) {
+            return $next($request); // Allow access if admin
+        }else{
+            return new Response('Unauthorized', 400);
+        }
     }
 }

@@ -8,5 +8,12 @@
 </head>
 <body>
     ASET PERSANDIAN
+
+    <div class="logout">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" ><h2>Log Out</h2></button>
+        </form>
+    </div>
 </body>
 </html>

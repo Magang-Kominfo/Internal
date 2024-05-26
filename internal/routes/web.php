@@ -9,12 +9,14 @@ use App\Http\Controllers\JenisKategoriController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 
+
 ## LOGIN
-Route::get('/',  [Controller::class, 'login'])->name('login');
+Route::get('/',  [Controller::class, 'login'])->name('login')->middleware('guest');;
 Route::post('/login',  [Controller::class, 'loginValidate'])->name('login.post');
+Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     ## ADMIN
     Route::get('/admin',  [Controller::class, 'viewDashboard'])->name('admin');
     Route::get('/admin/user_management',  [UserController::class, 'daftarUser'])->name('user-management');

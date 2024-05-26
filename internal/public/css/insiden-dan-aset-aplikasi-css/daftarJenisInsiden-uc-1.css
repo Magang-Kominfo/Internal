@@ -28,6 +28,17 @@ body{
     max-width: 150px;
 }
 
+.logout button{
+    padding: 0px;
+    margin: 0;
+    background-color: #05131D;
+    border: none;
+    color: white;
+    font-size: 10px;
+    width: 100%;
+    text-align: left;
+}
+
 .uc-1-menambahkan-daftar-insiden-sidebar-content{
     color: white;
     margin:50px 0px 35px 0px;

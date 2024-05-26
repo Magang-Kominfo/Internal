@@ -52,6 +52,17 @@ body{
     margin: 0;
 }
 
+.logout button{
+    padding: 0px;
+    margin: 0;
+    background-color: #05131D;
+    border: none;
+    color: white;
+    font-size: 10px;
+    width: 100%;
+    text-align: left;
+}
+
 .uc-1-data-master-sidebar-content h2:hover{
     background-color: #39CDF0;
 }

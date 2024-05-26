@@ -54,8 +54,11 @@
                 <div>
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
-                <div>
-                    <h2>Log Out</h2>
+                <div class="logout">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" ><h2>Log Out</h2></button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -60,22 +60,35 @@ class Controller
             $user = Auth::user();
             $userIdPrefix = substr($user->id_user, 0, 2);
 
-            if(auth()->user()->is_admin != true){
+            if(auth()->user()->is_admin == true){
+                return redirect()->intended('/admin');
+            }else{
                 if ($userIdPrefix === '10') {
-                    return redirect()->intended('/dashboard-insiden');
+                    return redirect()->intended(route('dashboard-insiden'));
                 } elseif ($userIdPrefix === '20') {
-                    return redirect()->intended('/dashboard-berita');
+                    return redirect()->intended(route('dashboard-berita'));
                 } elseif ($userIdPrefix === '30') {
-                    return redirect()->intended('/dashboard-aset');
+                    return redirect()->intended(route('dashboard-aset'));
                 } else {
                     return back()->with('error', 'ID User tidak valid.');
                 }
-            }else{
-                return redirect()->intended('/admin');
             }
         }
 
         return back()->with('login-error', 'Login Failed');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        // Invalidate the session
+        $request->session()->invalidate();
+
+        // Regenerate the CSRF token
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

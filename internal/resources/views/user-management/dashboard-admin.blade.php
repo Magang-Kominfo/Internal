@@ -8,6 +8,21 @@
     <title>Admin - Dashboard</title>
 </head>
 
+<style>
+    .admin-header-top-right button{
+        padding: 10px 15px 10px 15px;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+
+    .admin-header-top-right button:hover{
+        background-color:#c6c6c6;
+        border: 2px solid #c6c6c6;
+    }
+</style>
+
 <body>
     <div class="admin">
 
@@ -17,13 +32,16 @@
                     <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
                 </div>
                 <div class="admin-header-top-right">
-                    <h1>ADMIN</h1>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Log Out</button>
+                    </form>
                 </div>
             </div>
 
             <div class="admin-artikel">
                 <div class="admin-artikel-title">
-                    <h1>DASHBOARD</h1>
+                    <h1>DASHBOARD ADMIN</h1>
                 </div>
 
 

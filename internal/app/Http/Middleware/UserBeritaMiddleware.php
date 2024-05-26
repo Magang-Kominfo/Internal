@@ -15,6 +15,12 @@ class UserBeritaMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->check() && substr(auth()->user()->id_user, 0, 2) === '20') {
+            return $next($request); // Allow access if user aset
+        }elseif(auth()->check() && auth()->user()->is_admin == true){
+            return $next($request);
+        }else{
+            return new Response('Unauthorized', 400);
+        }
     }
 }
