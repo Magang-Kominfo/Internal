@@ -35,29 +35,29 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="6" r="4" fill="currentColor"/><path fill="currentColor" d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"/></svg>
                 </div>
                 <div>
-                    <a href="{{ route('dashboard-insiden') }}"><h2>Dashboard</h2></a>
+                    <a href="{{ route('dashboard-insiden') }}"><h2 style="padding: 20px;margin:0px;">Dashboard</h2></a>
                 </div>
                 <div class="uc-1-menambahkan-view-proses-insiden-menu-item">
-                    <h2>Aset Aplikasi</h2>
+                    <h2 style="padding: 20px;margin:0px;">Aset Aplikasi</h2>
                     <ul class="uc-1-menambahkan-view-proses-insiden-menu-item-submenu">
                         <a href="{{ route('aset-aplikasi') }}"><li>Daftar Aset Aplikasi</li></a>
                         <a href="{{ route('kategori-aset-aplikasi') }}"><li>Kategori Aset Aplikasi</li></a>
                     </ul>
                 </div>
                 <div class="uc-1-menambahkan-view-proses-insiden-menu-item">
-                    <h2>Insiden</h2>
+                    <h2 style="padding: 20px;margin:0px;">Insiden</h2>
                     <ul class="uc-1-menambahkan-view-proses-insiden-menu-item-submenu">
                         <a href="{{ route('daftar-insiden') }}"><li>Daftar Jenis Insiden</li></a>
                         <a href="{{ route('proses-insiden') }}"><li>Proses Insiden</li></a>
                     </ul>
                 </div>
                 <div>
-                    <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
+                    <a href="{{ route('data-master') }}"><li><h2 style="padding: 20px;margin:0px;">Data Master</h2></li></a>
                 </div>
                 <div class="logout">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
+                        <button type="submit" ><h2 style="padding: 20px;margin:0px;">Log Out</h2></button>
                     </form>
                 </div>
             </div>

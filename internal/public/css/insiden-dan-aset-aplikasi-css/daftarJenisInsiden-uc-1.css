@@ -232,6 +232,7 @@ body{
     padding: 10px;
 }
 
+
 /* BUTTON */
 .uc-1-menambahkan-daftar-insiden-view-artikel-button{
     float: right;
@@ -262,6 +263,14 @@ body{
     border-radius: 8px;
     border: 2px solid #34469A;
 }
+
+@media (max-width: 820px) {
+    .uc-1-menambahkan-daftar-insiden-view-artikel-daftar-insiden-header h1{
+        font-size: 28px;
+    }
+
+}
+
 
 
 

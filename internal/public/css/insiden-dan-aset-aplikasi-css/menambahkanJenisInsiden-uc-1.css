@@ -253,3 +253,19 @@ body{
     background-color:#39CDF0;
     border: 2px solid #39CDF0;
 }
+
+@media (max-width: 840px) {
+    .uc-1-menambahkan-insiden-view-artikel-insiden-header h1{
+        font-size: 28px;
+    }
+
+}
+
+@media (max-width: 690px) {
+    .uc-1-menambahkan-insiden-view-artikel-insiden-header h1{
+        font-size: 18px;
+    }
+
+}
+
+

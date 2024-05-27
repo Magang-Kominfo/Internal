@@ -243,3 +243,18 @@ body{
     background-color:#39CDF0;
     border: 2px solid #39CDF0;
 }
+
+
+@media (max-width: 790px) {
+    .uc-1-menambahkan-data-master-view-artikel-data-master-header h1{
+        font-size: 28px;
+    }
+
+}
+
+@media (max-width: 685px) {
+    .uc-1-menambahkan-data-master-view-artikel-data-master-header h1{
+        font-size: 18px;
+    }
+
+}

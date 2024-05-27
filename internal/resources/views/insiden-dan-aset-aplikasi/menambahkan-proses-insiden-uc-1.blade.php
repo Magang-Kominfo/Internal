@@ -179,8 +179,8 @@
                                     </div>
 
                                     <div class="uc-1-proses-insiden-input-field-keterangan">
-                                        <label for="keterangan">Keterangan:</label>
-                                        <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                                        <label for="keterangan_insiden">Keterangan:</label>
+                                        <textarea name="keterangan_insiden" id="keterangan_insiden" cols="30" rows="10"></textarea>
                                     </div>
 
 

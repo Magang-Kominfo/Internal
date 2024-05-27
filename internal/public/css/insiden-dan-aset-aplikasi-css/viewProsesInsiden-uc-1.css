@@ -64,6 +64,8 @@ body{
 
 .uc-1-menambahkan-view-proses-insiden-sidebar-content h2:hover{
     background-color: #39CDF0;
+    padding: 20px 20px 20px 20px;
+    margin: 0;
 }
 
 .uc-1-menambahkan-view-proses-insiden-sidebar-content a{
@@ -155,6 +157,8 @@ body{
     flex-grow: 1;
     width: 50%;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden h2{
@@ -204,3 +208,17 @@ body{
         margin-bottom: 20px;
     }
 }
+
+@media (max-width: 700px) {
+    .uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden{
+        gap: 40px;
+    }
+}
+
+@media (max-width: 540px) {
+    .uc-1-menambahkan-view-proses-insiden-view-artikel-view-proses-insiden{
+        gap: 60px;
+    }
+}
+
+
