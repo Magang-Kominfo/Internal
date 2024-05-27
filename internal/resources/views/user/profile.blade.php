@@ -27,15 +27,15 @@
         </div>
 
         <div class="text-center mb-3">
-            <h4 style="font-size: 16px;text-align: center">User ID: 12345</h4>
+            <h4 style="font-size: 16px;text-align: center">User ID: {{ $user->id_user }}</h4>
         </div>
 
-        <form class="form-profile d-flex flex-column justify-content-center align-items-center" action="#" method="POST" >
+        <form class="form-profile d-flex flex-column justify-content-center align-items-center" action="{{ route('user-profile.update') }}" method="POST" >
             @csrf
             @method("PUT")
             <div class="col-6">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nama" value="" style="border:1px solid #34469A;">
+                    <input type="text" class="form-control" name="nama" value="{{ $user->nama_user }}" style="border:1px solid #34469A;">
                     <label for="nama">Nama</label>
                 </div>
                 <div class="form-floating mb-3">

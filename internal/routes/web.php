@@ -15,6 +15,11 @@ Route::get('/',  [Controller::class, 'login'])->name('login')->middleware('guest
 Route::post('/login',  [Controller::class, 'loginValidate'])->name('login.post');
 Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 
+Route::middleware(['auth'])->group(function () {
+    ## USER
+    Route::get('/profile',  [Controller::class, 'userProfil'])->name('user-profile');
+    Route::get('/profile/update',  [Controller::class, 'editProfil'])->name('user-profile.update');
+});
 
 Route::middleware(['auth','admin'])->group(function () {
     ## ADMIN
@@ -27,13 +32,8 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::put('/{id}/edit_user_management', [UserController::class, 'update'])->name('update-user-management.update');
 });
 
-Route::middleware(['auth'])->group(function () {
-    ## USER
-    Route::get('/user',  [Controller::class, 'userProfil'])->name('user-profile');
-});
 
-
-Route::middleware(['auth', 'user_insiden', 'admin'])->group(function () {
+Route::middleware(['auth', 'user_insiden'])->group(function () {
     ## DASHBOARD
     Route::get('/dashboard-insiden',  [Controller::class, 'viewDashboardInsiden'])->name('dashboard-insiden');
 
@@ -80,14 +80,14 @@ Route::middleware(['auth', 'user_insiden', 'admin'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'user_berita', 'admin'])->group(function () {
+Route::middleware(['auth', 'user_berita'])->group(function () {
     ## DASHBOARD
     Route::get('/dashboard-berita',  [Controller::class, 'viewDashboardBerita'])->name('dashboard-berita');
 });
 
 
 
-Route::middleware(['auth', 'user_aset', 'admin'])->group(function () {
+Route::middleware(['auth', 'user_aset'])->group(function () {
     ## DASHBOARD
     Route::get('/dashboard-aset',  [Controller::class, 'viewDashboardAset'])->name('dashboard-aset');
 });

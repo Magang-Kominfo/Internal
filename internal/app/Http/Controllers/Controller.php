@@ -35,6 +35,12 @@ class Controller
 
     public function userProfil()
     {
+        $user = Auth::user();
+        return view('user.profile', compact('user'));
+    }
+
+    public function editProfil()
+    {
         return view('user.profile');
     }
 

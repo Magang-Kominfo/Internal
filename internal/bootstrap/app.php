@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'user_berita' => UserBeritaMiddleware::class,
             'user_aset' => UserAsetMiddleware::class,
             'admin' => AdminMiddleware::class,
-            'user_insiden' => UserInsidenMiddleware::class,
+            'user_insiden' => UserInsidenMiddleware::class
         ]);
 
 
