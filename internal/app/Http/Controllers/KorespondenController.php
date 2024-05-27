@@ -99,8 +99,7 @@ class KorespondenController extends Controller
        // Mengambil data koresponden berdasarkan ID yang diberikan
         $koresponden = Koresponden::findOrFail($id_koresponden);
 
-        dd($koresponden);
-
+        
         // Memperbarui data koresponden
         $koresponden->nama_koresponden = $request->input('nama_koresponden');
         $koresponden->save();

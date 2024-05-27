@@ -136,6 +136,7 @@
                 document.getElementById('extra-email').appendChild(newElement);
 
                 callEvent();
+                
             });
         });
 
@@ -168,92 +169,95 @@
             })
         }
 
+       
+
         // // Panggil callEvent untuk pertama kali saat halaman dimuat
         // document.addEventListener('DOMContentLoaded', function () {
         //     callEvent();
         // });
 
-        // $("#formKoresponden").on('submit', function(e) {
-        //         e.preventDefault();
+        $("#formKoresponden").on('submit', function(e) {
+                e.preventDefault();
 
-        //         $("#saveBtn").html('Menyimpan...').attr('disabled', 'disabled');
+                $("#saveBtn").html('Menyimpan...').attr('disabled', 'disabled');
 
-        //         const nama = document.getElementById('nama_koresponden');
-        //         const emailInputs = document.querySelectorAll('input[name="email[]"]');
+                const nama = document.getElementById('nama_koresponden');
+                const emailInputs = document.querySelectorAll('input[name="email[]"]');
 
 
-        //         const setError = (element, message) => {
-        //             const inputControl = element.closest('.uc-2-first-layer-form-1') || element.closest('uc-2-first-layer-form'); 
-        //             const errorDisplay = inputControl.querySelector('.error'); 
+                const setError = (element, message) => {
+                    const inputControl = element.closest('.uc-2-first-layer-form-1') || element.closest('uc-2-first-layer-form'); 
+                    const errorDisplay = inputControl.querySelector('.error'); 
 
-        //             errorDisplay.innerText = message;
-        //             errorDisplay.classList.add('active');
-        //         };
+                    errorDisplay.innerText = message;
+                    errorDisplay.classList.add('active');
+                };
 
-        //         const setSuccess = (element) => {
-        //             const inputControl = element.closest('.uc-2-first-layer-form-1') || element.closest('uc-2-first-layer-form'); 
-        //             const errorDisplay = inputControl.querySelector('.error');
+                const setSuccess = (element) => {
+                    const inputControl = element.closest('.uc-2-first-layer-form-1') || element.closest('uc-2-first-layer-form'); 
+                    const errorDisplay = inputControl.querySelector('.error');
 
-        //             if (errorDisplay) {
-        //                 errorDisplay.innerText = '';
-        //                 errorDisplay.classList.remove('active');
-        //             }
-        //         };
+                    if (errorDisplay) {
+                        errorDisplay.innerText = '';
+                        errorDisplay.classList.remove('active');
+                    }
+                };
 
-        //         const isValidEmail = email => {
-        //             const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //             return re.test(String(email).toLowerCase());
-        //         };
+                const isValidEmail = email => {
+                    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(String(email).toLowerCase());
+                };
 
-        //         const validateInputs = () => {
-        //             let allInputsAreValid = true;
+                const validateInputs = () => {
+                    let allInputsAreValid = true;
 
-        //             if (nama.value.trim() === '') {
-        //                 setError(nama, 'Masukkan Nama Koresponden');
-        //                 allInputsAreValid = false;
-        //             } else {
-        //                 setSuccess(nama);
-        //             }
+                    if (nama.value.trim() === '') {
+                        setError(nama, 'Masukkan Nama Koresponden');
+                        allInputsAreValid = false;
+                    } else {
+                        setSuccess(nama);
+                    }
 
-        //             emailInputs.forEach(emailInput => {
-        //                 if (emailInput.value.trim() === '') {
-        //                     setError(emailInput, 'Masukkan Email Koresponden');
-        //                     allInputsAreValid = false;
-        //                 } else if (!isValidEmail(emailInput.value.trim())) {
-        //                     setError(emailInput, 'Pastikan Email Sesuai Format');
-        //                     allInputsAreValid = false;
-        //                 } else {
-        //                     setSuccess(emailInput);
-        //                 }
-        //             });
+                    emailInputs.forEach(emailInput => {
+                        if (emailInput.value.trim() === '') {
+                            setError(emailInput, 'Masukkan Email Koresponden');
+                            allInputsAreValid = false;
+                        } else if (!isValidEmail(emailInput.value.trim())) {
+                            setError(emailInput, 'Pastikan Email Sesuai Format');
+                            allInputsAreValid = false;
+                        } else {
+                            setSuccess(emailInput);
+                        }
+                    });
 
-        //             return allInputsAreValid;
-        //         };
+                    return allInputsAreValid;
+                };
 
-        //         const allInputsAreValid = validateInputs();
+                const allInputsAreValid = validateInputs();
 
-        //         if (!allInputsAreValid) {
-        //             console.log("gagal");
-        //             Swal.fire({
-        //                 title: "Error!",
-        //                 text: "Terdapat kesalahan dalam pengisian formulir, mohon periksa kembali.",
-        //                 icon: "error",
-        //                 button: "OK",
-        //             });
-        //             $("#saveBtn").html('Simpan kembali').removeAttr('disabled');
-        //             return;
-        //         } else {
-        //             // Lakukan pengiriman data jika semua input valid
-        //             $("#saveBtn").html('Memindahkan halaman...').removeAttr('disabled');
+                if (!allInputsAreValid) {
+                    console.log("gagal");
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Terdapat kesalahan dalam pengisian formulir, mohon periksa kembali.",
+                        icon: "error",
+                        button: "OK",
+                    });
+                    $("#saveBtn").html('Simpan kembali').removeAttr('disabled');
+                    return;
+                } else {
+                    // Lakukan pengiriman data jika semua input valid
+                    $("#saveBtn").html('Memindahkan halaman...').removeAttr('disabled');
+                    console.log("sudah disumbit");
 
-        //             // e.currentTarget.submit();
+                    e.currentTarget.submit();
                     
-        //             swal.fire("Success!", "Data berhasil disimpan!", "success");
+                    swal.fire("Success!", "Data berhasil disimpan!", "success");
                     
-        //             // Implementasi pengiriman data bisa dilakukan di sini
+                    // Implementasi pengiriman data bisa dilakukan di sini
                     
-        //         }
-        //     });
+                }
+            });
 
 
     </script>
