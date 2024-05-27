@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
             $table->string('no_agenda')->unique();
-            $table->foreignId('id_sifat')->constrained(table: 'sifats', indexName: 'id_sifat'); // Foreign key
+            $table->foreignId('id_sifat')->constrained(table: 'sifats', indexName: 'id_sifat')->onUpdate('cascade'); // Foreign key
+            $table->foreignId('id_alur_surat')->constrained(table: 'alur_surats', indexName: 'id_alur_surat')->onUpdate('cascade'); // Foreign key
             $table->string('no_berita');
             $table->integer('jumlah_halaman_berita');
             $table->dateTime('tanggal_buat_berita');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/koresponden.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/berita/koresponden.css') }}" >
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <title>Menambahkan Insiden</title>
 </head>
@@ -24,67 +24,279 @@
 
         {{-- body --}}
         <div class="uc-2-form-main">
-            <div class="uc-2-form-berita-main">
-                    
-                {{-- back --}}
-                <div class="payment-header">
-                    <div class="back-btn">
+            <div class="uc-2-form-berita-main" >  
+                    {{-- back --}}
+                <div class="uc-2-back-navigation">
+                    <div class="uc-2-back-btn">
                         <object
                             data="{{ asset('assets/back-btn.svg') }}"
                             type=""
                         ></object>
-                        <a href="" style="text-decoration: none"><h2>KEMBALI</h2></a>
+                        <a href="{{ url('dashboard-berita') }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
                     </div>
-                    <div class="payment-route">
-                        <div class="route">KORESPONDEN</div>
-                       
+                    <div class="uc-2-nav-description">
+                        <div class="uc-2-nav-description-route">KORESPONDEN</div>
                     </div>
                 </div>
 
                 {{-- Search bar --}}
                 <div class="uc-2-search">
-                    <div class="uc-2-search-bar"> Search bar </div>
-                    <div class="uc-2-search-filter">Filter</div>
-                    {{-- <div class="uc-2-search-sort">Sort</div>
-                    <div class="uc-2-search-add">+</div> --}}
+                    <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
+                    <div class="uc-2-search-sort">
+                        <select class="uc-2-search-sort-select" id="sortSelect">
+                            <option value="none" selected>Sort</option>
+                            <option value="created-desc">Terbaru dibuat</option>
+                            <option value="created-asc">Terakhir dibuat</option>
+                            <option value="updated-desc">Terbaru diperbaharui</option>
+                            <option value="updated-asc">Terakhir diperbaharui</option>
+                        </select>
+                    </div>
+                    <a href="{{ route('koresponden.form') }}" style="text-decoration: none; color:white">
+                        <div class="uc-2-search-add">
+                            +
+                        </div>
+                    </a>
                 </div>
 
-                <div class="uc-2-list-koresponden">
-                    <div class="uc-2-list-koresponden-item"> 
-                        <h4>Nama Koresponden</h4>
-                        <div class="uc-2-list-koresponden-item-check">
-                            <h4><span>Tipe Email</span> - Username@gmail.com</h4>
-                            <input type="checkbox" id="" name="" value="">
+                <div class="uc-2-list" >
+                    @foreach ($korespondens as $koresponden)
+                        <div class="uc-2-list-koresponden"
+                        data-created="{{ $koresponden->created_at }}" data-updated="{{ $koresponden->updated_at }}">
+                            {{-- data-type="{{ $email->tipe_email == 0 ? 'email-instansi' : 'email-pribadi' }}" --}}
+                            <div class="uc-2-list-koresponden-item"> 
+                            
+                                <h4>{{ $koresponden->nama_koresponden }}</h4>
+                                    
+                                <div class="uc-2-list-koresponden-item-desc">
+                                    <div class="uc-2-list-koresponden-item-desc-email-list">
+                                        @foreach ($koresponden->emails as $email)
+                                            <h4>
+                                                <span>
+                                                    @if ($email->tipe_email == 0)
+                                                        Email Instansi
+                                                        @elseif ($email->tipe_email == 1)
+                                                        Email Pribadi
+                                                    @endif
+                                                </span>
+                                                - {{ $email->nama_email }}
+                                            </h4> 
+                                        @endforeach
+                                    </div>
+                                    <h4> 
+                                        <a href="{{ route('koresponden.edit',
+                                        ['id_koresponden' => $koresponden->id], ) }}"  
+                                        style="text-decoration: none" 
+                                        class="uc-2-button-edit">Edit</a>
+                                    </h4>
+                                    <h4> 
+                                        <form  id="deleteForm{{ $koresponden->id }}" action="{{ route('koresponden.delete', ['id_koresponden' => $koresponden->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="uc-2-button-delete" 
+                                            onclick="confirmDelete('{{ $koresponden->id }}', 'Pastikan bahwa data benar benar ingin anda hapus!')">Delete</button>
+                                        </form>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="uc-2-list-koresponden-item"> 
-                        <h4>Nama Koresponden</h4>
-                        <div class="uc-2-list-koresponden-item-check">
-                            <h4><span>Tipe Email</span> - Username@gmail.com</h4>
-                            <input type="checkbox" id="" name="" value="">
-                        </div>
-                    </div>
-
-                    <div class="uc-2-list-koresponden-item"> 
-                        <h4>Nama Koresponden</h4>
-                        <div class="uc-2-list-koresponden-item-check">
-                            <h4><span>Tipe Email</span> - Username@gmail.com</h4>
-                            <input type="checkbox" id="" name="" value="">
-                        </div>
-                    </div>
-                    
-                    <div class="uc-2-list-koresponden-item"> 
-                        <h4>Nama Koresponden</h4>
-                        <div class="uc-2-list-koresponden-item-check">
-                            <h4><span>Tipe Email</span> - Username@gmail.com</h4>
-                            <input type="checkbox" id="" name="" value="">
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                
+
+                <div class="uc-2-pagination-section">
+                    <div id="uc-2-pagination-koresponden"></div>
+                </div>
             </div>
+
         </div>
     </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(korespondenId, message) {
+            Swal.fire({
+                title: 'Apa anda yakin?',
+                text: message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus data!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('/koresponden-delete/'); }}" + "/" + korespondenId,
+                        type: 'GET',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function (response) {
+
+                            console.log('sukses response');
+                            if (response.status === 'error') {
+                                console.log('error sukses response');
+                                Swal.fire({
+                                    title: 'Gagal',
+                                    text: response.message,
+                                    icon: 'error'
+                                });
+                            } else if (response.status === 'success') {
+                                console.log(response.status);
+                                // Jika data bisa dihapus, submit form untuk menghapus data
+                                document.getElementById('deleteForm' + korespondenId).submit();
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log('error response');
+                            console.error('Error:', error);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memeriksa data.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sortSelect = document.getElementById("sortSelect");
+            const searchInput = document.getElementById("searchBar");
+            const paginationContainer = document.getElementById("uc-2-pagination-koresponden")
+            const newsItemsContainer = document.querySelector(".uc-2-list");
+            const newsItems = Array.from(newsItemsContainer.querySelectorAll(".uc-2-list-koresponden"));
+
+            
+            const itemsPerPage = 5;
+            let currentPage = 1;
+            let isRetryingSearch = false;
+            
+            sortSelect.addEventListener("change", filterAndSort);
+            searchInput.addEventListener("input", filterAndSort);
+
+            function filterAndSort() {
+                console.log("filter and sort");
+                const sortBy = sortSelect.value;
+                const searchQuery = searchInput.value.toLowerCase();
+                const isDesc = sortBy.includes("desc");
+                const sortKey = sortBy.includes("created") ? "created" : (sortBy.includes("updated") ? "updated" : null);
+
+                // Filter news items
+                let filteredNewsItems = newsItems.filter(item => {
+                    return item.textContent.toLowerCase().includes(searchQuery);
+                });
+
+                console.log(filteredNewsItems);
+
+                // Sort news items if a sorting option is selected
+                if (sortKey) {
+                    filteredNewsItems.sort((a, b) => {
+                        const aValue = new Date(a.dataset[sortKey]);
+                        const bValue = new Date(b.dataset[sortKey]);
+
+                        return isDesc ? bValue - aValue : aValue - bValue;
+                    });
+                }
+
+                // Pagination logic
+                const totalPages = Math.ceil(filteredNewsItems.length / itemsPerPage);
+                
+                if(currentPage === 0){
+                    currentPage = Math.max(currentPage, 1);
+                } else {
+                currentPage = Math.min(currentPage, totalPages);
+                }   
+
+                const startIdx = (currentPage - 1) * itemsPerPage;
+                const endIdx = startIdx + itemsPerPage;
+                const paginatedItems = filteredNewsItems.slice(startIdx, endIdx);
+
+                // Clear current items and append sorted, filtered, and paginated items
+                newsItemsContainer.innerHTML = '';
+                paginatedItems.forEach(item => {
+                    newsItemsContainer.appendChild(item);
+                });
+
+                // Render pagination controls
+                renderPaginationControls(totalPages);
+            }
+
+            
+
+            function renderPaginationControls(totalPages) {
+                paginationContainer.innerHTML = '';
+                if (currentPage > 1) {
+                    const prevButton = document.createElement('button');
+                    prevButton.textContent = '<';
+                    prevButton.className = 'page-button-navigator';
+                    prevButton.addEventListener('click', () => {
+                        currentPage -= 1;
+                        filterAndSort();
+                    });
+                    paginationContainer.appendChild(prevButton);
+                }
+
+                const pageNumbers = [];
+                const maxVisiblePages = 3;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+                if (endPage - startPage < maxVisiblePages - 1) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    pageNumbers.push(i);
+                }
+
+                if (startPage > 1) {
+                    pageNumbers.unshift(1, '...');
+                }
+                if (endPage < totalPages) {
+                    pageNumbers.push('...', totalPages);
+                }
+
+                pageNumbers.forEach(page => {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = page;
+                    pageButton.className = 'page-button';
+                    if (page === currentPage) {
+                        pageButton.classList.add('active');
+                    } 
+                    if (page !== '...') {
+                        pageButton.addEventListener('click', () => {
+                            currentPage = page;
+                            filterAndSort();
+                        });
+                    }
+                    paginationContainer.appendChild(pageButton);
+                });
+
+                if (currentPage < totalPages) {
+                    const nextButton = document.createElement('button');
+                    nextButton.textContent = '>';
+                    nextButton.className = 'page-button-navigator';
+                    nextButton.addEventListener('click', () => {
+                        currentPage += 1;
+                        filterAndSort();
+                    });
+                    paginationContainer.appendChild(nextButton);
+                }
+            }
+
+            filterAndSort();
+        });
+
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.uc-2-dropdown-user');
+            toggleMenu.classList.toggle('active');
+        }
+        
+    </script>
+
 </body>
 </html>

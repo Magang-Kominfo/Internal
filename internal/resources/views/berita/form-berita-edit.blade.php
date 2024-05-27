@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +37,10 @@
                             data="{{ asset('assets/back-btn.svg') }}"
                             type=""
                         ></object>
-                        <a href="{{ url('dashboard-berita') }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
+                        <a href="{{ route('berita.detail', ['id_berita' => $edit['berita']->id]) }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
                     </div>
                     <div class="uc-2-nav-description">
-                        <div class="uc-2-nav-description-route">Mengarsipkan Berita</div>
+                        <div class="uc-2-nav-description-route">Menyunting Berita</div>
                     </div>
                 </div>
 
@@ -50,30 +51,33 @@
                 </h4>
 
                 {{-- Main form --}}
-                <form  action="{{ route('berita.create') }}" id="addForm" method="POST" enctype="multipart/form-data">
+                <form  action="{{ route('berita.edit', ['id_berita' => $edit['berita']->id]) }}" 
+                    id="addForm" method="POST" enctype="multipart/form-data" >
                     @csrf
+                    @method('PUT')
 
-                    <div class="uc-2-input-field">
+                    <div class="uc-2-input-field" id="percobaan" data-id="{{ $edit['berita']->id }}">
                         {{-- first layer --}}
                         <div class="uc-2-first-layer-form">
                             <div class="uc-2-first-layer-form-2">
                                 <label for="no_berita">Nomor Berita:</label>
-                                <input type="text" name="no_berita" id="no_berita" placeholder="12.010/DP-KM/IX/2020" >
+                                <input type="text" name="no_berita" id="no_berita" value="{{$edit['berita']->no_berita}}">
                                 <div class="error"></div>
                             </div>
+                            
                             <div class="uc-2-first-layer-form-2">
                                 <label for="no_agenda">Nomor Agenda:</label>
-                                <input type="text" name="no_agenda" id="no_agenda" placeholder="P01, M21, CM01, S001">
+                                <input type="text" name="no_agenda" id="no_agenda" value="{{$edit['berita']->no_agenda}}">
                                 <div class="error"></div>
                             </div>
                             <div class="uc-2-first-layer-form-2">
                                 <label for="jumlah_halaman_berita">Jumlah Halaman:</label>
-                                <input type="number" min="1" value="1" name="jumlah_halaman_berita" id="jumlah_halaman_berita" >
+                                <input type="number" min="1" value="1" name="jumlah_halaman_berita" id="jumlah_halaman_berita" value="{{$edit['berita']->jumlah_halaman_berita}}">
                                 <div class="error"></div>
                             </div>
                             <div class="uc-2-first-layer-form-2">
                                 <label for="tanggal_buat_surat">Tanggal Buat Surat:</label>
-                                <input type="datetime-local" name="tanggal_buat_berita" id="tanggal_buat_berita" >
+                                <input type="datetime-local" name="tanggal_buat_berita" id="tanggal_buat_berita" value="{{$edit['berita']->tanggal_buat_berita }}">
                                 <div class="error"></div>
                             </div>
                         </div>
@@ -100,8 +104,9 @@
                         <div class="uc-2-third-layer-form">
                             <label for="sifat_berita">Sifat Berita:</label>
                             <div class="uc-2-radio-button">
-                                @foreach($data['sifats'] as $sifat)
-                                    <input type="radio" id="sifat{{$sifat->id}}" name="id_sifat" value="{{$sifat->id}}">
+                                @foreach($edit['sifats'] as $sifat)
+                                    <input type="radio" id="sifat{{$sifat->id}}" name="id_sifat" 
+                                    value="{{$sifat->id}}" @if($sifat->id == $edit['berita']->id_sifat) checked  @endif>
                                     <label for="sifat{{$sifat->id}}">{{$sifat->nama_sifat}}</label><br>
                                 @endforeach
                             </div>
@@ -111,8 +116,9 @@
                         <div class="uc-2-fourth-layer-form">
                             <label for="alur_surat">Alur Surat:</label>
                             <div class="uc-2-radio-button">
-                                @foreach($data['alursurats'] as $alursurat)
-                                    <input type="radio" id="sifat{{$alursurat->id}}" name="id_alur_surat" value="{{$alursurat->id}}">
+                                @foreach($edit['alursurats'] as $alursurat)
+                                    <input type="radio" id="sifat{{$alursurat->id}}" name="id_alur_surat" 
+                                    value="{{$alursurat->id}}" @if($alursurat->id == $edit['berita']->id_alur_surat) checked  @endif>
                                     <label for="alursurat{{$alursurat->id}}">{{$alursurat->nama_alur_surat}}</label><br>
                                 @endforeach
                             </div>
@@ -122,8 +128,7 @@
                         {{-- fourth layer --}}
                         <div class="uc-2-layer-deskripsi">
                             <label for="isi_berita">Deskripsi Insiden:</label>
-                            <textarea name="isi_berita" id="isi_berita" cols="30" rows="10" 
-                            placeholder="Beri desikripsi singkat untuk masuk kedalam deskripsi Header/Broadcast"></textarea>
+                            <textarea name="isi_berita" id="isi_berita" cols="30" rows="10" >{{$edit['berita']->isi_berita}}</textarea>
                             <div class="error"></div>
                         </div>
 
@@ -131,7 +136,9 @@
                         <div class="uc-2-first-layer-form-2">
                             <label for="dokumen_surat_berita">Dokumen Surat Berita:</label>
                             <div class="input-group">
-                                <input type="file" name="dokumen_surat_berita" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                <input type="file" name="dokumen_surat_berita" class="form-control" 
+                                id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" 
+                                aria-label="Upload">
                             </div>
                         </div>
                         
@@ -139,7 +146,7 @@
 
                     <div class="uc-2-form-footer">
                         <div class="uc-2-form-footer-save">
-                            <button type="submit" id="saveBtn">Simpan</button>
+                            <button type="submit" id="saveBtn">Save</button>
                         </div>
                     </div>
                 </form>
@@ -148,6 +155,7 @@
     </div>
 
     
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -155,8 +163,7 @@
 
     {{-- Script Penerima --}}
     <script>
-        $(document).ready(function() {
-
+       $(document).ready(function() {
             var selectedIds = [];
             var pengirimIds = [];
             var penerimaIds = [];
@@ -187,6 +194,7 @@
                     $option.append('</div>');
 
                     return $option;
+
                 }
             }
     
@@ -194,184 +202,235 @@
                 if (!selectedOption.id) {
                     return selectedOption.text;
                 }
+                console.log("selected option", selectedOption);
+
                 // Construct the selected tag HTML
-                var selectedTag = $('<span>' + selectedOption.nama + ' - ' + selectedOption.email + '</span>');
-                return selectedTag;
+                return selectedOption.text;
             }
-    
-            // Inisialisasi Select2 dengan data email yang diformat
-            $("#selectpengirim").select2({
-                placeholder: 'Tentukan pengirim pengiriman',
-                allowClear: true,
-                ajax: {
-                    url: "{{  url("email-option"); }}",
-                    dataType: "json",
-                    processResults: function(data, params) {
-                        if (data.length === 0 && params.term) {
-                            var newOption = {
-                                id: 'K',
-                                nama: 'Click here to add a new correspondent'
-                            };
-                            return { results: [newOption] };
-                        } else {
-                            // Filter out selected items
-                            var filteredData = data.filter(function(item) {
-                                return selectedIds.indexOf(item.id) === -1;
-                            });
+            
+            var beritaId = $('#percobaan').data('id');
 
-                            return {
-                                results: filteredData.map(function(item) {
-                                    return {
-                                        id: item.id,
-                                        email: item.nama_email,
-                                        nama: item.koresponden.nama_koresponden,
-                                        tipe: item.tipe_email
-                                    };
-                                }),
-                                pagination: { more: data.more }
-                            };
-                        }
-                    }
-                },
-                templateResult: formatEmailOption,
-                templateSelection: formatSelectedOption
-            }).on('select2:select', function(e) {
-                var data = e.params.data;
-                console.log("Pengirim IDs: ", data.id);
+            $.ajax({
+                url: "{{  url("email-default-option"); }}", // Endpoint to get default data
+                dataType: 'json',
+                data: { id: beritaId }
+            }).then(function(response) {
+
+                var pengirimDefaultOptions = [];
+                var penerimaDefaultOptions = [];
                 
-                if (data.id === 'K') {
-                    window.open('/form-new-koresponden', '_blank');
-                } else {
-                    var newDataId = data.id;
+                if (response.pengirim && Array.isArray(response.pengirim)) {
+                    console.log("Array Pengirim: ", response.pengirim);
+                    pengirimDefaultOptions = response.pengirim.map(function(data) {
+                        console.log("ID Pengirim: ", data.id);
 
-                    if (!pengirimIds.includes(newDataId)) {
-                        // Jika belum ada, tambahkan nilai baru ke dalam array
-                        pengirimIds.push(newDataId);
-                        console.log("New pengirim IDs: ", pengirimIds);
-                    } 
+                        pengirimIds.push(data.id);
+                        console.log("pengirim IDs: ", pengirimIds);
 
-                    console.log("arrays pengirim lama: ", pengirimIds)
+                        selectedIds.push(data.id);
+                        console.log("selected IDs: ", selectedIds);
 
-                    // Loop melalui array selectedIds
-                    for (var i = 0; i < selectedIds.length; i++) {
-                    // Periksa apakah nilai pengirim ID pada indeks tertentu sama dengan nilai lama
-                    console.log("selected id: ", selectedIds[i], "compared IDs: ", pengirimIds[0]);
+                        return new Option(data.nama + ' - ' + data.email, data.id, true, true);
+                    });
+                }
 
-                        if (selectedIds[i] === pengirimIds[0]) {
-                            console.log('ubah selected id dengan pengirim');
-                            selectedIds[i] = pengirimIds[1];
-                            console.log("selected id terbaru: ", selectedIds[i]);
-                            var index = pengirimIds.findIndex(function(id) {
-                                return id == pengirimIds[0];
-                            });
-                            if (index !== -1) {
-                                pengirimIds.splice(index, 1);
+                if (response.penerima && Array.isArray(response.penerima)) {
+                    console.log("Array Penerima: ", response.penerima);
+                    penerimaDefaultOptions = response.penerima.map(function(data) {
+                        console.log("ID Penerima: ", data.id);
+                        penerimaIds.push(data.id);
+                        console.log("Penerima IDs: ", penerimaIds);
+
+                        selectedIds.push(data.id);
+                        console.log("selected IDs: ", selectedIds);
+                        return new Option(data.nama + ' - ' + data.email, data.id, true, true);
+                    });
+                }
+
+                // Add default options to selectpengirim and mark them as selected
+                pengirimDefaultOptions.forEach(function(option) {
+                    $('#selectpengirim').append(option).trigger('change');
+                });
+
+                // Add default options to selectpenerima and mark them as selected
+                penerimaDefaultOptions.forEach(function(option) {
+                    $('#selectpenerima').append(option).trigger('change');
+                });
+
+                $("#selectpengirim").select2({
+                    placeholder: 'Tentukan pengirim pengiriman',
+                    allowClear: true,
+                    ajax: {
+                        url: "{{  url("email-option"); }}",
+                        dataType: "json",
+                        processResults: function(data, params) {
+                            if (data.length === 0 && params.term) {
+                                var newOption = {
+                                    id: 'K',
+                                    nama: 'Click here to add a new correspondent'
+                                };
+                                return { results: [newOption] };
+                            } else {
+                                // Filter out selected items
+                                var filteredData = data.filter(function(item) {
+                                    return selectedIds.indexOf(item.id) === -1;
+                                });
+
+                                return {
+                                    results: filteredData.map(function(item) {
+                                        return {
+                                            id: item.id,
+                                            text: item.koresponden.nama_koresponden + ' - ' + item.nama_email,
+                                            email: item.nama_email,
+                                            nama: item.koresponden.nama_koresponden,
+                                            tipe: item.tipe_email
+                                        };
+                                    }),
+                                    pagination: { more: data.more }
+                                };
                             }
                         }
-                    }
-
-                    console.log("arrays pengirim baru: ", pengirimIds)
-                  
-                    if (!selectedIds.includes(newDataId)) {
-                        // Jika belum ada, tambahkan nilai baru ke dalam array
-                        selectedIds.push(newDataId);
-                        
-                    } 
+                    },
+                    templateResult: formatEmailOption,
+                    templateSelection: formatSelectedOption
+                }).on('select2:select', function(e) {
+                    var data = e.params.data;
+                    console.log("Pengirim IDs: ", data.id);
                     
-                    console.log("New selected IDs: ", selectedIds);
-                }
-            }).on('select2:unselecting', function(e) {
-                var data = e.params.args.data;
-                var removedId = data.id;
+                    if (data.id === 'K') {
+                        window.open('/form-new-koresponden', '_blank');
+                    } else {
+                        var newDataId = data.id;
 
-                // Hapus ID dari array selectedIds
-                console.log("Before filtering IDs: ", selectedIds);
+                        if (!pengirimIds.includes(newDataId)) {
+                            // Jika belum ada, tambahkan nilai baru ke dalam array
+                            pengirimIds.push(newDataId);
+                            console.log("New pengirim IDs: ", pengirimIds);
+                        } 
 
-                var index = selectedIds.findIndex(function(id) {
-                    console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
-                    return id == removedId;
-                });
-                if (index !== -1) {
-                    selectedIds.splice(index, 1);
-                    pengirimIds = [];
-                }
+                        console.log("arrays pengirim lama: ", pengirimIds)
 
-                console.log("Hapus Pengirim IDs: ", selectedIds, "arrays pengirim baru: ", pengirimIds);
-            });
+                        // Loop melalui array selectedIds
+                        for (var i = 0; i < selectedIds.length; i++) {
+                        // Periksa apakah nilai pengirim ID pada indeks tertentu sama dengan nilai lama
+                        console.log("selected id: ", selectedIds[i], "compared IDs: ", pengirimIds[0]);
 
-             $("#selectpenerima").select2({
-                placeholder: 'Tentukan penerima pengiriman',
-                allowClear: true,
-                ajax: {
-                    url: "{{ url('email-option') }}",
-                    dataType: "json",
-                    processResults: function(data, params) {
-                        if (data.length === 0 && params.term) {
-                            var newOption = {
-                                id: 'K',
-                                nama: 'Click here to add a new correspondent'
-                            };
-                            return { results: [newOption] };
-                        } else {
-                            // Filter out selected items
-                            var filteredData = data.filter(function(item) {
-                                return selectedIds.indexOf(item.id) === -1;
-                            });
-
-                            return {
-                                results: filteredData.map(function(item) {
-                                    return {
-                                        id: item.id,
-                                        email: item.nama_email,
-                                        nama: item.koresponden.nama_koresponden,
-                                        tipe: item.tipe_email
-                                    };
-                                }),
-                                pagination: { more: data.more }
-                            };
+                            if (selectedIds[i] === pengirimIds[0]) {
+                                console.log('ubah selected id dengan pengirim');
+                                selectedIds[i] = pengirimIds[1];
+                                console.log("selected id terbaru: ", selectedIds[i]);
+                                var index = pengirimIds.findIndex(function(id) {
+                                    return id == pengirimIds[0];
+                                });
+                                if (index !== -1) {
+                                    pengirimIds.splice(index, 1);
+                                }
+                            }
                         }
+
+                        console.log("arrays pengirim baru: ", pengirimIds)
+                    
+                        if (!selectedIds.includes(newDataId)) {
+                            // Jika belum ada, tambahkan nilai baru ke dalam array
+                            selectedIds.push(newDataId);
+                            
+                        } 
+                        
+                        console.log("New selected IDs: ", selectedIds);
                     }
-                },
-                templateResult: formatEmailOption,
-                templateSelection: formatSelectedOption
-            }).on('select2:select', function(e) {
-                var data = e.params.data;
-                if (data.id === 'K') {
-                    window.open('/form-new-koresponden', '_blank');
-                } else {
-                    // Add selected ID to the array
-                    selectedIds.push(data.id);
-                    penerimaIds.push(data.id);
-                    console.log("New selected IDs: ", selectedIds);
-                }
-            }).on('select2:unselecting', function(e) {
-                var data = e.params.args.data;
-                var removedId = data.id;
+                }).on('select2:unselecting', function(e) {
+                    var data = e.params.args.data;
+                    var removedId = data.id;
 
-                // Hapus ID dari array selectedIds
-                console.log("Before filtering IDs: ", selectedIds);
+                    // Hapus ID dari array selectedIds
+                    console.log("Before filtering IDs: ", selectedIds);
 
-                var index = selectedIds.findIndex(function(id) {
-                    console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
-                    return id == removedId;
+                    var index = selectedIds.findIndex(function(id) {
+                        console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
+                        return id == removedId;
+                    });
+                    if (index !== -1) {
+                        selectedIds.splice(index, 1);
+                        pengirimIds = [];
+                    }
+
+                    console.log("Hapus Pengirim IDs: ", selectedIds, "arrays pengirim baru: ", pengirimIds);
                 });
-                if (index !== -1) {
-                    selectedIds.splice(index, 1);
-                }
 
-                // Hapus ID dari array penerimaIds
-                var indeks = penerimaIds.findIndex(function(id) {
-                    console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
-                    return id == removedId;
+                $("#selectpenerima").select2({
+                    placeholder: 'Tentukan penerima pengiriman',
+                    allowClear: true,
+                    ajax: {
+                        url: "{{ url('email-option') }}",
+                        dataType: "json",
+                        processResults: function(data, params) {
+                            if (data.length === 0 && params.term) {
+                                var newOption = {
+                                    id: 'K',
+                                    nama: 'Click here to add a new correspondent'
+                                };
+                                return { results: [newOption] };
+                            } else {
+                                // Filter out selected items
+                                var filteredData = data.filter(function(item) {
+                                    return selectedIds.indexOf(item.id) === -1;
+                                });
+
+                                return {
+                                    results: filteredData.map(function(item) {
+                                        return {
+                                            id: item.id,
+                                            text: item.koresponden.nama_koresponden + ' - ' + item.nama_email,
+                                            email: item.nama_email,
+                                            nama: item.koresponden.nama_koresponden,
+                                            tipe: item.tipe_email
+                                        };
+                                    }),
+                                    pagination: { more: data.more }
+                                };
+                            }
+                        }
+                    },
+                    templateResult: formatEmailOption,
+                    templateSelection: formatSelectedOption
+                }).on('select2:select', function(e) {
+                    var data = e.params.data;
+                    if (data.id === 'K') {
+                        window.open('/form-new-koresponden', '_blank');
+                    } else {
+                        // Add selected ID to the array
+                        selectedIds.push(data.id);
+                        penerimaIds.push(data.id);
+                        console.log("New selected IDs: ", selectedIds);
+                    }
+                }).on('select2:unselecting', function(e) {
+                    var data = e.params.args.data;
+                    var removedId = data.id;
+
+                    // Hapus ID dari array selectedIds
+                    console.log("Before filtering IDs: ", selectedIds);
+
+                    var index = selectedIds.findIndex(function(id) {
+                        console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
+                        return id == removedId;
+                    });
+                    if (index !== -1) {
+                        selectedIds.splice(index, 1);
+                    }
+
+                    // Hapus ID dari array penerimaIds
+                    var indeks = penerimaIds.findIndex(function(id) {
+                        console.log("DeletedId IDs: ", removedId, "comparedId: ", id);
+                        return id == removedId;
+                    });
+                    if (indeks !== -1) {
+                        penerimaIds.splice(index, 1);
+                    }
+
+                    console.log("Filtered selected IDs: ", selectedIds);
                 });
-                if (indeks !== -1) {
-                    penerimaIds.splice(index, 1);
-                }
-
-                console.log("Filtered selected IDs: ", selectedIds);
-            });
             
-
+            });
 
             // Tangani pengiriman formulir
             $("#addForm").on('submit', function(e) {
@@ -537,9 +596,6 @@
             });
         });
     </script>
-
-    
-    
 
 </body>
 </html>

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/berita/list-koresponden.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/berita/dashboard.css') }}" >
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <title>Menambahkan Insiden</title>
+    <title>Dashboard Berita</title>
 </head>
 
 <body>
@@ -14,45 +14,58 @@
 
         {{-- header --}}
         <div class="uc-2-header">
-            <div>
-                <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
+            <div class="uc-2-left-header">
+                <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
 
-            <div>
+            <div class="uc-2-right-header">
+                <h4><a href="{{ route('koresponden.show') }}" style="text-decoration: none; color: var(--bluedark);">Daftar Koresponden</a></h4>
+                <a class="uc-2-user-navigate" onclick="menuToggle()"> 
+                    <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" > 
+                </a>
+                {{-- Menu --}}
+                <div class="uc-2-dropdown-user">
+                    <div class="uc-2-username">
+                        <span class="uc-2-name">
+                            Nama_Admin
+                        </span>
+                        <span class="uc-2-role">
+                            Role Admin
+                        </span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="">
+                            <button>Profil Admin</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <button>Keluar</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         {{-- body --}}
-        <div class="uc-2-form-main">
-            <div class="uc-2-form-berita-main">
+        <div class="uc-2-main-dashboard">
+            <div class="uc-2-main-dashboard-berita">
                     
                 {{-- back --}}
-                <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="
-                            @foreach($datas as $data)
-                            {{ route('berita.detail', ['id_berita' => $data->id_berita]) }}" 
-                             @endforeach
-                            style="text-decoration: none"><h2>KEMBALI</h2></a>
-                       
-                    </div>
-                    <div class="uc-2-nav-description">
-                        <div class="uc-2-nav-description-route">KORESPONDEN</div>
-                    </div>
+                <div class="uc-2-main-title-text">
+                    <h3>Dashboard Surat Berita</h3>
                 </div>
 
                 {{-- Search bar --}}
-                <div class="uc-2-search">
+                <div class="uc-2-search"> 
                     <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
                     <div class="uc-2-search-filter">
                         <select class="uc-2-search-filter-select" id="filterSelect">
                             <option value="all" selected>Filter</option>
-                            <option value="sudah-terbalas">Sudah Terbalas</option>
-                            <option value="belum-terbalas">Belum Terbalas</option>
+                            <option value="surat-masuk">Surat Masuk</option>
+                            <option value="surat-keluar">Surat Keluar</option>
                         </select>
                     </div>
                     <div class="uc-2-search-sort">
@@ -60,51 +73,98 @@
                             <option value="none" selected>Sort</option>
                             <option value="created-desc">Pencatatan Terbaru</option>
                             <option value="created-asc">Pencatatan Terakhir</option>
+                            <option value="updated-desc">Surat Terbaru</option>
+                            <option value="updated-asc">Surat Terlama</option>
                         </select>
                     </div>
+                    <a href="{{ url('form-berita-create') }}" style="text-decoration: none; color:white" class="uc-2-search-add">
+                        +
+                    </a>
                 </div>
-
-                <div class="uc-2-list-koresponden">
-                    @foreach($datas as $data)
-                        @if($data->role === 1)
-                            <a href="{{ route('mengirim.show', ['id_berita' => $data->id_berita, 
-                            'id_email' => $data->id_email], 
-                            ) }}"  style="text-decoration: none" >
-                                <div class="uc-2-list-koresponden-item"
-                                    data-created="{{ $data->updated_at }}"
-                                    data-type="{{ is_null($data->respon_time) ? 'belum-terbalas' : 'sudah-terbalas' }}"> 
-                                    <h4>{{ $data->email->koresponden->nama_koresponden ?? '' }}
-                                        - {{ $data->email->nama_email ?? ''}}</h4>
-                                    <span>
-                                        @if($data->respon_time == '0000-00-00 00:00:00' || is_null($data->respon_time))
-                                            Belum ada Balasan
-                                        @else
-                                            {{ \Carbon\Carbon::parse($data->respon_time)->locale('id')->isoFormat('HH:mm | DD MMMM YYYY')  }}
+                
+                <div class="uc-2-berita">
+                    @foreach($beritas as $berita)
+                        <a href="{{ url('detailberita/' . $berita->id) }}" style="text-decoration: none;">
+                            <div class="uc-2-berita-item" 
+                            data-created="{{ $berita->updated_at }}" data-updated="{{ $berita->tanggal_buat_berita }}"
+                            data-type="{{ $berita->alursurat->id == 1 ? 'surat-masuk' : 'surat-keluar' }}"> 
+                                <div class="uc-2-berita-item-header">
+                                    <h4 class="uc-2-berita-no-surat">{{ $berita->no_berita }} - 
+                                        <span style="
+                                        @if ( $berita->alursurat->id == 1)
+                                            color: var(--bluedark);
+                                        @elseif ($berita->alursurat->id == 2)
+                                            color: var(--red-edit);
+                                        @endif">
+                                            @php
+                                                $korespondenExists = false;
+                                            @endphp
+                                            
+                                            @foreach($berita->mengirims as $data)
+                                                @if($data->role === 0 && $data->email && $data->email->koresponden)
+                                                    {{ $data->email->koresponden->nama_koresponden }}
+                                                    @php
+                                                        $korespondenExists = true;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            
+                                            @if(!$korespondenExists)
+                                                Data Koresponden Terhapus
+                                            @endif
+                                        </span>
+                                    </h4>
+                                    <span style=" font-weight:500;
+                                        @if ( $berita->alursurat->id == 1)
+                                            color: var(--bluedark);
+                                        @elseif ($berita->alursurat->id == 2)
+                                            color: var(--red-edit);
                                         @endif
+                                        ">{{ $berita->alursurat->nama_alur_surat }} - 
+                                        {{ \Carbon\Carbon::parse($berita->tanggal_buat_berita)->locale('id')->isoFormat('HH:mm | DD MMMM YYYY') }}
                                     </span>
                                 </div>
-                            </a>    
-                        @endif                                    
+                                <p>
+                                    {{ Str::limit($berita->isi_berita, 300, '...') }}
+                                </p>
+                                <h5>To: 
+                                    @php
+                                        $korespondenExists = false;
+                                    @endphp
+                                    
+                                    @foreach($berita->mengirims as $data)
+                                        @if($data->role === 1 && $data->email && $data->email->koresponden)
+                                            {{ $data->email->koresponden->nama_koresponden }}, 
+                                            @php
+                                                $korespondenExists = true;
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                    
+                                    @if(!$korespondenExists)
+                                        Data Koresponden Terhapus
+                                    @endif
+                                </h5>
+                            </div>
+                        </a>
                     @endforeach
-                    
                 </div>
 
                 <div class="uc-2-pagination-section">
-                    <div id="uc-2-pagination-list-koresponden"></div>
+                    <div id="uc-2-pagination-dashboard"></div>
                 </div>
-                
-            </div>
-        </div>
-    </div>
 
+    
+                
+                
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const filterSelect = document.getElementById("filterSelect");
             const sortSelect = document.getElementById("sortSelect");
             const searchInput = document.getElementById("searchBar");
-            const paginationContainer = document.getElementById("uc-2-pagination-list-koresponden")
-            const newsItemsContainer = document.querySelector(".uc-2-list-koresponden");
-            const newsItems = Array.from(newsItemsContainer.querySelectorAll(".uc-2-list-koresponden-item"));
+            const paginationContainer = document.getElementById("uc-2-pagination-dashboard")
+            const newsItemsContainer = document.querySelector(".uc-2-berita");
+            const newsItems= Array.from(newsItemsContainer.querySelectorAll(".uc-2-berita-item"));
 
             const itemsPerPage = 5;
             let currentPage = 1;
@@ -118,7 +178,7 @@
                 const sortBy = sortSelect.value;
                 const searchQuery = searchInput.value.toLowerCase();
                 const isDesc = sortBy.includes("desc");
-                const sortKey = sortBy.includes("created") ? "created" : null;
+                const sortKey = sortBy.includes("created") ? "created" : (sortBy.includes("updated") ? "updated" : null);
 
                 // Filter news items
                 let filteredNewsItems = newsItems.filter(item => {
@@ -238,6 +298,8 @@
 
 
     </script>
-
+                
+                
+                
 </body>
 </html>

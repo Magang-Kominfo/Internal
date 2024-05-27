@@ -11,6 +11,7 @@
     --bluelight: #39CDF0;
     --bluedark: #34469A;
     --yellow: #F1DA57;
+    --red-edit: #dc3545;
   
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
@@ -63,29 +64,32 @@ body{
 }
 
 .uc-2-form-berita-main{
-  background-color: var(--greybase);
+  background-color: white;
   padding: 20px 30px 20px 30px;
   flex-grow: 1;
   width: 50%;
   border-radius: 10px;
 }
 
-
+.uc-2-form-berita-main h4{
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
 /* back button */
 
-.payment-header {
+.uc-2-back-navigation{
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.back-btn {
+.uc-2-back-btn {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.back-btn h2 {
+.uc-2-back-btn h2 {
   color: #000;
 
   /* h3 - small titile */
@@ -97,17 +101,13 @@ body{
   text-transform: uppercase;
 }
 
-.payment-route {
+.uc-2-nav-description {
   display: flex;
   align-items: center;
 }
 
-.uc-2-sifat{
-  display: flex;
-  justify-content: end;
-}
 
-.route {
+.uc-2-nav-description-route {
   display: flex;
   align-items: center;
 
@@ -122,7 +122,7 @@ body{
   text-transform: uppercase;
 }
 
-.route:nth-child(1) {
+.uc-2-nav-description-route:nth-child(1) {
   color: #000;
   text-align: right;
 
@@ -135,76 +135,124 @@ body{
   text-transform: uppercase;
 }
 
-/* SEARCH BUTTON */
-
-.uc-2-search{
+.uc-2-sifat{
   display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-  gap: 20px;
+  justify-content: end;
 }
 
-.uc-2-search-bar{
-  background-color: var(--white-color);
-  flex: 8;
-  padding: 16px;
-  padding-left: 32px;
+
+/* INPUT FIELD */
+
+.uc-2-corespondent-button{
+  color: #8f8f8f;
+  font-size: 12px;
   border-radius: 20px;
-  height: 32px;
+  border: 1px solid #34469A;
+  height: 40px;
+  padding: 3px 20px 3px 20px;
   display: flex;
   align-items: center;
-  font-size: 20px;
 }
 
-.uc-2-search-sort, .uc-2-search-filter,.uc-2-search-add{
-  background-color: var(--bluedark);
-  color: var(--white-color);
-  flex: 1;
-  padding: 16px;
-  border-radius: 20px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-/* LIST ITEM */
-
-.uc-2-berita{
+.uc-2-input-field{
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   gap: 20px;
 }
 
-.uc-2-berita-item{
-  background-color: var(--white-color);
-  color: var(--black-color);
-  padding: 20px;
-  padding-left: 32px;
-  border-radius: 20px;
+.uc-2-input-field label{
+  margin-bottom: 7px;
   font-size: 16px;
 }
 
-.uc-2-berita-item-header{
+.uc-2-first-layer-form{
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 20px;
+  gap: 20px;
 }
 
-.uc-2-berita-item > *{
+.uc-2-first-layer-form-1 > p{
   margin: 0;
-  padding: 0;
-  margin-top: 8px;
 }
 
-.uc-2-berita-item span{
-  color: var(--bluedark);
+.uc-2-first-layer-form-1{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
+.uc-2-first-layer-form-2{
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.uc-2-first-layer-form-deskripsi{
+  display: flex;
+  flex-direction: column;
+}
+
+.uc-2-first-layer-form-deskripsi h3{
+  margin: 0;
+}
+
+.uc-2-menambahkan-insiden-input-field-nama input, .uc-2-first-layer-form input, .uc-2-third-layer-form input{
+  border-radius: 20px;
+  border: 1px solid #34469A;
+  height: 40px;
+  padding: 3px 20px 3px 20px;
+}
+
+
+.uc-2-radio-button{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.uc-2-third-layer-form .uc-2-radio-button label{
+  margin: 0;
+}
+
+
+.uc-2-menambahkan-insiden-input-field-deskripsi{
+  display: flex;
+  flex-direction: column;
+}
+
+/* SELECT */
+
+.uc-2-first-layer-form-2 select {
+    border-radius: 20px;
+    border: 1px solid #34469A;
+    height: 40px;
+    width: 100%;
+    padding: 3px 20px; /* Atur ruang di dalam dropdown */
+    cursor: pointer;
+}
+
+.uc-2-first-layer-form-2 select option {
+    margin-top: 100px;
+    padding: 3px 20px; /* Atur ruang di dalam opsi dropdown */
+}
+
+/* ADD BUTTON */
+.uc-2-first-layer-form-2 button {
+    border-radius: 20px;
+    border: 1px solid #34469A;
+    background-color: #34469A;
+    color: white;
+    height: 40px;
+    padding: 0 20px; /* Atur ruang di dalam tombol */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animasi saat hover */
+}
+
+.uc-2-first-layer-form-2 button:hover {
+    background-color: #2c3e78; /* Warna latar belakang tombol saat hover */
+}
 
 /* BUTTON */
 .uc-2-form-footer{
@@ -259,5 +307,45 @@ body{
   background-color:#39CDF0;
   border: 2px solid #39CDF0;
 }
+
+.uc-2-button-edit {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--yellow);
+  color: var(--black-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.uc-2-button-delete {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--red-edit);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Validasi */
+.uc-2-input-field  .error {
+  color: var(--red-edit);
+  margin-top: 4px;
+  font-size: 12px;
+  height: 16px;
+  display: none;
+}
+
+.uc-2-input-field  .error.active {
+  color: var(--red-edit);
+  margin-top: 4px;
+  font-size: 14px;
+  height: 16px;
+  display: block;
+}
+
 
 

@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sifat;
-use App\Http\Requests\StoreSifatRequest;
-use App\Http\Requests\UpdateSifatRequest;
+use App\Models\AlurSurat;
+use App\Http\Requests\StoreAlurSuratRequest;
+use App\Http\Requests\UpdateAlurSuratRequest;
 
-class SifatController extends Controller
+class AlurSuratController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sifats = Sifat::all();
-        return view('berita.form-berita-create', ['sifats' => $sifats]);
+        $alursurats = AlurSurat::all();
+        return view('berita.form-berita-create', ['alursurats' => $alursurats]);
     }
 
     /**
@@ -29,7 +28,7 @@ class SifatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSifatRequest $request)
+    public function store(StoreAlurSuratRequest $request)
     {
         //
     }
@@ -37,7 +36,7 @@ class SifatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sifat $sifat)
+    public function show(AlurSurat $alurSurat)
     {
         //
     }
@@ -45,7 +44,7 @@ class SifatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sifat $sifat)
+    public function edit(AlurSurat $alurSurat)
     {
         //
     }
@@ -53,7 +52,7 @@ class SifatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSifatRequest $request, Sifat $sifat)
+    public function update(UpdateAlurSuratRequest $request, AlurSurat $alurSurat)
     {
         //
     }
@@ -61,7 +60,7 @@ class SifatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sifat $sifat)
+    public function destroy(AlurSurat $alurSurat)
     {
         //
     }
