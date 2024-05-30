@@ -15,10 +15,41 @@
         {{-- header --}}
         <div class="uc-2-header">
             <div>
-                <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
+                <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
 
-            <div>
+            <div class="uc-2-right-header">
+                <a class="uc-2-user-navigate" onclick="menuToggle()"> 
+                    <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" > 
+                </a>
+                {{-- Menu --}}
+                <div class="uc-2-dropdown-user">
+                    <div class="uc-2-username">
+                        <span class="uc-2-name">
+                            Nama_Admin
+                        </span>
+                        <span class="uc-2-role">
+                            Role Admin
+                        </span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="">
+                            <button>Profil Admin</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <button>Back</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            <button>Keluar</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -213,6 +244,13 @@
                     this.submit();
                 }
             });
+            
+
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.uc-2-dropdown-user');
+            toggleMenu.classList.toggle('active');
+        }
+        
 
     </script>
     

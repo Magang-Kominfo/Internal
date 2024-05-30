@@ -331,3 +331,108 @@ body{
   height: 16px;
   display: block;
 }
+
+.uc-2-header .logo{
+  width: 251px;
+  height: 94.02px;
+}
+
+/* dropdown user */
+.uc-2-user-navigate{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.uc-2-right-header{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--bluedark);
+}
+
+ .uc-2-dropdown-user {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  padding: 0px 20px;
+  background: #fff;
+  width: 200px;
+  border-radius: 15px;
+  border: 1px grey solid;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+ .uc-2-dropdown-user.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+ .uc-2-dropdown-user .uc-2-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin:  20px 0;
+}
+
+ .uc-2-dropdown-user .uc-2-username .uc-2-name {
+  font-family: Roboto;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+ .uc-2-dropdown-user span {
+  font-family: Roboto;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+}
+
+.uc-2-dropdown-user ul {
+  padding: 0;
+}
+
+ .uc-2-dropdown-user ul li {
+  list-style: none;
+  padding: 10px 0;
+  border-top: 1px solid #000;
+  display: flex;
+  align-items: center;
+}
+
+
+ .uc-2-dropdown-user ul li img {
+  max-width: 20px;
+  margin-right: 10px;
+  opacity: 0.3;
+  transition: 0.5s;
+}
+
+ .uc-2-dropdown-user ul li:hover img {
+  opacity: 1;
+}
+
+ .uc-2-dropdown-user ul li button {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  border: 0;
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+ .uc-2-dropdown-user ul li:hover button {
+  color: #000;
+  font-size: 16px;
+}
+  

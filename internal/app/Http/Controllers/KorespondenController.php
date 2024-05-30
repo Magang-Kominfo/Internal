@@ -27,7 +27,7 @@ class KorespondenController extends Controller
 
         // Validasi
         $request->validate([
-            'nama_koresponden' => 'required|unique:korespondens,nama_koresponden',
+            'nama_koresponden' => 'required',
             'email' => 'required',
             'tipe_email' => 'required',
 
@@ -89,12 +89,10 @@ class KorespondenController extends Controller
     {
         // Validasi
         $request->validate([
-            'nama_koresponden' => 'required|unique:korespondens,nama_koresponden',
+            'nama_koresponden' => 'required',
             'email' => 'required',
             'tipe_email' => 'required',
-
         ]);
-        
         
        // Mengambil data koresponden berdasarkan ID yang diberikan
         $koresponden = Koresponden::findOrFail($id_koresponden);

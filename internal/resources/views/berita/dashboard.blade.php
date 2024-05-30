@@ -41,6 +41,11 @@
                         </li>
                         <li>
                             <a href="">
+                            <button>Back</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
                             <button>Keluar</button>
                             </a>
                         </li>
@@ -60,24 +65,31 @@
 
                 {{-- Search bar --}}
                 <div class="uc-2-search"> 
-                    <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
-                    <div class="uc-2-search-filter">
-                        <select class="uc-2-search-filter-select" id="filterSelect">
-                            <option value="all" selected>Filter</option>
-                            <option value="surat-masuk">Surat Masuk</option>
-                            <option value="surat-keluar">Surat Keluar</option>
-                        </select>
+                    <div class="uc-2-search-option-responsive">
+                        <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
+                        <a href="{{ url('form-berita-create') }}" style="text-decoration: none; color:white" class="uc-2-search-add mobile">
+                            +
+                        </a>
                     </div>
-                    <div class="uc-2-search-sort">
-                        <select class="uc-2-search-sort-select" id="sortSelect">
-                            <option value="none" selected>Sort</option>
-                            <option value="created-desc">Pencatatan Terbaru</option>
-                            <option value="created-asc">Pencatatan Terakhir</option>
-                            <option value="updated-desc">Surat Terbaru</option>
-                            <option value="updated-asc">Surat Terlama</option>
-                        </select>
+                    <div class="uc-2-search-option-responsive-filter-and-sort">
+                        <div class="uc-2-search-filter">
+                            <select class="uc-2-search-filter-select" id="filterSelect">
+                                <option value="all" selected>Filter</option>
+                                <option value="surat-masuk">Surat Masuk</option>
+                                <option value="surat-keluar">Surat Keluar</option>
+                            </select>
+                        </div>
+                        <div class="uc-2-search-sort">
+                            <select class="uc-2-search-sort-select" id="sortSelect">
+                                <option value="none" selected>Sort</option>
+                                <option value="created-desc">Pencatatan Terbaru</option>
+                                <option value="created-asc">Pencatatan Terakhir</option>
+                                <option value="updated-desc">Surat Terbaru</option>
+                                <option value="updated-asc">Surat Terlama</option>
+                            </select>
+                        </div>
                     </div>
-                    <a href="{{ url('form-berita-create') }}" style="text-decoration: none; color:white" class="uc-2-search-add">
+                    <a href="{{ url('form-berita-create') }}" style="text-decoration: none; color:white" class="uc-2-search-add web">
                         +
                     </a>
                 </div>
@@ -89,7 +101,7 @@
                             data-created="{{ $berita->updated_at }}" data-updated="{{ $berita->tanggal_buat_berita }}"
                             data-type="{{ $berita->alursurat->id == 1 ? 'surat-masuk' : 'surat-keluar' }}"> 
                                 <div class="uc-2-berita-item-header">
-                                    <h4 class="uc-2-berita-no-surat">{{ $berita->no_berita }} - 
+                                    <h4 class="uc-2-berita-no-surat" style=" margin: 0 8px 0 0;">{{ $berita->no_berita }} - 
                                         <span style="
                                         @if ( $berita->alursurat->id == 1)
                                             color: var(--bluedark);
@@ -114,7 +126,7 @@
                                             @endif
                                         </span>
                                     </h4>
-                                    <span style=" font-weight:500;
+                                    <span style=" font-weight:500; text-align:right;
                                         @if ( $berita->alursurat->id == 1)
                                             color: var(--bluedark);
                                         @elseif ($berita->alursurat->id == 2)
@@ -124,10 +136,10 @@
                                         {{ \Carbon\Carbon::parse($berita->tanggal_buat_berita)->locale('id')->isoFormat('HH:mm | DD MMMM YYYY') }}
                                     </span>
                                 </div>
-                                <p>
+                                <p style="text-align:justify;">
                                     {{ Str::limit($berita->isi_berita, 300, '...') }}
                                 </p>
-                                <h5>To: 
+                                <h5 style="margin: 0">To: 
                                     @php
                                         $korespondenExists = false;
                                     @endphp
