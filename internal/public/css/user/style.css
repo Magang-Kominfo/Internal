@@ -1,0 +1,221 @@
+/*Login Page*/
+.loginButton{
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.loginButton button{
+    background-color: #34469A;
+    color: white;
+    padding: 5px 20px 8px 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.loginButton button:hover{
+    background-color: #39CDF0;
+    border: 1px solid #39CDF0;
+}
+
+/*Template All*/
+#bodyAll {
+    padding: 10px 70px 10px 70px;
+}
+
+.judul {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #34469a;
+}
+
+.judul h3 {
+    margin-top: 20px;
+}
+
+/*Dashboard Aset Page*/
+.list-group-item {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+.list-group-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0,  0.2);
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #34469a;
+}
+
+/*Detail Aset Page*/
+.container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.card-1 {
+    width: 45%;
+    margin-bottom: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body-1,
+.card-footer-1 {
+    padding: 1rem;
+}
+
+.logoKominfo-uc-3 {
+    width: 251px;
+    height: 94px;
+}
+
+/* SHOW */
+#mainShow {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.showImage {
+    grid-column-start: 1;
+    margin: 40px;
+    border: 4px solid #004385;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.showCard {
+    grid-column-start: 2;
+    margin: 40px;
+}
+
+#mainShow .card {
+    border: 4px solid #004385;
+    border-radius: 10px;
+}
+
+#mainShow .card-header {
+    background-color: #004385;
+    color: #ffd74b;
+}
+
+#mainShow .card-body {
+    background-color: #ffd74b;
+    color: #004385;
+}
+
+#mainShow .card-body span {
+    background-color: #004385;
+    color: #ffd74b;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+#mainShow .card-footer {
+    background-color: #004385;
+    color: #ffd74b;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+.card-footer span {
+    color: #ffd74b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonShowCard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-jual {
+    border: 2px solid #004385;
+    background-color: #004385;
+    color: #ffd74b;
+    font-weight: 500;
+}
+
+.btn-jual:hover {
+    color: #004385;
+    background-color: #ffd74b;
+    border: 2px solid #004385;
+}
+
+.form-control {
+    border: 2px solid #004385;
+}
+
+.newAndEdit-field {
+    background-color: #ffd74b;
+    padding: 15px 40px;
+    border-radius: 10px;
+    border: 3px solid #004385;
+}
+
+.newMain {
+    padding: 40px 0;
+}
+
+.btnEdit {
+    background-color: #ffd74b;
+    color: #004385;
+}
+
+.btnEdit:hover {
+    background-color: #ffd74b;
+    color: #004385;
+}
+
+.profile {
+    width: 200px;
+}
+
+.popup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #FFE8E8;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    width: 50%;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

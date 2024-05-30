@@ -1,0 +1,312 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+
+.uc-1-dashboard{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* SIDEBAR */
+.uc-1-dashboard-sidebar{
+    flex-grow: 1;
+    background-color:#05131D ;
+    margin: 0;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.uc-1-dashboard-sidebar-content{
+    color: white;
+    margin:50px 0px 35px 0px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.uc-1-dashboard-sidebar-content-profile{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.uc-1-dashboard-sidebar-content-profile svg{
+    height: 50px;
+    width: 50px;
+}
+
+.uc-1-dashboard-sidebar-content h2{
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+}
+
+.uc-1-dashboard-sidebar-content h2:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-dashboard-sidebar-content a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.logout button{
+    padding: 0px;
+    margin: 0;
+    background-color: #05131D;
+    border: none;
+    color: white;
+    font-size: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+
+.uc-1-dashboard-menu-item.active{
+    background-color: #39CDF0;
+}
+
+
+.uc-1-dashboard-menu-item-submenu a{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+.uc-1-dashboard-menu-item-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color:#05131D;
+    border: 1px solid #ccc;
+    border: 0;
+    list-style-type: none;
+    font-size: 14px;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+.uc-1-dashboard-menu-item-submenu li{
+    width: 100px;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.uc-1-dashboard-menu-item-submenu li:hover{
+    background-color: #39CDF0;
+}
+
+.uc-1-dashboard-menu-item.active .uc-1-dashboard-menu-item-submenu {
+    display: block;
+}
+
+.uc-1-dashboard-menu-item{
+    position: relative
+}
+
+/* MAIN ARTIKEL */
+.uc-1-dashboard-main{
+    flex-grow: 3;
+    padding: 15px 20px 15px 20px;
+}
+
+.uc-1-dashboard-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.uc-1-dashboard-header img{
+    width: 251px;
+    height: 94.02px;
+}
+
+.uc-1-dashboard-header-top-right{
+    margin-right: 60px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.uc-1-dashboard-artikel{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.uc-1-dashboard-view-artikel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+
+}
+
+/* INSIDEN ARTIKEL */
+.uc-1-dashboard-view-artikel-insiden{
+    background-color: white;
+    padding: 20px 30px 20px 30px;
+    flex-grow: 1;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.uc-1-dashboard-view-artikel-insiden h1{
+    margin: 0px;
+    color:#34469A;
+    font-size: 34px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-header{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-header h4{
+    font-size: 12px;
+    color:#34469A;
+    text-decoration: underline;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view{
+    margin: 0;
+    padding: 20px 10px 20px 10px;
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-header{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-header p, .uc-1-dashboard-view-artikel-aset-aplikasi-view-header p{
+    color: #34469A;
+    font-size: 16px;
+    margin: 0px 0px 10px 0px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-item{
+    text-decoration: none;
+    color: black;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-date{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-deskripsi{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.uc-1-dashboard-view-artikel-insiden-view-deskripsi p{
+    font-size: 16px;
+}
+
+.uc-1-dashboard-view-artikel-insiden-footer{
+    font-size: 12px;
+    color: #34469A;
+    font-weight: bold;
+    float: right;
+    margin-top: 15px;
+}
+
+/* ASET APLIKASI ARTIKEL */
+.uc-1-dashboard-view-artikel-aset-aplikasi{
+    background-color: white;
+    padding: 20px 30px 20px 30px;
+    flex-grow: 1;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi h1{
+    margin: 0px;
+    color:#34469A;
+    font-size: 34px;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-header h4{
+    font-size: 12px;
+    color:#34469A;
+    text-decoration: underline;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-header{
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-view{
+    margin: 0;
+    padding: 20px 10px 20px 10px;
+    border-bottom: 1px solid #C1C1C1;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-view-header{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-view-date{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.uc-1-dashboard-view-artikel-aset-aplikasi-footer{
+    font-size: 12px;
+    color: #34469A;
+    font-weight: bold;
+    float: right;
+    margin-top: 15px;
+}
+
+
+@media (max-width: 940px) {
+    .uc-1-dashboard-view-artikel-aset-aplikasi-header h1, .uc-1-dashboard-view-artikel-insiden-header h1{
+        font-size: 18px;
+    }
+
+    .uc-1-dashboard-view-artikel-aset-aplikasi-header h4, .uc-1-dashboard-view-artikel-insiden-header h4{
+        font-size: 10px;
+    }
+
+    .uc-1-dashboard-view-artikel-aset-aplikasi-footer h4, .uc-1-dashboard-view-artikel-insiden-footer h4{
+        font-size: 10px;
+    }
+}
