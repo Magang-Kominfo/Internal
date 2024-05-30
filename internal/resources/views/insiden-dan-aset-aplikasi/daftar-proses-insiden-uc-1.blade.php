@@ -158,10 +158,16 @@
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
-                    </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -180,7 +186,7 @@
                             <h1>DAFTAR PROSES INSIDEN</h1>
                             <div class="uc-1-menambahkan-daftar-proses-insiden-view-artikel-button">
                                 <div class="uc-1-menambahkan-daftar-proses-insiden-view-artikel-button-tambah">
-                                    <a href="{{ route('tambah-proses-insiden') }}"><button type="button">Tambah Proses Insiden</button></a>
+                                    <a href="{{ route('tambah-proses-insiden') }}"><button type="button" style="cursor: pointer">Tambah Proses Insiden</button></a>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +201,7 @@
                                 <option value="completed-desc">Completed at (Newest)</option>
                                 <option value="completed-asc">Completed at (Oldest)</option>
                             </select>
-                            <button id="sortButton">Sort</button>
+                            <button id="sortButton" style="cursor: pointer">Sort</button>
                         </div>
 
                         <div>
@@ -232,10 +238,10 @@
                                         <td class="uc-1-tabel-proses-data">
                                             <div class="uc-1-tabel-proses-data-proses">
                                                 <div>
-                                                    <a href="{{ route('edit-proses-insiden', ['id' => $insiden->insiden_id]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
+                                                    <a href="{{ route('edit-proses-insiden', ['id' => $insiden->insiden_id]) }}"><button class="uc-1-tabel-proses-data-edit" style="cursor: pointer">Edit</button></a>
                                                 </div>
                                                 <div class="deleteForm">
-                                                    <button type="button" class="deleteButton uc-1-tabel-proses-data-delete">Hapus</button>
+                                                    <button type="button" class="deleteButton uc-1-tabel-proses-data-delete" style="cursor: pointer">Hapus</button>
                                                 </div>
 
                                                 <div class="deleteConfirm uc-1-detele-confirm">

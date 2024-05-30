@@ -79,6 +79,9 @@
                     <a href="{{ route('admin') }}"><img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo"></a>
                 </div>
                 <div class="admin-user-management-header-top-right">
+
+                    <a href="{{ route('admin') }}"><h2>Admin Dashboard</h2></a>
+
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit">Log Out</button>

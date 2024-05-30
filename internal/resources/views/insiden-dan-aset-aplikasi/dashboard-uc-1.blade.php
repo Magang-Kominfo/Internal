@@ -55,10 +55,18 @@
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
-                    </form>
+
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
+
                 </div>
             </div>
         </div>

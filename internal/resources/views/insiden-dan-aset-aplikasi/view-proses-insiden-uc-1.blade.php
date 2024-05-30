@@ -55,10 +55,16 @@
                     <a href="{{ route('data-master') }}"><li><h2 style="padding: 20px;margin:0px;">Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2 style="padding: 20px;margin:0px;">Log Out</h2></button>
-                    </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -78,7 +84,7 @@
                             <h2>{{ $insiden->master_odps->nama_instansi }}</h2>
                             <div class="uc-1-menambahkan-view-proses-insiden-view-artikel-button">
                                 <div class="uc-1-menambahkan-view-proses-insiden-view-artikel-button-list">
-                                    <a href="{{ route('proses-insiden') }}"><button type="button">Back</button></a>
+                                    <a href="{{ route('proses-insiden') }}"><button type="button" style="cursor: pointer">Back</button></a>
                                 </div>
                             </div>
                         </div>

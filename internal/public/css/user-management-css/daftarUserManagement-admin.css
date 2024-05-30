@@ -40,8 +40,34 @@ body{
 
 .admin-user-management-header-top-right{
     margin-right: 60px;
-    margin-top: 10px;
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-user-management-header-top-right a{
+    text-decoration: none;
+    color: black;
+}
+
+.admin-user-management-header-top-right h2{
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.admin-user-management-header-top-right h2:hover{
+    background-color: #c6c6c6;
+    border: 1px solid #c6c6c6;
+}
+
+.admin-user-management-header-top-right button{
+    cursor: pointer;
 }
 
 /* MAIN ARTIKEL */
@@ -81,6 +107,7 @@ body{
     font-size: 12px;
     border-radius: 10px;
     border: 2px solid #34469A;
+    cursor: pointer;
 }
 
 .admin-user-management-artikel-button button:hover{
@@ -122,6 +149,7 @@ body{
     font-size: 12px;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
 }
 
 .admin-tabel-proses-data-edit:hover{
@@ -139,6 +167,7 @@ body{
     font-size: 12px;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
 }
 
 .admin-tabel-proses-data-delete:hover{

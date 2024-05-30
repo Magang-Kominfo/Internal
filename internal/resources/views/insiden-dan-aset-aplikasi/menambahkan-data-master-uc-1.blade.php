@@ -53,10 +53,16 @@
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
-                    </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -89,11 +95,11 @@
 
                             <div class="uc-1-menambahkan-data-master-view-artikel-footer">
                                 <div class="uc-1-menambahkan-data-master-view-artikel-footer-back">
-                                    <a href="{{ route('data-master') }}"><button type="button">Back</button></a>
+                                    <a href="{{ route('data-master') }}"><button type="button" style="cursor: pointer">Back</button></a>
                                 </div>
 
                                 <div class="uc-1-menambahkan-data-master-view-artikel-footer-save">
-                                    <button type="submit">Save</button>
+                                    <button type="submit" style="cursor: pointer">Save</button>
                                 </div>
                             </div>
 

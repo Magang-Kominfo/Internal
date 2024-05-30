@@ -94,10 +94,16 @@
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
-                    </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -116,7 +122,7 @@
                             <h1>KATEGORI ASET APLIKASI</h1>
                             <div class="uc-1-jenis-aset-aplikasi-view-artikel-button">
                                 <div class="uc-1-jenis-aset-aplikasi-view-artikel-button-tambah">
-                                    <a href="{{ route('tambah-kategori-aset-aplikasi') }}"><button type="button">Tambah Kategori</button></a>
+                                    <a href="{{ route('tambah-kategori-aset-aplikasi') }}"><button type="button" style="cursor: pointer">Tambah Kategori</button></a>
                                 </div>
                             </div>
 
@@ -151,7 +157,7 @@
                                         <td class="uc-1-tabel-proses-data">
                                             <div class="uc-1-tabel-proses-data-proses">
                                                 <div>
-                                                    <a href="{{ route('edit-jenis-kategori-aset-aplikasi', ['id' => $jenis_kategori->id_jenis_kategori]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
+                                                    <a href="{{ route('edit-jenis-kategori-aset-aplikasi', ['id' => $jenis_kategori->id_jenis_kategori]) }}"><button class="uc-1-tabel-proses-data-edit" style="cursor: pointer">Edit</button></a>
                                                 </div>
                                             </div>
                                         </td>

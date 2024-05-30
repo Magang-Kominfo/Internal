@@ -157,10 +157,16 @@
                     <a href="{{ route('data-master') }}"><li><h2>Data Master</h2></li></a>
                 </div>
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" ><h2>Log Out</h2></button>
-                    </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <a href="{{ route('admin') }}"><li><h2>Admin Dashboard</h2></li></a>
+
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" ><h2>Log Out</h2></button>
+                        </form>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -179,7 +185,7 @@
                             <h1>DAFTAR ASET APLIKASI</h1>
 
                             <div class="uc-1-daftar-aset-aplikasi-view-artikel-button-tambah">
-                                <a href="{{ route('tambah-aset-aplikasi') }}"><button type="button">Tambah Aset Aplikasi</button></a>
+                                <a href="{{ route('tambah-aset-aplikasi') }}"><button type="button" style="cursor: pointer">Tambah Aset Aplikasi</button></a>
                             </div>
                         </div>
 
@@ -191,7 +197,7 @@
                                 <option value="updated-desc">Updated at (Newest)</option>
                                 <option value="updated-asc">Updated at (Oldest)</option>
                             </select>
-                            <button id="sortButton">Sort</button>
+                            <button id="sortButton" style="cursor: pointer">Sort</button>
                         </div>
 
                         <div>
@@ -224,10 +230,10 @@
                                         <td class="uc-1-tabel-proses-data">
                                             <div class="uc-1-tabel-proses-data-proses">
                                                 <div>
-                                                    <a href="{{ route('edit-aset-aplikasi', ['id' => $aset_aplikasi->id_aset_aplikasi]) }}"><button class="uc-1-tabel-proses-data-edit">Edit</button></a>
+                                                    <a href="{{ route('edit-aset-aplikasi', ['id' => $aset_aplikasi->id_aset_aplikasi]) }}"><button class="uc-1-tabel-proses-data-edit" style="cursor: pointer">Edit</button></a>
                                                 </div>
                                                 <div class="deleteForm">
-                                                    <button type="button" class="deleteButton uc-1-tabel-proses-data-delete">Hapus</button>
+                                                    <button type="button" class="deleteButton uc-1-tabel-proses-data-delete" style="cursor: pointer">Hapus</button>
                                                 </div>
 
                                                 <div class="deleteConfirm uc-1-detele-confirm">

@@ -34,7 +34,7 @@
                 <div class="admin-header-top-right">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit">Log Out</button>
+                        <button type="submit" style="cursor: pointer">Log Out</button>
                     </form>
                 </div>
             </div>
