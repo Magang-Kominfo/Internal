@@ -19,11 +19,6 @@ class Controller
         return view('insiden-dan-aset-aplikasi.dashboard-uc-1', compact('insidens','aset_aplikasis'));
     }
 
-    public function viewDashboardBerita()
-    {
-        return view('berita.dashboard-berita');
-    }
-
     public function viewDashboard()
     {
         return view('user-management.dashboard-admin');
@@ -82,7 +77,7 @@ class Controller
                 } elseif ($userIdPrefix === '20') {
                     return redirect()->intended(route('dashboard-berita'));
                 } elseif ($userIdPrefix === '30') {
-                    return redirect()->intended(route('dashboard-aset'));
+                    return redirect()->intended(route('dbaset-uc-3'));
                 } else {
                     return back()->with('error', 'ID User tidak valid.');
                 }
