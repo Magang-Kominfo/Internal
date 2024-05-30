@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="<?php echo asset('css/style.css')?>">
 </head>
-<body id="bodyAll" style="background-color:#F1F1F3">
+<body class="bodydbaset" style="background-color:#F1F1F3">
     
     <nav class="navbar">
         <div class="container-fluid" >
@@ -18,7 +18,7 @@
         </div>
     </nav>
 
-    <div class="bodyTambahAset" style="background-color: white" >
+    <div class="bodyTambahaset" style="background-color: white" >
         <div class="judul">
         <h3>Detail Aset</h3>
         </div>
@@ -27,7 +27,7 @@
             <div class="btn btn-warning">Kembali</div>
         </a>
         </div>
-    <main id="mainShow" class="container mt-5">
+    <main id="mainShow" class="container mt-1">
         
         <div class="showImage">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -55,8 +55,6 @@
             </div>
         </div>
         <div class="showCard">
-
-            <div class="card text-center">
                 <div class="card-header">
                     {{ $aset->nomor_aset }}
                 </div>
@@ -66,7 +64,6 @@
                     <p class="card-text">Pemanfaatan: {{ $aset->pemanfaatan }}</p>
                     <p class="card-text">Kondisi: {{ $aset->kondisi }}</p>
                 </div>
-            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

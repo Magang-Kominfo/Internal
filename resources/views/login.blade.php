@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="loginButton">
-        <button style="background-color: #34469A" class="btn btn-primary mt-4 col-1">Login</button>
+        <button style="background-color: #34469A" class="btn btn-primary mt-4">Login</button>
     </div>
 </form>
 </body>

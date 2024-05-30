@@ -54,6 +54,9 @@
                         <label class="form-label" for="image" >Foto Aset</label>
                         <input type="file" class="form-control" name="images[]" id="images" multiple style="border:1px solid #34469A" required>
                     </div>
+                    <div class="text-sm text-danger">
+                        *maksimal file 1 mb
+                    </div>
                 </div>
                 <div class="footer d-flex justify-content-end gap-2">
                     <a href="/dbaset" style="background-color: #FFFFFF; color:black;">
