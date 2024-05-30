@@ -11,7 +11,10 @@ use App\Http\Controllers\UserController;
 
 
 ## LOGIN
-Route::get('/',  [Controller::class, 'login'])->name('login')->middleware('guest');;
+Route::middleware('web')->group(function () {
+    Route::get('/',  [Controller::class, 'login'])->name('login')->middleware(['user']);
+    Route::get('/logout-confirm', [Controller::class, 'logoutConfirm'])->name('logout.confirm')->middleware(['auth']);
+});
 Route::post('/login',  [Controller::class, 'loginValidate'])->name('login.post');
 Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 

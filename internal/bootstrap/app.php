@@ -7,6 +7,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserInsidenMiddleware;
 use App\Http\Middleware\UserBeritaMiddleware;
 use App\Http\Middleware\UserAsetMiddleware;
+use App\Http\Middleware\Authenticate;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,7 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'user_berita' => UserBeritaMiddleware::class,
             'user_aset' => UserAsetMiddleware::class,
             'admin' => AdminMiddleware::class,
-            'user_insiden' => UserInsidenMiddleware::class
+            'user_insiden' => UserInsidenMiddleware::class,
+            'user' => Authenticate::class
         ]);
 
 

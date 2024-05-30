@@ -49,6 +49,12 @@ class Controller
         return view('login');
     }
 
+    public function logoutConfirm()
+    {
+        $user = Auth::user();
+        return view('/logout-confirm', compact('user'));
+    }
+
     public function loginValidate(Request $request)
     {
         $request->validate([

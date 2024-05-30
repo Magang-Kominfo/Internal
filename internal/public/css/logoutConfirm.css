@@ -1,0 +1,102 @@
+*{
+    font-family:'Istok Web', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F1F1F3;
+
+}
+
+
+.logout-confirm-main{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 30px 50px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.logout-confirm-header h2{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.logout-confirm-content p{
+    text-align: justify;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-top:1px solid rgba(0, 0, 0, 0.25);
+    border-bottom:1px solid rgba(0, 0, 0, 0.25);
+}
+
+.logout-confirm-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.logout-confirm-btn h2{
+    margin: 0;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.logout-confirm-btn a{
+    text-decoration: none;
+}
+
+.logout-confirm-btn a{
+    background-color: #F1F1F3;
+    padding: 8px 15px;
+    color: black;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.logout-confirm-btn a:hover{
+    background-color: #c5c5c5;
+}
+
+.logout-confirm-btn button{
+    background-color: #34469A;
+    padding: 8px 15px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.logout-confirm-btn button:hover{
+    background-color: #283676;
+}
+
+@media (max-width: 900px) {
+    .logout-confirm-main{
+        width: 40%;
+
+    }
+}
+
+@media (max-width: 550px) {
+    .logout-confirm-main{
+        width: 70%;
+
+    }
+}
+
+

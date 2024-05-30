@@ -53,22 +53,20 @@ body{
     color: black;
 }
 
-.admin-user-management-header-top-right h2{
+.admin-user-management-header-top-right h2, .admin-user-management-header-top-right button{
     background-color: #f0f0f0;
     padding: 10px 15px;
     margin: 0;
     border: 1px solid black;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.admin-user-management-header-top-right h2:hover{
+.admin-user-management-header-top-right h2:hover, .admin-user-management-header-top-right button:hover{
     background-color: #c6c6c6;
     border: 1px solid #c6c6c6;
 }
 
-.admin-user-management-header-top-right button{
-    cursor: pointer;
-}
 
 /* MAIN ARTIKEL */
 .admin-user-management-artikel{
