@@ -34,7 +34,7 @@
                 <a href="{{ route('dashboard-berita') }}"><h2>Kembali</h2></a>
 
             @elseif(auth()->check() && substr(auth()->user()->id_user, 0, 2) === '30')
-                <a href="{{ route('dashboard-aset') }}"><h2>Kembali</h2></a>
+                <a href="{{ route('dbaset-uc-3') }}"><h2>Kembali</h2></a>
 
             @endif
         </div>

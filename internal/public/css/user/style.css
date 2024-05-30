@@ -23,6 +23,10 @@
     padding: 10px 70px 10px 70px;
 }
 
+#bodyProfile{
+    padding: 10px 70px 10px 70px;
+}
+
 .judul {
     display: flex;
     justify-content: center;
@@ -218,4 +222,58 @@ a:hover {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+/* Validasi */
+
+.form-floating .error {
+    color: #dc3545;
+    margin-top: 4px;
+    font-size: 12px;
+    height: 16px;
+    display: none;
+  }
+
+  .form-floating .error.active {
+    color: #dc3545;
+    margin-top: 4px;
+    font-size: 14px;
+    height: 16px;
+    display: block;
+  }
+
+  /* Password */
+
+  #togglePassword, #toggleConfirmPassword {
+    position: absolute;
+    right: 10px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.profile-change-button-password{
+    background-color: #ffd74b;
+    margin-bottom: 1rem;
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-password-input{
+    display: none;
+}
+
+
+@media (max-width:550px){
+    #bodyProfile{
+        padding: 10px 10px 10px 10px;
+    }
+}
+
+@media (max-width:360px){
+    #bodyProfile{
+        padding: 10px 5px 10px 5px;
+    }
 }

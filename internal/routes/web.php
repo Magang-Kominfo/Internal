@@ -8,6 +8,7 @@ use App\Http\Controllers\AsetAplikasiController;
 use App\Http\Controllers\JenisKategoriController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AsetController;
 
 
 ## LOGIN
@@ -18,10 +19,12 @@ Route::middleware('web')->group(function () {
 Route::post('/login',  [Controller::class, 'loginValidate'])->name('login.post');
 Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 
+
 Route::middleware(['auth'])->group(function () {
     ## USER
     Route::get('/profile',  [Controller::class, 'userProfil'])->name('user-profile');
-    Route::get('/profile/update',  [Controller::class, 'editProfil'])->name('user-profile.update');
+    Route::put('/profile/update',  [Controller::class, 'editProfil'])->name('user-profile.update');
+    Route::post('/validate-password', [Controller::class, 'validatePassword'])->name('validate-user-password');
 });
 
 Route::middleware(['auth','admin'])->group(function () {
@@ -89,9 +92,32 @@ Route::middleware(['auth', 'user_berita'])->group(function () {
 });
 
 
-
+## ASET
 Route::middleware(['auth', 'user_aset'])->group(function () {
-    ## DASHBOARD
-    Route::get('/dashboard-aset',  [Controller::class, 'viewDashboardAset'])->name('dashboard-aset');
+
+    Route::get('/tambahaset', function () {
+        return view('aset-persandian.tambahaset-uc-3');
+    })->name('tambahaset-uc-3');
+    Route::post('/tambahaset', [AsetController::class, 'create']);
+
+
+
+    Route::get('/dbaset-uc-3', function () {
+        return view('aset-persandian.dbaset-uc-3');
+    })->name('dbaset-uc-3');
+
+    Route::get('/dbaset', [AsetController::class, 'index']);
+    Route::get('/show/{aset}', [AsetController::class, 'show']);
+
+
+
+    Route::get('/editaset-uc-3', function () {
+        return view('aset-persandian.edit');
+    })->name('edit');
+
+    Route::get('/edit/{id}', [AsetController::class, 'edit']);
+    Route::put('/update/{id}', [AsetController::class, 'update']);
+    Route::delete('/delete/{id}', [AsetController::class, 'destroy']);
+
 });
 
