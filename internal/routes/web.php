@@ -18,7 +18,8 @@ Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     ## USER
     Route::get('/profile',  [Controller::class, 'userProfil'])->name('user-profile');
-    Route::get('/profile/update',  [Controller::class, 'editProfil'])->name('user-profile.update');
+    Route::put('/profile/update',  [Controller::class, 'editProfil'])->name('user-profile.update');
+    Route::post('/validate-password', [Controller::class, 'validatePassword'])->name('validate-user-password');
 });
 
 Route::middleware(['auth','admin'])->group(function () {

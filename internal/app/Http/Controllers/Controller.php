@@ -6,6 +6,7 @@ use App\Models\Aset_aplikasi;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Controller
 
@@ -39,9 +40,58 @@ class Controller
         return view('user.profile', compact('user'));
     }
 
-    public function editProfil()
+    public function validatePassword(Request $request)
     {
-        return view('user.profile');
+        $user = Auth::user();
+        $password =$request->password;
+
+        // dd(Hash::check($password, $user->password));
+
+        
+        if (Hash::check($password, $user->password)) {
+            
+            return response()->json(['valid' => true]);
+        } else {
+           
+            return response()->json(['valid' => false], 401);
+        }
+    }
+
+    public function editProfil(Request $request)
+    {
+
+        $request->validate([
+            'nama_user' => 'required',
+            'password' => 'nullable',
+        ]);
+
+        $user = Auth::user();
+        $user = User::find( $user->id_user);
+        $user->nama_user = $request->input('nama_user');
+
+        if ($request->filled('password')){
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        // dd($user);
+        
+        $user->save();
+
+        $userIdPrefix = substr($user->id_user, 0, 2);
+
+            if(auth()->user()->is_admin == true){
+                return redirect()->intended('/admin');
+            }else{
+                if ($userIdPrefix === '10') {
+                    return redirect()->intended(route('dashboard-insiden'));
+                } elseif ($userIdPrefix === '20') {
+                    return redirect()->intended(route('dashboard-berita'));
+                } elseif ($userIdPrefix === '30') {
+                    return redirect()->intended(route('dashboard-aset'));
+                } else {
+                    return back()->with('error', 'ID User tidak valid.');
+                }
+            }
     }
 
     public function login()

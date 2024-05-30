@@ -32,7 +32,9 @@
         <div class="uc-1-dashboard-sidebar">
             <div class="uc-1-dashboard-sidebar-content">
                 <div class="uc-1-dashboard-sidebar-content-profile">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="6" r="4" fill="currentColor"/><path fill="currentColor" d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"/></svg>
+                    <a href="{{ route('user-profile') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="6" r="4" fill="currentColor"/><path fill="currentColor" d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"/></svg>
+                    </a>
                 </div>
                 <div>
                     <a href="{{ route('dashboard-insiden') }}"><h2>Dashboard</h2></a>

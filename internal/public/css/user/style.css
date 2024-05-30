@@ -219,3 +219,44 @@ a:hover {
     font-size: 20px;
     cursor: pointer;
 }
+
+/* Validasi */
+
+.form-floating .error {
+    color: #dc3545;
+    margin-top: 4px;
+    font-size: 12px;
+    height: 16px;
+    display: none;
+  }
+  
+  .form-floating .error.active {
+    color: #dc3545;
+    margin-top: 4px;
+    font-size: 14px;
+    height: 16px;
+    display: block;
+  }
+
+  /* Password */
+
+  #togglePassword, #toggleConfirmPassword {
+    position: absolute;
+    right: 10px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.profile-change-button-password{
+    background-color: #ffd74b;
+    margin-bottom: 1rem;
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-password-input{
+    display: none;
+}
