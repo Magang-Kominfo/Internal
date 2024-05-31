@@ -131,20 +131,8 @@ Route::middleware(['auth', 'user_aset'])->group(function () {
     })->name('tambahaset-uc-3');
     Route::post('/tambahaset', [AsetController::class, 'create']);
 
-
-
-    Route::get('/dbaset-uc-3', function () {
-        return view('aset-persandian.dbaset-uc-3');
-    })->name('dbaset-uc-3');
-
-    Route::get('/dbaset', [AsetController::class, 'index']);
+    Route::get('/dbaset', [AsetController::class, 'index'])->name('dbaset-uc-3');
     Route::get('/show/{aset}', [AsetController::class, 'show']);
-
-
-
-    Route::get('/editaset-uc-3', function () {
-        return view('aset-persandian.edit');
-    })->name('edit');
 
     Route::get('/edit/{id}', [AsetController::class, 'edit']);
     Route::put('/update/{id}', [AsetController::class, 'update']);

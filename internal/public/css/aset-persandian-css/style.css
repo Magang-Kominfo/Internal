@@ -158,6 +158,18 @@
     padding: 40px 0;
 }
 
+.button-logout-back{
+    background-color: none;
+    border: none;
+    text-decoration: none;
+    color: black;
+
+}
+
+.button-logout-back h2{
+    font-size: 24px;
+}
+
 /* bodydbaset */
 .bodydbaset {
     padding: 10px 70px 10px 70px;

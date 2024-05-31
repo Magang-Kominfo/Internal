@@ -44,7 +44,7 @@
                         @if(auth()->check() && auth()->user()->is_admin == true)
                             <li>
                                 <a href="{{ route('admin') }}">
-                                <button>Back</button>
+                                <button>Admin Dashboard</button>
                                 </a>
                             </li>
                         @else

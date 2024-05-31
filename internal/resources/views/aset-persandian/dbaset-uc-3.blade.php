@@ -15,13 +15,25 @@
     <nav class="navbar">
         <div class="container-fluid">
             <img class="logoKominfo-uc-3" src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
+
+            @if(auth()->check() && auth()->user()->is_admin == true)
+                <a href="{{ route('admin') }}" class="button-logout-back"><h2>Admin Dashboard</h2></a>
+
+            @else
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="button-logout-back" ><h2>Log Out</h2></button>
+                </form>
+
+            @endif
+
         </div>
     </nav>
 
     <div class="bodyDaftarAset">
         <div class="juduldbaset mb-3">
             <h3>Daftar Aset</h3>
-            <a href="/testviewprofile">
+            <a href="{{ route('user-profile') }}">
                 <div class="btn btn-secondary">Profile</div>
             </a>
         </div>

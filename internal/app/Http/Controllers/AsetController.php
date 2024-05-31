@@ -26,9 +26,7 @@ class AsetController extends Controller
     {
         $aset =Aset::all();
 
-        return view('aset-persandian.dbaset-uc-3', [
-            'aset' => $aset
-        ]);
+        return view('aset-persandian.dbaset-uc-3', compact('aset'));
     }
 
     /**
