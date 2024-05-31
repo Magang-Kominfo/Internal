@@ -63,9 +63,26 @@
             });
         });
         });
+
+    function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-menambahkan-daftar-insiden">
         <div class="uc-1-menambahkan-daftar-insiden-sidebar">
             <div class="uc-1-menambahkan-daftar-insiden-sidebar-content">

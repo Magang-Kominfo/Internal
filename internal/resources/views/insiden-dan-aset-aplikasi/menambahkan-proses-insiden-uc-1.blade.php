@@ -23,9 +23,26 @@
         });
     });
     });
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-proses-insiden">
         <div class="uc-1-proses-insiden-sidebar">
             <div class="uc-1-proses-insiden-sidebar-content">
@@ -88,8 +105,8 @@
                             <div class="uc-1-proses-insiden-input-field">
                                     <div class="uc-1-proses-insiden-input-field-opd">
                                         <label for="insidens_odp_id_foreign">Nama Instansi:</label>
-                                        <select name="insidens_odp_id_foreign" id="insidens_odp_id_foreign">
-                                            <option value="">Pilih Instansi</option>
+                                        <select name="insidens_odp_id_foreign" id="insidens_odp_id_foreign" required>
+                                            <option value="" >Pilih Instansi</option>
                                             @foreach($masterOdpList as $masterOdp)
                                                 <option value="{{ $masterOdp->odp_id }}">{{ $masterOdp->nama_instansi }}</option>
                                             @endforeach
@@ -98,7 +115,7 @@
 
                                     <div class="uc-1-proses-insiden-input-field-jenis-insiden">
                                         <label for="insidens_id_jenis_insiden_foreign">Nama Insiden:</label>
-                                        <select name="insidens_id_jenis_insiden_foreign" id="insidens_id_jenis_insiden_foreign">
+                                        <select name="insidens_id_jenis_insiden_foreign" id="insidens_id_jenis_insiden_foreign" required>
                                             <option value="">Pilih Jenis Insiden</option>
                                             @foreach($jenisInsidenList as $jenisInsiden)
                                                 <option value="{{ $jenisInsiden->id_jenis_insiden }}">{{ $jenisInsiden->nama_insiden }}</option>

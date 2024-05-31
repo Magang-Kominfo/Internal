@@ -37,9 +37,26 @@
             }
         });
     });
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-menambahkan-aset-aplikasi">
         <div class="uc-1-menambahkan-aset-aplikasi-sidebar">
             <div class="uc-1-menambahkan-aset-aplikasi-sidebar-content">
@@ -102,12 +119,12 @@
                             <div class="uc-1-menambahkan-aset-aplikasi-input-field">
                                 <div class="uc-1-menambahkan-aset-aplikasi-input-field-nama">
                                     <label for="nama_aset_aplikasi">Nama Aset Aplikasi:</label>
-                                    <input type="text" name="nama_aset_aplikasi" id="nama_aset_aplikasi" >
+                                    <input type="text" name="nama_aset_aplikasi" id="nama_aset_aplikasi" required>
                                 </div>
 
                                 <div class="uc-1-menambahkan-aset-aplikasi-input-field-kategori">
                                     <label for="aa_id_jenis_kategori_foreign">Kategori Aset Aplikasi:</label>
-                                    <select name="aa_id_jenis_kategori_foreign" id="aa_id_jenis_kategori_foreign">
+                                    <select name="aa_id_jenis_kategori_foreign" id="aa_id_jenis_kategori_foreign" required>
                                         <option value="">Pilih Kategori Aset Aplikasi</option>
                                         @foreach($jenisKategoriList as $jenisKategori)
                                             <option value="{{ $jenisKategori->id_jenis_kategori }}">{{ $jenisKategori->nama_jenis_kategori }}</option>

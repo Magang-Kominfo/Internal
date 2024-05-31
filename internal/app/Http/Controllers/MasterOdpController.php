@@ -39,7 +39,7 @@ class MasterOdpController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/data_master/menambahkan_data_master')->with('alert', 'Instansi berhasil ditambahkan.');
+        return redirect('/data_master/menambahkan_data_master')->with('success', 'Instansi berhasil ditambahkan.');
     }
 
     /**
@@ -80,7 +80,7 @@ class MasterOdpController extends Controller
         $master_odp->nama_instansi = $request->nama_instansi;
         $master_odp->save();
 
-        return redirect('/data_master')->with('alert', 'Data berhasil diperbarui');
+        return redirect('/data_master')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

@@ -64,9 +64,26 @@
         });
         });
 
+    function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
+
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-data-master">
         <div class="uc-1-data-master-sidebar">
             <div class="uc-1-data-master-sidebar-content">

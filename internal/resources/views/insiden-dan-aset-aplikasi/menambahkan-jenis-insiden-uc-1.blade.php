@@ -23,9 +23,26 @@
         });
     });
     });
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-menambahkan-insiden">
         <div class="uc-1-menambahkan-insiden-sidebar">
             <div class="uc-1-menambahkan-insiden-sidebar-content">
@@ -88,7 +105,7 @@
                             <div class="uc-1-menambahkan-insiden-input-field">
                                     <div class="uc-1-menambahkan-insiden-input-field-nama">
                                         <label for="nama_insiden">Nama Insiden:</label>
-                                        <input type="text" name="nama_insiden" id="nama_insiden" >
+                                        <input type="text" name="nama_insiden" id="nama_insiden" required>
                                     </div>
 
                                     <div class="uc-1-menambahkan-insiden-input-field-deskripsi">

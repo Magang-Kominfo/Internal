@@ -51,7 +51,7 @@ class AsetAplikasiController extends Controller
         $aset_aplikasi->save();
 
         // Redirect dengan message jika berhasil
-        return redirect('/menambahkan_aset_aplikasi')->with('alert', 'Aset Aplikasi berhasil ditambahkan.');
+        return redirect('/menambahkan_aset_aplikasi')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -94,7 +94,7 @@ class AsetAplikasiController extends Controller
         $aset_aplikasi->indeks_kami_aset_aplikasi = $request->indeks_kami_aset_aplikasi;
         $aset_aplikasi->save();
 
-        return redirect('/daftar_aset_aplikasi')->with('alert', 'Data berhasil diperbarui');
+        return redirect('/daftar_aset_aplikasi')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

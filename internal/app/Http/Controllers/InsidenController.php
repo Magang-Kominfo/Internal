@@ -83,7 +83,7 @@ class InsidenController extends Controller
 
 
         // Redirect dengan message jika berhasil
-        return redirect('/daftar_proses_insiden')->with('alert', 'Proses Insiden berhasil ditambahkan.');
+        return redirect('/daftar_proses_insiden')->with('success', 'Proses Insiden berhasil ditambahkan.');
     }
 
     /**
@@ -148,7 +148,7 @@ class InsidenController extends Controller
         $insiden->jam_temuan_dikirim_insiden = $request->jam_temuan_dikirim_insiden ? date('H:i', strtotime($request->jam_temuan_dikirim_insiden)) : null;
         $insiden->save();
 
-        return redirect('/daftar_proses_insiden')->with('alert', 'Data berhasil diperbarui');
+        return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

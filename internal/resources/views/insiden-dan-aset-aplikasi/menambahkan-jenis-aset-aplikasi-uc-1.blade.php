@@ -23,9 +23,26 @@
         });
     });
     });
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <body>
+
+    @if(session()->has('success'))
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="uc-1-menambahkan-jenis-aset-aplikasi">
         <div class="uc-1-menambahkan-jenis-aset-aplikasi-sidebar">
             <div class="uc-1-menambahkan-jenis-aset-aplikasi-sidebar-content">
@@ -88,7 +105,7 @@
                             <div class="uc-1-menambahkan-jenis-aset-aplikasi-input-field">
                                     <div class="uc-1-menambahkan-jenis-aset-aplikasi-input-field-input">
                                         <label for="nama_jenis_kategori">Nama Kategori Aset Aplikasi:</label>
-                                        <input type="text" name="nama_jenis_kategori" id="nama_jenis_kategori" >
+                                        <input type="text" name="nama_jenis_kategori" id="nama_jenis_kategori" required>
                                     </div>
 
                                     <div class="uc-1-menambahkan-jenis-aset-aplikasi-input-field-input">

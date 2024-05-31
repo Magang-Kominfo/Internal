@@ -41,7 +41,7 @@ class JenisInsidenController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/menambahkan_insiden')->with('alert', 'Insiden berhasil ditambahkan.');
+        return redirect('/menambahkan_insiden')->with('success', 'Insiden berhasil ditambahkan.');
     }
 
     /**
@@ -81,7 +81,7 @@ class JenisInsidenController extends Controller
         $jenis_insiden->deskripsi_insiden = $request->deskripsi_insiden;
         $jenis_insiden->save();
 
-        return redirect('/daftar_insiden')->with('alert', 'Data berhasil diperbarui');
+        return redirect('/daftar_insiden')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

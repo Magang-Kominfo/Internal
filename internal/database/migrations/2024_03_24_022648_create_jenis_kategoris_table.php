@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jenis_kategoris', function (Blueprint $table) {
             $table->id('id_jenis_kategori');
             $table->string('nama_jenis_kategori');
-            $table->text('deskripsi_jenis_kategori');
+            $table->text('deskripsi_jenis_kategori')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
