@@ -39,7 +39,7 @@ class MasterOdpController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/data_master/menambahkan_data_master')->with('success', 'Instansi berhasil ditambahkan.');
+        return redirect('/data_master/menambahkan_data_master')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**

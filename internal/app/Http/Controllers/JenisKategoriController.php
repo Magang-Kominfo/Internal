@@ -43,7 +43,7 @@ class JenisKategoriController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/menambahkan_kategori_aset_aplikasi')->with('success', 'Jenis kategori berhasil ditambahkan.');
+        return redirect('/menambahkan_kategori_aset_aplikasi')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**

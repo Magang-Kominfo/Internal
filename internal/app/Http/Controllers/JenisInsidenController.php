@@ -41,7 +41,7 @@ class JenisInsidenController extends Controller
         ]);
 
         // Redirect dengan message jika berhasil
-        return redirect('/menambahkan_insiden')->with('success', 'Insiden berhasil ditambahkan.');
+        return redirect('/menambahkan_insiden')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
