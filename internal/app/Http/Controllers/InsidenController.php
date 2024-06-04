@@ -7,6 +7,8 @@ use App\Http\Requests\StoreInsidenRequest;
 use App\Http\Requests\UpdateInsidenRequest;
 use App\Models\Jenis_insiden;
 use App\Models\Master_odp;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class InsidenController extends Controller
 {
@@ -160,5 +162,59 @@ class InsidenController extends Controller
         $data->delete();
 
         return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil dihapus secara lunak.');
+    }
+
+
+    public function export(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $data = Insiden::all();
+
+        if ($data->isEmpty()) {
+            dd('No data found');
+        }
+
+        // Add header row
+        $headers = ['insiden_id', 'id_master_odp', 'id_jenis_insiden','resiko_insiden','status_insiden','status_setelah_unsuspend_insiden','url_insiden','nomor_surat_tte_insiden','keterangan_insiden','tanggal_surat_tte_insiden','tanggal_suspend_insiden','tanggal_pemulihan_insiden','jam_insiden_diselesaikan','tanggal_insiden_diselesaikan','tanggal_notifikasi_insiden','jam_temuan_insiden','jam_temuan_dikirim_insiden','created_at','updated_at','deleted_at'];
+        $columnLetter = 'A';
+        foreach ($headers as $header) {
+            $sheet->setCellValue($columnLetter . '1', $header);
+            $columnLetter++;
+        }
+
+
+        $rowNumber = 2;
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rowNumber, $row->insiden_id);
+            $sheet->setCellValue('B' . $rowNumber, $row->insidens_odp_id_foreign);
+            $sheet->setCellValue('C' . $rowNumber, $row->insidens_id_jenis_insiden_foreign);
+            $sheet->setCellValue('D' . $rowNumber, $row->resiko_insiden);
+            $sheet->setCellValue('E' . $rowNumber, $row->status_insiden);
+            $sheet->setCellValue('F' . $rowNumber, $row->status_setelah_unsuspend_insiden);
+            $sheet->setCellValue('G' . $rowNumber, $row->url_insiden);
+            $sheet->setCellValue('H' . $rowNumber, $row->nomor_surat_tte_insiden);
+            $sheet->setCellValue('I' . $rowNumber, $row->keterangan_insiden);
+            $sheet->setCellValue('J' . $rowNumber, $row->tanggal_surat_tte_insiden);
+            $sheet->setCellValue('K' . $rowNumber, $row->tanggal_suspend_insiden);
+            $sheet->setCellValue('L' . $rowNumber, $row->tanggal_pemulihan_insiden);
+            $sheet->setCellValue('M' . $rowNumber, $row->jam_insiden_diselesaikan);
+            $sheet->setCellValue('N' . $rowNumber, $row->tanggal_insiden_diselesaikan);
+            $sheet->setCellValue('O' . $rowNumber, $row->tanggal_notifikasi_insiden);
+            $sheet->setCellValue('P' . $rowNumber, $row->jam_temuan_insiden);
+            $sheet->setCellValue('Q' . $rowNumber, $row->jam_temuan_dikirim_insiden);
+            $sheet->setCellValue('R' . $rowNumber, $row->created_at);
+            $sheet->setCellValue('S' . $rowNumber, $row->updated_at);
+            $sheet->setCellValue('T' . $rowNumber, $row->deleted_at);
+
+            $rowNumber++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'insiden.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+        $writer->save($temp_file);
+
+        return response()->download($temp_file, $fileName)->deleteFileAfterSend(true);
     }
 }

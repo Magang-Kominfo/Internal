@@ -70,6 +70,7 @@ Route::middleware(['auth', 'user_insiden'])->group(function () {
     Route::get('/{id}/edit_proses_insiden',  [InsidenController::class, 'editForm'])->name('edit-proses-insiden');
     Route::put('/{id}/edit_proses_insiden', [InsidenController::class, 'update'])->name('update-proses-insiden.update');
     Route::delete('/{id}/delete_proses_insiden', [InsidenController::class, 'delete'])->name('delete-proses.softDelete');
+    Route::get('export', [InsidenController::class, 'export']);
 
     ## JENIS INSIDEN
     Route::get('/menambahkan_insiden',  [JenisInsidenController::class, 'createForm'])->name('tambah-insiden');
