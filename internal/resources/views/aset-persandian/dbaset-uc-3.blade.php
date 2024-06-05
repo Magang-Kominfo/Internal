@@ -16,16 +16,44 @@
         <div class="container-fluid">
             <img class="logoKominfo-uc-3" src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo">
 
-            @if(auth()->check() && auth()->user()->is_admin == true)
-                <a href="{{ route('admin') }}" class="button-logout-back"><h2>Admin Dashboard</h2></a>
+            <a class="uc-2-user-navigate" onclick="menuToggle()">
+                <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
+            </a>
+            {{-- Menu --}}
+            <div class="uc-2-dropdown-user">
+                <div class="uc-2-username">
+                    <span class="uc-2-name">
+                        {{ $user->nama_user }}
+                    </span>
+                    <span class="uc-2-role">
+                        {{ $user->id_user }}
+                    </span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{{ route('user-profile') }}">
+                        <button>Profil</button>
+                        </a>
+                    </li>
 
-            @else
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="button-logout-back" ><h2>Log Out</h2></button>
-                </form>
+                    @if(auth()->check() && auth()->user()->is_admin == true)
+                        <li>
+                            <a href="{{ route('admin') }}">
+                            <button>Admin Dashboard</button>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" >Log Out</button>
+                            </form>
+                        </li>
+                    @endif
 
-            @endif
+
+                </ul>
+            </div>
 
         </div>
     </nav>
@@ -33,9 +61,6 @@
     <div class="bodyDaftarAset">
         <div class="juduldbaset mb-3">
             <h3>Daftar Aset</h3>
-            <a href="{{ route('user-profile') }}">
-                <div class="btn btn-secondary">Profile</div>
-            </a>
         </div>
         <div class="d-flex w-100 justify-content-end mb-3">
             <a href="/tambahaset">
@@ -111,6 +136,10 @@
             });
         });
 
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.uc-2-dropdown-user');
+            toggleMenu.classList.toggle('active');
+        }
         function search() {
             var input, filter, table, tr, td, txtValue;
             input = document.getElementById('searchInput');

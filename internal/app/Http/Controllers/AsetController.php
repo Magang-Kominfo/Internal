@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aset;
 use App\Http\Requests\StoreAsetRequest;
 use App\Http\Requests\UpdateAsetRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -12,23 +13,18 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AsetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     protected $aset;
     public function __construct(){
         $this->aset = new Aset();
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function index()
     {
+        $user = Auth::user();
         $aset =Aset::all();
 
-        return view('aset-persandian.dbaset-uc-3', compact('aset'));
+        return view('aset-persandian.dbaset-uc-3', compact('aset','user'));
     }
 
     /**

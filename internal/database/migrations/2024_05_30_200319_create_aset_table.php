@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nomor_aset');
             $table->string('nama');
             $table->string('jumlah');
-            $table->string('pemanfaatan');
-            $table->string('kondisi');
+            $table->text('pemanfaatan');
+            $table->text('kondisi');
             $table->json('images');
 
             $table->timestamps();
