@@ -16,7 +16,6 @@ class AsetController extends Controller
     public function index()
     {
         $aset =Aset::all();
-    
         return view('dbaset-uc-3', [
             'aset' => $aset
         ]);
@@ -88,4 +87,5 @@ class AsetController extends Controller
         $aset->delete();
         return redirect('/dbaset');
     }
+
 }
