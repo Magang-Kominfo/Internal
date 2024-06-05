@@ -300,6 +300,36 @@ body{
 
 
 /* notifikasi */
+.popup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 25px;
+    width: 100%;
+
+}
+
+.popup-content {
+    background-color: #e8ffe8;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .uc-1-detele-confirm {
     display: none;
     position: fixed;

@@ -96,8 +96,18 @@
                         <div class="uc-1-dashboard-view-artikel-insiden-view">
                             <a class="uc-1-dashboard-view-artikel-insiden-view-item" href="{{ route('view-proses-insiden', ['id' => $insiden->insiden_id]) }}">
                                 <div class="uc-1-dashboard-view-artikel-insiden-view-header">
-                                    <h4 style="margin: 0">{{ $insiden->jenis_insidens->nama_insiden }}</h4>
-                                    <p>{{ $insiden->master_odps->nama_instansi }}</p>
+                                    @if ($insiden->jenis_insidens)
+                                        <h4 style="margin: 0">{{ $insiden->jenis_insidens->nama_insiden }}</h4>
+                                    @else
+                                        <h4 style="margin: 0">Data Telah Dihapus</h4>
+                                    @endif
+
+
+                                    @if ($insiden->master_odps)
+                                        <p>{{ $insiden->master_odps->nama_instansi }}</p>
+                                    @else
+                                        <p>Data Telah Dihapus</p>
+                                    @endif
                                 </div>
                                 <div class="uc-1-dashboard-view-artikel-insiden-view-date">
 
@@ -138,7 +148,13 @@
                             <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view">
                                 <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-header">
                                     <h4 style="margin: 0">{{ $aset_aplikasi->nama_aset_aplikasi }}</h4>
-                                    <p>{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</p>
+
+                                    @if ($aset_aplikasi->jenis_kategoris)
+                                        <p>{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</p>
+                                    @else
+                                        <p>Data Telah Dihapus</p>
+                                    @endif
+
                                 </div>
                                 <div class="uc-1-dashboard-view-artikel-aset-aplikasi-view-date">
                                     <p style="margin: 0">Created at: {{ $aset_aplikasi->created_at }}</p>

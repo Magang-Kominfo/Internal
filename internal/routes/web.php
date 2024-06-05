@@ -54,6 +54,7 @@ Route::middleware(['auth', 'user_insiden'])->group(function () {
     Route::get('/{id}/edit_aset_aplikasi',  [AsetAplikasiController::class, 'editForm'])->name('edit-aset-aplikasi');
     Route::put('/{id}/edit_aset_aplikasi', [AsetAplikasiController::class, 'update'])->name('update-aset-aplikasi.update');
     Route::delete('/{id}/delete_aset_aplikasi', [AsetAplikasiController::class, 'delete'])->name('delete-aset.softDelete');
+    Route::get('/export-aset-aplikasi', [AsetAplikasiController::class, 'export'])->name('aset-aplikasi.export');
 
     ## KATEGORI ASET APLIKASI
     Route::get('/menambahkan_kategori_aset_aplikasi',  [JenisKategoriController::class, 'createForm'])->name('tambah-kategori-aset-aplikasi');
@@ -71,7 +72,7 @@ Route::middleware(['auth', 'user_insiden'])->group(function () {
     Route::get('/{id}/edit_proses_insiden',  [InsidenController::class, 'editForm'])->name('edit-proses-insiden');
     Route::put('/{id}/edit_proses_insiden', [InsidenController::class, 'update'])->name('update-proses-insiden.update');
     Route::delete('/{id}/delete_proses_insiden', [InsidenController::class, 'delete'])->name('delete-proses.softDelete');
-    Route::get('export', [InsidenController::class, 'export']);
+    Route::get('/export-insiden', [InsidenController::class, 'export'])->name('proses-insiden.export');
 
     ## JENIS INSIDEN
     Route::get('/menambahkan_insiden',  [JenisInsidenController::class, 'createForm'])->name('tambah-insiden');
@@ -139,7 +140,7 @@ Route::middleware(['auth', 'user_aset'])->group(function () {
     Route::get('/edit/{id}', [AsetController::class, 'edit']);
     Route::put('/update/{id}', [AsetController::class, 'update']);
     Route::delete('/delete/{id}', [AsetController::class, 'destroy']);
-    Route::get('export', [AsetController::class, 'export']);
+    Route::get('/export-aset', [AsetController::class, 'export'])->name('aset.export');
 
 });
 

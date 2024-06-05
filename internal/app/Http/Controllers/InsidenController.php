@@ -85,7 +85,7 @@ class InsidenController extends Controller
 
 
         // Redirect dengan message jika berhasil
-        return redirect('/daftar_proses_insiden')->with('success', 'Proses Insiden berhasil ditambahkan.');
+        return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -169,11 +169,11 @@ class InsidenController extends Controller
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $data = Insiden::all();
+        $data = Insiden::with(['master_odps', 'jenis_insidens'])->get();
 
 
         // Add header row
-        $headers = ['insiden_id', 'id_master_odp', 'id_jenis_insiden','resiko_insiden','status_insiden','status_setelah_unsuspend_insiden','url_insiden','nomor_surat_tte_insiden','keterangan_insiden','tanggal_surat_tte_insiden','tanggal_suspend_insiden','tanggal_pemulihan_insiden','jam_insiden_diselesaikan','tanggal_insiden_diselesaikan','tanggal_notifikasi_insiden','jam_temuan_insiden','jam_temuan_dikirim_insiden','created_at','updated_at','deleted_at'];
+        $headers = ['insiden_id', 'nama_instansi', 'nama_jenis_insiden','resiko_insiden','status_insiden','status_setelah_unsuspend_insiden','url_insiden','nomor_surat_tte_insiden','keterangan_insiden','tanggal_surat_tte_insiden','tanggal_suspend_insiden','tanggal_pemulihan_insiden','jam_insiden_diselesaikan','tanggal_insiden_diselesaikan','tanggal_notifikasi_insiden','jam_temuan_insiden','jam_temuan_dikirim_insiden','created_at','updated_at'];
         $columnLetter = 'A';
         foreach ($headers as $header) {
             $sheet->setCellValue($columnLetter . '1', $header);
@@ -184,8 +184,8 @@ class InsidenController extends Controller
         $rowNumber = 2;
         foreach ($data as $row) {
             $sheet->setCellValue('A' . $rowNumber, $row->insiden_id);
-            $sheet->setCellValue('B' . $rowNumber, $row->insidens_odp_id_foreign);
-            $sheet->setCellValue('C' . $rowNumber, $row->insidens_id_jenis_insiden_foreign);
+            $sheet->setCellValue('B' . $rowNumber, $row->master_odps ? $row->master_odps->nama_instansi : 'Data Tidak Ditemukan');
+            $sheet->setCellValue('C' . $rowNumber, $row->jenis_insidens ? $row->jenis_insidens->nama_insiden : 'Data Tidak Ditemukan');
             $sheet->setCellValue('D' . $rowNumber, $row->resiko_insiden);
             $sheet->setCellValue('E' . $rowNumber, $row->status_insiden);
             $sheet->setCellValue('F' . $rowNumber, $row->status_setelah_unsuspend_insiden);
@@ -202,7 +202,6 @@ class InsidenController extends Controller
             $sheet->setCellValue('Q' . $rowNumber, $row->jam_temuan_dikirim_insiden);
             $sheet->setCellValue('R' . $rowNumber, $row->created_at);
             $sheet->setCellValue('S' . $rowNumber, $row->updated_at);
-            $sheet->setCellValue('T' . $rowNumber, $row->deleted_at);
 
             $rowNumber++;
         }

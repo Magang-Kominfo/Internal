@@ -6,6 +6,8 @@ use App\Models\Aset_aplikasi;
 use App\Http\Requests\StoreAset_aplikasiRequest;
 use App\Http\Requests\UpdateAset_aplikasiRequest;
 use App\Models\Jenis_kategori;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class AsetAplikasiController extends Controller
 {
@@ -106,5 +108,44 @@ class AsetAplikasiController extends Controller
         $data->delete();
 
         return redirect('/daftar_aset_aplikasi')->with('success', 'Data berhasil dihapus secara lunak.');
+    }
+
+    public function export(){
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $data = Aset_aplikasi::with(['jenis_kategoris'])->get();
+
+
+        // Add header row
+        $headers = ['id_aset_aplikasi', 'nama_kategori_aset_aplikasi', 'nama_aset_aplikasi','ip_aset_aplikasi','server_aset_aplikasi','indeks_kami_aset_aplikasi','created_at','updated_at'];
+        $columnLetter = 'A';
+        foreach ($headers as $header) {
+            $sheet->setCellValue($columnLetter . '1', $header);
+            $columnLetter++;
+        }
+
+
+        $rowNumber = 2;
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rowNumber, $row->id_aset_aplikasi);
+            $sheet->setCellValue('B' . $rowNumber, $row->jenis_kategoris ? $row->jenis_kategoris->nama_jenis_kategori : 'Data Tidak Ditemukan');
+            $sheet->setCellValue('C' . $rowNumber, $row->nama_aset_aplikasi);
+            $sheet->setCellValue('D' . $rowNumber, $row->ip_aset_aplikasi);
+            $sheet->setCellValue('E' . $rowNumber, $row->server_aset_aplikasi);
+            $sheet->setCellValue('F' . $rowNumber, $row->indeks_kami_aset_aplikasi);
+            $sheet->setCellValue('G' . $rowNumber, $row->created_at);
+            $sheet->setCellValue('H' . $rowNumber, $row->updated_at);
+
+            $rowNumber++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'aset-aplikasi.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+        $writer->save($temp_file);
+
+        return response()->download($temp_file, $fileName)->deleteFileAfterSend(true);
     }
 }

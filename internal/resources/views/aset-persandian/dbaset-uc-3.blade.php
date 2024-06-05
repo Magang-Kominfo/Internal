@@ -87,7 +87,7 @@
             </tbody>
         </table>
         <div>
-            <a href="{{ url('export') }}" class="btn-export">Download Data Table</a>
+            <a href="{{ route('aset.export') }}" class="btn-export">Download Data Table</a>
         </div>
     </div>
 
