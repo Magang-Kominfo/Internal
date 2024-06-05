@@ -123,6 +123,7 @@ class InsidenController extends Controller
             'tanggal_notifikasi_insiden' => 'nullable|date',
             'jam_temuan_insiden' => 'nullable|date_format:H:i',
             'tanggal_suspend_insiden' => 'nullable|date',
+            'tanggal_surat_tte_insiden' => 'nullable|date',
             'tanggal_pemulihan_insiden' => 'nullable|date',
             'status_setelah_unsuspend_insiden' => 'nullable|string',
             'jam_temuan_dikirim_insiden' => 'nullable|date_format:H:i',
@@ -134,20 +135,21 @@ class InsidenController extends Controller
         $insiden = Insiden::find($id);
         $insiden->insidens_odp_id_foreign = $request->insidens_odp_id_foreign;
         $insiden->insidens_id_jenis_insiden_foreign = $request->insidens_id_jenis_insiden_foreign;
-        $insiden->resiko_insiden = $request->resiko_insiden;
-        $insiden->status_insiden = $request->status_insiden;
-        $insiden->status_setelah_unsuspend_insiden = $request->status_setelah_unsuspend_insiden;
         $insiden->url_insiden = $request->url_insiden;
         $insiden->nomor_surat_tte_insiden = $request->nomor_surat_tte_insiden;
-        $insiden->keterangan_insiden = $request->keterangan_insiden;
-        $insiden->tanggal_surat_tte_insiden = $request->tanggal_surat_tte_insiden;
-        $insiden->tanggal_suspend_insiden = $request->tanggal_suspend_insiden;
-        $insiden->tanggal_pemulihan_insiden = $request->tanggal_pemulihan_insiden;
-        $insiden->jam_insiden_diselesaikan = $request->jam_insiden_diselesaikan ? date('H:i', strtotime($request->jam_insiden_diselesaikan)) : null;
+        $insiden->tanggal_insiden_diselesaikan = $request->tanggal_insiden_diselesaikan;
+        $insiden->resiko_insiden = $request->resiko_insiden;
+        $insiden->status_insiden = $request->status_insiden;
         $insiden->tanggal_notifikasi_insiden = $request->tanggal_notifikasi_insiden;
         $insiden->jam_temuan_insiden = $request->jam_temuan_insiden ? date('H:i', strtotime($request->jam_temuan_insiden)) : null;
-        $insiden->tanggal_insiden_diselesaikan = $request->tanggal_insiden_diselesaikan;
+        $insiden->status_setelah_unsuspend_insiden = $request->status_setelah_unsuspend_insiden;
+        $insiden->tanggal_suspend_insiden = $request->tanggal_suspend_insiden;
+        $insiden->tanggal_pemulihan_insiden = $request->tanggal_pemulihan_insiden;
         $insiden->jam_temuan_dikirim_insiden = $request->jam_temuan_dikirim_insiden ? date('H:i', strtotime($request->jam_temuan_dikirim_insiden)) : null;
+        $insiden->jam_insiden_diselesaikan = $request->jam_insiden_diselesaikan ? date('H:i', strtotime($request->jam_insiden_diselesaikan)) : null;
+        $insiden->keterangan_insiden = $request->keterangan_insiden;
+        $insiden->tanggal_surat_tte_insiden = $request->tanggal_surat_tte_insiden;
+
         $insiden->save();
 
         return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil diperbarui');

@@ -57,7 +57,7 @@ body{
     width: 50px;
 }s
 
-.uc-1-menambahkan-view-proses-insiden-sidebar-content h2{
+.uc-1-menambahkan-view-proses-insiden-sidebar-content h2, .logout h2{
     padding: 20px 20px 20px 20px;
     margin: 0;
 }
