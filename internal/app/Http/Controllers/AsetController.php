@@ -6,6 +6,8 @@ use App\Models\Aset;
 use App\Http\Requests\StoreAsetRequest;
 use App\Http\Requests\UpdateAsetRequest;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AsetController extends Controller
@@ -105,5 +107,42 @@ class AsetController extends Controller
         $aset = Aset::findOrFail($id);
         $aset->delete();
         return redirect('/dbaset');
+    }
+
+    public function export(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $data = aset::all();
+
+
+        // Add header row
+        $headers = ['id', 'nomor_aset', 'nama','jumlah','pemanfaatan','kondisi','created_at','updated_at'];
+        $columnLetter = 'A';
+        foreach ($headers as $header) {
+            $sheet->setCellValue($columnLetter . '1', $header);
+            $columnLetter++;
+        }
+
+
+        $rowNumber = 2;
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rowNumber, $row->id);
+            $sheet->setCellValue('B' . $rowNumber, $row->nomor_aset);
+            $sheet->setCellValue('C' . $rowNumber, $row->nama);
+            $sheet->setCellValue('D' . $rowNumber, $row->jumlah);
+            $sheet->setCellValue('E' . $rowNumber, $row->pemanfaatan);
+            $sheet->setCellValue('F' . $rowNumber, $row->kondisi);
+            $sheet->setCellValue('G' . $rowNumber, $row->created_at);
+            $sheet->setCellValue('H' . $rowNumber, $row->updated_at);
+            $rowNumber++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'aset.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+        $writer->save($temp_file);
+
+        return response()->download($temp_file, $fileName)->deleteFileAfterSend(true);
     }
 }

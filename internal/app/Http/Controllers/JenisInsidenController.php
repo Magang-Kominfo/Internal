@@ -87,8 +87,11 @@ class JenisInsidenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jenis_insiden $jenis_insiden)
+    public function delete($id)
     {
-        //
+        $data = Jenis_insiden::find($id);
+        $data->delete();
+
+        return redirect('/daftar_insiden')->with('success', 'Data berhasil dihapus.');
     }
 }

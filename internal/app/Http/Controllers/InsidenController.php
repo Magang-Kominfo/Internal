@@ -161,7 +161,7 @@ class InsidenController extends Controller
         $data = Insiden::find($id);
         $data->delete();
 
-        return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil dihapus secara lunak.');
+        return redirect('/daftar_proses_insiden')->with('success', 'Data berhasil dihapus');
     }
 
 
@@ -171,9 +171,6 @@ class InsidenController extends Controller
 
         $data = Insiden::all();
 
-        if ($data->isEmpty()) {
-            dd('No data found');
-        }
 
         // Add header row
         $headers = ['insiden_id', 'id_master_odp', 'id_jenis_insiden','resiko_insiden','status_insiden','status_setelah_unsuspend_insiden','url_insiden','nomor_surat_tte_insiden','keterangan_insiden','tanggal_surat_tte_insiden','tanggal_suspend_insiden','tanggal_pemulihan_insiden','jam_insiden_diselesaikan','tanggal_insiden_diselesaikan','tanggal_notifikasi_insiden','jam_temuan_insiden','jam_temuan_dikirim_insiden','created_at','updated_at','deleted_at'];

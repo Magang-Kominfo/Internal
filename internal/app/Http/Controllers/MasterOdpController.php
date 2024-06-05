@@ -86,8 +86,11 @@ class MasterOdpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete()
+    public function delete($id)
     {
+        $data = Master_odp::find($id);
+        $data->delete();
 
+        return redirect('/data_master')->with('success', 'Data berhasil dihapus.');
     }
 }

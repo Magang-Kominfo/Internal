@@ -245,9 +245,23 @@
                                     <tr>
                                         <td class="uc-1-tabel-id-data">{{ $insiden->insiden_id }}</td>
                                         <td class="uc-1-tabel-nama-data">
-                                            <a class="uc-1-tabel-view" href="{{ route('view-proses-insiden', ['id' => $insiden->insiden_id]) }}">{{ $insiden->master_odps->nama_instansi }}</a>
+                                            @if ($insiden->master_odps)
+                                                <a class="uc-1-tabel-view" href="{{ route('view-proses-insiden', ['id' => $insiden->insiden_id]) }}">{{ $insiden->master_odps->nama_instansi }}</a>
+                                            @else
+                                                Data Telah Dihapus
+                                            @endif
                                         </td>
-                                        <td class="uc-1-tabel-jenis-data">{{ $insiden->jenis_insidens->nama_insiden }}</td>
+
+
+                                        <td class="uc-1-tabel-jenis-data">
+
+                                            @if ($insiden->jenis_insidens)
+                                                {{ $insiden->jenis_insidens->nama_insiden }}
+                                            @else
+                                                Data Telah Dihapus
+                                            @endif
+
+                                        </td>
                                         <td class="uc-1-tabel-resiko-data">{{ $insiden->resiko_insiden }}</td>
                                         <td class="uc-1-tabel-status-data">{{ $insiden->status_insiden }}</td>
                                         <td class="uc-1-tabel-url-data">{{ $insiden->url_insiden }}</td>

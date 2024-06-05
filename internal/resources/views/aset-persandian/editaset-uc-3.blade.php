@@ -63,7 +63,7 @@
                 <div class="footer d-flex justify-content-end gap-2">
                     <a href="/dbaset" style="background-color: #FFFFFF; color:black;">
                         <div type="back" class="btn btn-secondary mt-4 min-col-2">Back</div></a>
-                        <button type="submit" class="btn btn-primary mt-4 min-col-2">Tambah</button>
+                        <button type="submit" class="btn btn-primary mt-4 min-col-2">Simpan</button>
                 </div>
             </div>
         </form>

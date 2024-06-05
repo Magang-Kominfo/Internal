@@ -239,7 +239,11 @@
                                     <tr>
                                         <td class="uc-1-tabel-id-data">{{ $aset_aplikasi->id_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-nama-data">{{ $aset_aplikasi->nama_aset_aplikasi }}</td>
-                                        <td class="uc-1-tabel-kategori-data">{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</td>
+                                        @if ($aset_aplikasi->jenis_kategoris)
+                                            <td class="uc-1-tabel-kategori-data">{{ $aset_aplikasi->jenis_kategoris->nama_jenis_kategori }}</td>
+                                        @else
+                                        <td class="uc-1-tabel-kategori-data">Data Telah Dihapus</td>
+                                        @endif
                                         <td class="uc-1-tabel-ip-data">{{ $aset_aplikasi->ip_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-server-data">{{ $aset_aplikasi->server_aset_aplikasi }}</td>
                                         <td class="uc-1-tabel-indeks-data">{{ $aset_aplikasi->indeks_kami_aset_aplikasi }}</td>

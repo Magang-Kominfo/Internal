@@ -61,6 +61,7 @@ Route::middleware(['auth', 'user_insiden'])->group(function () {
     Route::get('/daftar_kategori_aset_aplikasi',  [JenisKategoriController::class, 'daftarKategori'])->name('kategori-aset-aplikasi');
     Route::get('/{id}/edit_kategori_aset_aplikasi',  [JenisKategoriController::class, 'editForm'])->name('edit-jenis-kategori-aset-aplikasi');
     Route::put('/{id}/edit_kategori_aset_aplikasi', [JenisKategoriController::class, 'update'])->name('update-jenis-kategori-aset-aplikasi.update');
+    Route::delete('/{id}/delete_kategori_aset_aplikasi', [JenisKategoriController::class, 'delete'])->name('delete-jenis-kategori-aset-aplikasi.softDelete');
 
     # PROSES INSIDEN
     Route::get('/{id}/proses_insiden',  [InsidenController::class, 'viewProsesInsiden'])->name('view-proses-insiden');
@@ -78,7 +79,7 @@ Route::middleware(['auth', 'user_insiden'])->group(function () {
     Route::get('/daftar_insiden', [JenisInsidenController::class, 'daftarJenisInsiden'])->name('daftar-insiden');
     Route::get('/{id}/edit_daftar_insiden',  [JenisInsidenController::class, 'editForm'])->name('edit-jenis-insiden');
     Route::put('/{id}/edit_daftar_insiden', [JenisInsidenController::class, 'update'])->name('update-jenis-insiden.update');
-
+    Route::delete('/{id}/delete_jenis_insiden', [JenisInsidenController::class, 'delete'])->name('delete-jenis_insiden.softDelete');
 
     ## DATA MASTER
     Route::get('/data_master', [MasterOdpController::class, 'daftarMasterOPD'])->name('data-master');
@@ -138,6 +139,7 @@ Route::middleware(['auth', 'user_aset'])->group(function () {
     Route::get('/edit/{id}', [AsetController::class, 'edit']);
     Route::put('/update/{id}', [AsetController::class, 'update']);
     Route::delete('/delete/{id}', [AsetController::class, 'destroy']);
+    Route::get('export', [AsetController::class, 'export']);
 
 });
 

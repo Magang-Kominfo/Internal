@@ -85,8 +85,11 @@ class JenisKategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jenis_kategori $jenis_kategori)
+    public function delete($id)
     {
-        //
+        $data = Jenis_kategori::find($id);
+        $data->delete();
+
+        return redirect('/daftar_kategori_aset_aplikasi')->with('success', 'Data berhasil dihapus.');
     }
 }
