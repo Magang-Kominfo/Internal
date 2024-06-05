@@ -13,6 +13,8 @@ use App\Http\Requests\UpdateBeritaRequest;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Exception;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class BeritaController extends Controller
 {
@@ -79,7 +81,7 @@ public function showedit($id_berita)
 
     public function showNews() {
         $user = Auth::user();
-        $beritas = Berita::all(); // Assuming you want to fetch all news articles
+        $beritas = Berita::all(); 
         return view('berita.dashboard', ['beritas' => $beritas],compact('user'));
     }
 
@@ -329,8 +331,72 @@ public function showedit($id_berita)
         $data = Berita::find($id_berita);
         $data->delete();
 
-        return redirect('/dashboard')->with('success', 'Data berhasil dihapus secara lunak.');
+        return redirect('/dashboard-berita')->with('success', 'Data berhasil dihapus secara lunak.');
     }
+
+    
+    public function export(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $data = Berita::all();
+        
+        // Add header row
+        $headers = ['ID Berita', 'Nomor Surat Berita', 'Nomor Agenda','Sifat Berita','Jenis Surat',
+                    'Jumlah Halaman Berita','Tanggal Buat Berita','Isi Berita',
+                    'Dokumen Surat Berita','Pengirim Berita', 'Penerima Berita',
+                    'created_at','updated_at','deleted_at'];
+
+        $columnLetter = 'A';
+        foreach ($headers as $header) {
+            $sheet->setCellValue($columnLetter . '1', $header);
+            $columnLetter++;
+        }
+
+
+        $rowNumber = 2;
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rowNumber, $row->id);
+            $sheet->setCellValue('B' . $rowNumber, $row->no_berita);
+            $sheet->setCellValue('C' . $rowNumber, $row->no_agenda);
+            $sheet->setCellValue('D' . $rowNumber, $row->sifat->nama_sifat);
+            $sheet->setCellValue('E' . $rowNumber, $row->alursurat->nama_alur_surat);
+            $sheet->setCellValue('F' . $rowNumber, $row->jumlah_halaman_berita);
+            $sheet->setCellValue('G' . $rowNumber, $row->tanggal_buat_berita);
+            $sheet->setCellValue('H' . $rowNumber, $row->isi_berita);
+            $sheet->setCellValue('I' . $rowNumber, $row->dokumen_surat_berita ?? "Tidak ada dokumen");
+
+            $KorespondenPengirim = null;
+            $KorespondenPenerimaList = [];
+
+            foreach ($row->mengirims as $mengirim) {
+                if ($mengirim->role === 1) {
+                    $KorespondenPenerimaList[] = $mengirim->email->koresponden->nama_koresponden;
+                } else {
+                    if ($mengirim->role === 0) {
+                        $KorespondenPengirim = $mengirim->email->koresponden->nama_koresponden;
+                    }
+                }
+            }
+            $PenerimaString = implode(', ', $KorespondenPenerimaList);
+
+            $sheet->setCellValue('J' . $rowNumber, $KorespondenPengirim);
+            $sheet->setCellValue('K' . $rowNumber, $PenerimaString);
+            $sheet->setCellValue('L' . $rowNumber, $row->created_at);
+            $sheet->setCellValue('M' . $rowNumber, $row->updated_at);
+            $sheet->setCellValue('N' . $rowNumber, $row->deleted_at);
+
+            $rowNumber++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'Data Master Berita.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+        $writer->save($temp_file);
+
+        return response()->download($temp_file, $fileName)->deleteFileAfterSend(true);
+    }
+
 
     public function destroy(Berita $berita)
     {

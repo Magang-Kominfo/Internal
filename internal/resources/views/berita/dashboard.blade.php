@@ -17,7 +17,7 @@
             <div class="uc-2-left-header">
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <h4><a href="{{ route('koresponden.show') }}" style="text-decoration: none; color: var(--bluedark);">Daftar Koresponden</a></h4>
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
@@ -65,12 +65,12 @@
         <div class="uc-2-main-dashboard">
             <div class="uc-2-main-dashboard-berita">
 
-                {{-- back --}}
+                {{-- Main Title --}}
                 <div class="uc-2-main-title-text">
                     <h3>Dashboard Surat Berita</h3>
                 </div>
 
-                {{-- Search bar --}}
+                {{-- Search, Filter, Sort, dan add --}}
                 <div class="uc-2-search">
                     <div class="uc-2-search-option-responsive">
                         <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
@@ -90,7 +90,7 @@
                             <select class="uc-2-search-sort-select" id="sortSelect">
                                 <option value="none" selected>Sort</option>
                                 <option value="created-desc">Pencatatan Terbaru</option>
-                                <option value="created-asc">Pencatatan Terakhir</option>
+                                <option value="created-asc">Pencatatan Terlama</option>
                                 <option value="updated-desc">Surat Terbaru</option>
                                 <option value="updated-asc">Surat Terlama</option>
                             </select>
@@ -101,6 +101,7 @@
                     </a>
                 </div>
 
+                {{-- Berita Item--}}
                 <div class="uc-2-berita">
                     @foreach($beritas as $berita)
                         <a href="{{ url('detailberita/' . $berita->id) }}" style="text-decoration: none;">
@@ -115,22 +116,11 @@
                                         @elseif ($berita->alursurat->id == 2)
                                             color: var(--red-edit);
                                         @endif">
-                                            @php
-                                                $korespondenExists = false;
-                                            @endphp
-
                                             @foreach($berita->mengirims as $data)
                                                 @if($data->role === 0 && $data->email && $data->email->koresponden)
-                                                    {{ $data->email->koresponden->nama_koresponden }}
-                                                    @php
-                                                        $korespondenExists = true;
-                                                    @endphp
+                                                    {{ $data->email->koresponden->nama_koresponden ?? "Data Koresponden Terhapus"}}
                                                 @endif
                                             @endforeach
-
-                                            @if(!$korespondenExists)
-                                                Data Koresponden Terhapus
-                                            @endif
                                         </span>
                                     </h4>
                                     <span style=" font-weight:500; text-align:right;
@@ -148,34 +138,32 @@
                                 </p>
                                 <h5 style="margin: 0">To:
                                     @php
-                                        $korespondenExists = false;
+                                        $KorespondenPenerimaList = [];
+
+                                        foreach ($berita->mengirims as $data) {
+                                            if ($data->role === 1 && $data->email && $data->email->koresponden) {
+                                                $KorespondenPenerimaList[] = $data->email->koresponden->nama_koresponden ?? "Data Koresponden Terhapus";
+                                            }
+                                        }
+                                        $PenerimaString = implode(', ', $KorespondenPenerimaList);
                                     @endphp
 
-                                    @foreach($berita->mengirims as $data)
-                                        @if($data->role === 1 && $data->email && $data->email->koresponden)
-                                            {{ $data->email->koresponden->nama_koresponden }},
-                                            @php
-                                                $korespondenExists = true;
-                                            @endphp
-                                        @endif
-                                    @endforeach
-
-                                    @if(!$korespondenExists)
-                                        Data Koresponden Terhapus
-                                    @endif
+                                    {{ $PenerimaString }}
                                 </h5>
                             </div>
                         </a>
                     @endforeach
                 </div>
 
+                {{-- Pagination dan export --}}
                 <div class="uc-2-pagination-section">
                     <div id="uc-2-pagination-dashboard"></div>
+                    <a href="{{ route('berita.export')}}" class="uc-2-form-footer-export">
+                        <div>Download Data Surat Berita</div>
+                    </a>
                 </div>
 
-
-
-
+    {{-- Filter, sort, search, dan pagination --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const filterSelect = document.getElementById("filterSelect");
@@ -199,7 +187,7 @@
                 const isDesc = sortBy.includes("desc");
                 const sortKey = sortBy.includes("created") ? "created" : (sortBy.includes("updated") ? "updated" : null);
 
-                // Filter news items
+                // Filter surat berita
                 let filteredNewsItems = newsItems.filter(item => {
                     const matchesFilter = filterBy === "all" || item.dataset.type === filterBy;
                     const matchesSearch = item.textContent.toLowerCase().includes(searchQuery);
@@ -207,7 +195,7 @@
 
                 });
 
-                // Sort news items if a sorting option is selected
+                // Sort surat berita
                 if (sortKey) {
                     filteredNewsItems.sort((a, b) => {
                         const aValue = new Date(a.dataset[sortKey]);
@@ -217,7 +205,7 @@
                     });
                 }
 
-                // Pagination logic
+                // Pagination
                 const totalPages = Math.ceil(filteredNewsItems.length / itemsPerPage);
 
                 if(currentPage === 0){
@@ -230,7 +218,7 @@
                 const endIdx = startIdx + itemsPerPage;
                 const paginatedItems = filteredNewsItems.slice(startIdx, endIdx);
 
-                // Clear current items and append sorted, filtered, and paginated items
+                // Refresh untuk data baru kemudian di paginate
                 newsItemsContainer.innerHTML = '';
                 paginatedItems.forEach(item => {
                     const parentAnchor = item.closest('a');
@@ -239,13 +227,14 @@
                     }
                 });
 
-                // Render pagination controls
+                // Render pagination button
                 renderPaginationControls(totalPages);
             }
 
             function renderPaginationControls(totalPages) {
                 paginationContainer.innerHTML = '';
 
+                // Previous Pagination Button
                 if (currentPage > 1) {
                     const prevButton = document.createElement('button');
                     prevButton.textContent = '<';
@@ -257,6 +246,7 @@
                     paginationContainer.appendChild(prevButton);
                 }
 
+                // Kalkulasi Page Number 
                 const pageNumbers = [];
                 const maxVisiblePages = 3;
                 let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -277,6 +267,7 @@
                     pageNumbers.push('...', totalPages);
                 }
 
+                // Page Number
                 pageNumbers.forEach(page => {
                     const pageButton = document.createElement('button');
                     pageButton.textContent = page;
@@ -293,6 +284,7 @@
                     paginationContainer.appendChild(pageButton);
                 });
 
+                // Next Pagination Button
                 if (currentPage < totalPages) {
                     const nextButton = document.createElement('button');
                     nextButton.textContent = '>';
@@ -306,10 +298,10 @@
 
             }
 
-            // Initial display of all items sorted by default option
             filterAndSort();
         });
-
+        
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');

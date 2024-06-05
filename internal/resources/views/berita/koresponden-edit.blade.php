@@ -17,7 +17,7 @@
             <div>
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
                     <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
@@ -63,22 +63,20 @@
 
                 {{-- back --}}
                 <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="{{ url('form-koresponden') }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
-                    </div>
+                    <a href="{{ url('form-koresponden') }}" style="text-decoration: none;">
+                        <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                            <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                            <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                        </div>
+                    </a>
                     <div class="uc-2-nav-description">
                         <div class="uc-2-nav-description-route">MENDAFTARKAN KORESPONDEN</div>
                     </div>
                 </div>
 
-                <h4>
-                    Pastikan data surat berita sesuai dengan keterangan dalam surat.
-                    Isi data berita dan pilih koresponden yang akan dituju. Ingat untuk
-                    meng-update kembali waktu respon oleh penerima.
+                <h4 style="text-align: justify">
+                    Pastikan data koresponden telah sesuai. Periksa kembali
+                    apabila terdapat kesalahan pencatatan. 
                 </h4>
 
                 {{-- Main form --}}
@@ -137,10 +135,11 @@
         </div>
     </div>
 
-
+    {{-- Impor Kebutuhan Javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    {{-- Tambah elemen email baru, konfirmassi hapus email, dan submit form --}}
     <script>
         const addButtons = document.querySelectorAll(".uc-2-first-layer-form .uc-2-first-layer-form-2 .addButton");
 
@@ -175,18 +174,27 @@
             });
         });
 
-
         function callEvent() {
-            document.querySelector('form').querySelectorAll('.removeButton').forEach(function (remove) {
+            document.querySelectorAll('.removeButton').forEach(function (remove) {
                 remove.addEventListener('click', function (elmClick) {
-                    // Memeriksa apakah tombol "Remove" memiliki ID
-                    const elementToRemove = elmClick.target.parentElement.parentElement;
-                    confirmDelete(elementToRemove);
+                    const elementToRemove = elmClick.target.closest('.uc-2-first-layer-form');
+                    const emailInput = elementToRemove.querySelector('input[name="email_id[]"]');
+
+                    // Mengambil nilai email id
+                    const emailId = emailInput ? emailInput.value : null; 
+
+                    // Pengecekan apaka terdapat email id atau tidak
+                    if (emailId !== null) {
+                        confirmDelete(emailId, elementToRemove);
+                    } else {
+                        elementToRemove.remove();
+                    }
                 });
             });
         }
 
-        function confirmDelete(elementToRemove) {
+        // Melakukan penghapusan data pada elemen yang memiliki id, kemudian di cek terlebih dahulu pada database.
+        function confirmDelete(emailId, elementToRemove) {
             Swal.fire({
                 title: 'Apa anda yakin?',
                 text: `Data akan terhapus dari tampilan, tetapi belum terhapus hingga database.
@@ -198,13 +206,33 @@
                 confirmButtonText: 'Ya, Hapus data!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Jika pengguna mengonfirmasi penghapusan, hapus elemen dari DOM
-                    elementToRemove.remove();
+                    console.log("konfirm");
+                    $.ajax({
+                        url: "{{ url('/email-check/') }}" + "/" + emailId,
+                        type: 'GET',
+                        success: function (response) {
+                            if (response.status === 'error') {
+                                Swal.fire({
+                                    title: 'Gagal',
+                                    text: response.message,
+                                    icon: 'error'
+                                });
+                            } else if (response.status === 'success') {
+                                elementToRemove.remove();
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error:', error);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memeriksa data.',
+                                icon: 'error'
+                            });
+                        }
+                    });
                 }
-            })
+            });
         }
-
-
 
         // Panggil callEvent untuk pertama kali saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function () {
@@ -289,21 +317,16 @@
 
                     swal.fire("Success!", "Data berhasil disimpan!", "success");
 
-                    // Implementasi pengiriman data bisa dilakukan di sini
-
                 }
             });
 
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');
         }
 
     </script>
-
-
-
-
 
 </body>
 </html>

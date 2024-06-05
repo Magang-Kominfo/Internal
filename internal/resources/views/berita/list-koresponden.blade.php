@@ -17,7 +17,7 @@
             <div>
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
                     <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
@@ -63,18 +63,14 @@
 
                 {{-- back --}}
                 <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="
-                            @foreach($datas as $data)
-                            {{ route('berita.detail', ['id_berita' => $data->id_berita]) }}"
-                             @endforeach
-                            style="text-decoration: none"><h2>KEMBALI</h2></a>
-
-                    </div>
+                    <a href=" @foreach($datas as $data)
+                    {{ route('berita.detail', ['id_berita' => $data->id_berita]) }}" 
+                     @endforeach style="text-decoration: none;">
+                        <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                            <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                            <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                        </div>
+                    </a>
                     <div class="uc-2-nav-description">
                         <div class="uc-2-nav-description-route">KORESPONDEN</div>
                     </div>
@@ -83,19 +79,21 @@
                 {{-- Search bar --}}
                 <div class="uc-2-search">
                     <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
-                    <div class="uc-2-search-filter">
-                        <select class="uc-2-search-filter-select" id="filterSelect">
-                            <option value="all" selected>Filter</option>
-                            <option value="sudah-terbalas">Sudah Terbalas</option>
-                            <option value="belum-terbalas">Belum Terbalas</option>
-                        </select>
-                    </div>
-                    <div class="uc-2-search-sort">
-                        <select class="uc-2-search-sort-select" id="sortSelect">
-                            <option value="none" selected>Sort</option>
-                            <option value="created-desc">Pencatatan Terbaru</option>
-                            <option value="created-asc">Pencatatan Terakhir</option>
-                        </select>
+                    <div class="uc-2-search-option-responsive-filter-and-sort">
+                        <div class="uc-2-search-filter">
+                            <select class="uc-2-search-filter-select" id="filterSelect">
+                                <option value="all" selected>Filter</option>
+                                <option value="sudah-terbalas">Sudah Terbalas</option>
+                                <option value="belum-terbalas">Belum Terbalas</option>
+                            </select>
+                        </div>
+                        <div class="uc-2-search-sort">
+                            <select class="uc-2-search-sort-select" id="sortSelect">
+                                <option value="none" selected>Sort</option>
+                                <option value="created-desc">Pencatatan Terbaru</option>
+                                <option value="created-asc">Pencatatan Terlama</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -108,9 +106,9 @@
                                 <div class="uc-2-list-koresponden-item"
                                     data-created="{{ $data->updated_at }}"
                                     data-type="{{ is_null($data->respon_time) ? 'belum-terbalas' : 'sudah-terbalas' }}">
-                                    <h4>{{ $data->email->koresponden->nama_koresponden ?? '' }}
-                                        - {{ $data->email->nama_email ?? ''}}</h4>
-                                    <span>
+                                    <h4>{{ $data->email->koresponden->nama_koresponden ?? 'Data Koresponden terhapus' }}
+                                        - {{ $data->email->nama_email ?? 'Email Koresponden'}}</h4>
+                                    <span style="text-align: end; margin-left:12px;">
                                         @if($data->respon_time == '0000-00-00 00:00:00' || is_null($data->respon_time))
                                             Belum ada Balasan
                                         @else
@@ -132,6 +130,7 @@
         </div>
     </div>
 
+    {{-- Filter, sort, search, dan pagination --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const filterSelect = document.getElementById("filterSelect");
@@ -266,11 +265,7 @@
             filterAndSort();
         });
 
-        function menuToggle(){
-            const toggleMenu = document.querySelector('.uc-2-dropdown-user');
-            toggleMenu.classList.toggle('active');
-        }
-
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');

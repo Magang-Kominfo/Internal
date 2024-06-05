@@ -67,19 +67,18 @@
 
                 {{-- back --}}
                 <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="{{ route('berita.detail', ['id_berita' => $edit['berita']->id]) }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
-                    </div>
+                    <a href="{{ route('berita.detail', ['id_berita' => $edit['berita']->id]) }}" style="text-decoration: none;">
+                        <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                            <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                            <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                        </div>
+                    </a>
                     <div class="uc-2-nav-description">
                         <div class="uc-2-nav-description-route">Menyunting Berita</div>
                     </div>
                 </div>
 
-                <h4>
+                <h4 style="text-align: justify">
                     Pastikan data surat berita sesuai dengan keterangan dalam surat.
                     Isi data berita dan pilih koresponden yang akan dituju. Ingat untuk
                     meng-update kembali waktu respon oleh penerima.
@@ -140,9 +139,11 @@
                             <label for="sifat_berita">Sifat Berita:</label>
                             <div class="uc-2-radio-button">
                                 @foreach($edit['sifats'] as $sifat)
-                                    <input type="radio" id="sifat{{$sifat->id}}" name="id_sifat"
-                                    value="{{$sifat->id}}" @if($sifat->id == $edit['berita']->id_sifat) checked  @endif>
-                                    <label for="sifat{{$sifat->id}}">{{$sifat->nama_sifat}}</label><br>
+                                    <div class="uc-2-radio-button-option">
+                                        <input type="radio" id="sifat{{$sifat->id}}" name="id_sifat" 
+                                        value="{{$sifat->id}}" @if($sifat->id == $edit['berita']->id_sifat) checked  @endif>
+                                        <label for="sifat{{$sifat->id}}">{{$sifat->nama_sifat}}</label><br>
+                                    </div>
                                 @endforeach
                             </div>
                             <div class="error"></div>
@@ -152,9 +153,11 @@
                             <label for="alur_surat">Alur Surat:</label>
                             <div class="uc-2-radio-button">
                                 @foreach($edit['alursurats'] as $alursurat)
-                                    <input type="radio" id="sifat{{$alursurat->id}}" name="id_alur_surat"
-                                    value="{{$alursurat->id}}" @if($alursurat->id == $edit['berita']->id_alur_surat) checked  @endif>
-                                    <label for="alursurat{{$alursurat->id}}">{{$alursurat->nama_alur_surat}}</label><br>
+                                    <div class="uc-2-radio-button-option">
+                                        <input type="radio" id="sifat{{$alursurat->id}}" name="id_alur_surat" 
+                                        value="{{$alursurat->id}}" @if($alursurat->id == $edit['berita']->id_alur_surat) checked  @endif>
+                                        <label for="alursurat{{$alursurat->id}}">{{$alursurat->nama_alur_surat}}</label><br>
+                                    </div>
                                 @endforeach
                             </div>
                             <div class="error"></div>
@@ -169,14 +172,22 @@
 
                         {{-- fifth layer --}}
                         <div class="uc-2-first-layer-form-2">
+                            @if($edit['berita']->dokumen_surat_berita)
+                                <div class="uc-2-dokumen-saat-ini">
+                                    <label>Dokumen saat ini:</label>
+                                    <a href="/dokumen/{{ $edit['berita']->dokumen_surat_berita }}" target="_blank" class="uc-2-button-download">
+                                        Cek Kembali
+                                    </a>
+                                </div>
+                            @endif
+                            
                             <label for="dokumen_surat_berita">Dokumen Surat Berita:</label>
-                            <div class="input-group">
-                                <input type="file" name="dokumen_surat_berita" class="form-control"
-                                id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
-                                aria-label="Upload">
+                            <div class="uc-2-input-file">
+                                <input type="file" name="dokumen_surat_berita" class="uc-2-form-control" 
+                                    id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" 
+                                    aria-label="Upload">
                             </div>
                         </div>
-
                     </div>
 
                     <div class="uc-2-form-footer">
@@ -189,23 +200,22 @@
         </div>
     </div>
 
-
-
-
+    {{-- Impor Kebutuhan Javascript --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- Script Penerima --}}
+    {{-- Script Select2 dan simpan form --}}
     <script>
        $(document).ready(function() {
             var selectedIds = [];
             var pengirimIds = [];
             var penerimaIds = [];
 
-            // Define a function to format the dropdown options based on your desired HTML structure
+            // Function untuk Select2 
+
+            // Melakukan format pada tampilan opsi dropdown select2
             function formatEmailOption(email) {
-                // console.log("email", email);
                 if (!email.id) {
                     return email.text;
                 } else {
@@ -233,6 +243,7 @@
                 }
             }
 
+            // Melakukan format pada tampilan opsi terpilih select2
             function formatSelectedOption(selectedOption) {
                 if (!selectedOption.id) {
                     return selectedOption.text;
@@ -245,6 +256,7 @@
 
             var beritaId = $('#percobaan').data('id');
 
+            // Mengambil nilai dari database
             $.ajax({
                 url: "{{  url("email-default-option") }}", // Endpoint to get default data
                 dataType: 'json',
@@ -282,12 +294,12 @@
                     });
                 }
 
-                // Add default options to selectpengirim and mark them as selected
+                //Mengmabil nilai selected dari database dan mengirim kepada selectpengirim
                 pengirimDefaultOptions.forEach(function(option) {
                     $('#selectpengirim').append(option).trigger('change');
                 });
 
-                // Add default options to selectpenerima and mark them as selected
+                //Mengmabil nilai selected dari database dan mengirim kepada selectpenerima
                 penerimaDefaultOptions.forEach(function(option) {
                     $('#selectpenerima').append(option).trigger('change');
                 });
@@ -473,7 +485,7 @@
 
                 $("#saveBtn").html('Menyimpan...').removeAttr('disabled');
 
-                // Select all input elements
+                // Ambil seluruh nilai input
                 const noBerita = document.getElementById('no_berita');
                 const noAgenda = document.getElementById('no_agenda');
                 const jumlahHalamanBerita = document.getElementById('jumlah_halaman_berita');
@@ -485,6 +497,7 @@
                 const isiBerita = document.getElementById('isi_berita');
                 const dokumenSuratBerita = document.getElementById('inputGroupFile04');
 
+                // Validasi jika terdapat error
                 const setError = (element, message) => {
                     const inputControl = element.closest('.uc-2-first-layer-form-2') ||
                                         element.closest('.uc-2-third-layer-form') ||
@@ -498,6 +511,7 @@
                     errorDisplay.classList.add('active');
                 };
 
+                // Validasi jika telah sukses
                 const setSuccess = (element) => {
                     const inputControl = element.closest('.uc-2-first-layer-form-2') ||
                                         element.closest('.uc-2-third-layer-form') ||
@@ -513,6 +527,7 @@
                     }
                 };
 
+                // Validasi mengecek allInputsAreValid
                 const validateInputs = () => {
                     let allInputsAreValid = true;
 
@@ -626,11 +641,10 @@
                         }
                     });
                 }
-
-
             });
         });
 
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');

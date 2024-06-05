@@ -222,6 +222,12 @@ body{
   text-align: center;
 }
 
+.uc-2-radio-button-option{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
 
 .uc-2-third-layer-form .uc-2-radio-button label{
   margin: 0;
@@ -238,8 +244,6 @@ body{
   border: 1px solid #34469A;
   padding: 20px 20px 20px 20px;
 }
-
-
 
 /* BUTTON */
 .uc-2-form-footer{
@@ -338,7 +342,6 @@ body{
   gap: 20px;
 
 }
-
 
 .select2-container .select2-selection--single .select2-selection__rendered{
   display: flex;
@@ -457,6 +460,7 @@ body{
 }
 
 /* dropdown user */
+
 .uc-2-user-navigate{
   display: flex;
   justify-content: end;
@@ -489,7 +493,6 @@ body{
   visibility: visible;
   opacity: 1;
 }
-
 
  .uc-2-dropdown-user .uc-2-username {
   display: flex;
@@ -553,4 +556,109 @@ body{
  .uc-2-dropdown-user ul li:hover button {
   color: #000;
   font-size: 16px;
+}
+
+/* dokumen */
+
+.uc-2-first-layer-form-2  .uc-2-input-file input[type="file"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.uc-2-first-layer-form-2 .uc-2-button-download {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--black-color);
+  background-color: var(--yellow);
+  border: 1px solid var(--black-color);
+}
+
+.uc-2-dokumen-saat-ini{
+  margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 680px) {
+
+  .uc-2-first-layer-form, .uc-2-first-layer-form-corespondent, .uc-2-radio-button{
+      display: flex;
+      flex-direction: column; 
+      width: 100%;
+  }
+
+  .uc-2-radio-button-option{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    margin: 0;
+  }
+  
+  .uc-2-first-layer-form-1, .uc-2-first-layer-form-2{
+    width: 100%;
+  }
+  
+  .uc-2-form-berita-main h4, .uc-2-header-section p{
+   font-size: 12px;
+  }
+  
+  .uc-2-first-layer-form label, .uc-2-first-layer-form input{
+    font-size: 12px;
+  }
+
+  .uc-2-first-layer-form-corespondent label, .select2-container--default .select2-selection--multiple .select2-selection__choice, 
+  .select2-container .select2-selection--single .select2-selection__rendered, .select2-container .select2-selection--multiple .select2-selection__rendered{
+    font-size: 12px;
+  }
+
+  .uc-2-radio-button-option label, .uc-2-radio-button-option input, .uc-2-third-layer-form label, .uc-2-fourth-layer-form label {
+    font-size: 12px;
+  }
+
+  .uc-2-layer-deskripsi label, .uc-2-layer-deskripsi textarea, .uc-2-first-layer-form-2 label{
+    font-size: 12px;
+  }
+  
+  /* Header */
+   
+  .uc-2-right-header{
+    gap: 10px;
+    font-size: 12px;
+    text-align: right;
+  }
+  
+  .uc-2-right-header img.user{
+    gap: 10px;
+    width: 40px;
+  }
+  
+  .uc-2-header .logo{
+    width: 160px;
+    height: 60px;
+    background-size: cover;
+  }
+  
+  /* Validasi */
+  
+  .uc-2-input-field  .error {
+    font-size: 12px;
+  }
+  
+  .uc-2-input-field  .error.active {
+    font-size: 10px;
+  }
+  
+  /* Back */
+  .uc-2-back-navigation h2, .uc-2-back-navigation .uc-2-nav-description-route, .uc-2-copy-header-label, .uc-2-copy-header-footer{
+    font-size: 14px !important;
+  }
+  
+  .uc-2-back-button{
+    width: 24px;
+  }  
 }

@@ -103,6 +103,7 @@ Route::middleware(['auth', 'user_berita'])->group(function () {
     Route::get('/detailberita/{id_berita}', [BeritaController::class, 'show'])->name('berita.detail');
     Route::delete('/detailberita/{id_berita}', [BeritaController::class, 'delete'])->name('berita.delete');
     Route::post('/form-berita-create', [BeritaController::class, 'create'])->name('berita.create');
+    Route::get('export-berita', [BeritaController::class, 'export'])->name('berita.export');
 
     // Controller Mengirim
     Route::get('/detailberita/{id_berita}/listkoresponden', [MengirimController::class, 'index'])->name('koresponden.index');
@@ -113,7 +114,7 @@ Route::middleware(['auth', 'user_berita'])->group(function () {
     Route::get('/email-option', [EmailController::class, 'index'])->name('email.index');
     Route::get('/email-option/{beritaId}', [EmailController::class, 'show'])->name('email.show');
     Route::get('/email-default-option', [EmailController::class, 'getdefault'])->name('email.get');
-    Route::delete('/email-delete/{id_email}', [EmailController::class, 'getdefault'])->name('email.delete');
+    Route::get('/email-check/{id_email}', [EmailController::class, 'checkDelete'])->name('email.check');
 
     // Controller Koresponden
     Route::get('/form-new-koresponden', [KorespondenController::class, 'index'])->name('koresponden.form');

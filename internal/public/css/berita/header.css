@@ -34,7 +34,6 @@ body{
   font-family:'Istok Web', sans-serif;
 }
 
-
 /* MAIN ARTIKEL */
 .uc-2-main{
   flex-grow: 30;
@@ -48,7 +47,7 @@ body{
   margin-bottom: 25px;
 }
 
-.uc-2-header img{
+.uc-2-header .logo{
   width: 251px;
   height: 94.02px;
 }
@@ -435,4 +434,62 @@ body{
   color: #000;
   font-size: 16px;
 }
+
+@media only screen and (max-width: 680px) {
+
+  .uc-2-first-layer-form {
+      display: flex;
+      flex-direction: column; 
+      width: 100%;
+  }
+
+  .uc-2-first-layer-form-1{
+    width: 100%;
+  }
+
+  .uc-2-form-berita-main h4, .uc-2-header-section p{
+  font-size: 12px;
+  }
+
+  .uc-2-first-layer-form label, .uc-2-first-layer-form input{
+    font-size: 12px;
+  }
+
+  /* Header */
   
+  .uc-2-right-header{
+    gap: 10px;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .uc-2-right-header img.user{
+    gap: 10px;
+    width: 40px;
+  }
+
+  .uc-2-header .logo{
+    width: 160px;
+    height: 60px;
+    background-size: cover;
+  }
+
+  /* Validasi */
+
+  .uc-2-input-field  .error {
+    font-size: 12px;
+  }
+
+  .uc-2-input-field  .error.active {
+    font-size: 10px;
+  }
+
+  /* Back */
+  .uc-2-back-navigation h2, .uc-2-back-navigation .uc-2-nav-description-route, .uc-2-copy-header-label, .uc-2-copy-header-footer{
+    font-size: 14px !important;
+  }
+
+  .uc-2-back-button{
+    width: 24px;
+  }
+}

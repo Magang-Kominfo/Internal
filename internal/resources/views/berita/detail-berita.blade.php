@@ -17,7 +17,7 @@
             <div>
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
                     <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
@@ -57,37 +57,34 @@
             </div>
         </div>
 
-        {{-- body --}}
+        {{-- Body --}}
         <div class="uc-2-form-main">
             <div class="uc-2-form-berita-main">
-
-                {{-- back --}}
+                {{-- Back --}}
                 <div>
                     <div class="uc-2-back-navigation">
-                        <div class="uc-2-back-btn">
-                            <object
-                                data="{{ asset('assets/back-btn.svg') }}"
-                                type=""
-                            ></object>
-                            <a href="{{ url('dashboard-berita') }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
-                        </div>
+                        <a href="{{ url('dashboard-berita') }}" style="text-decoration: none;">
+                            <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                                <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                                <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                            </div>
+                        </a>
                         <div class="uc-2-nav-description">
-                            <div class="uc-2-nav-description-route">
+                            <div class="uc-2-nav-description-route" style="margin-left: 12px">
                                 {{ \Carbon\Carbon::parse($berita->tanggal_buat_berita)->locale('id')->isoFormat('HH:mm | DD MMMM YYYY')}}
                                 </div>
                         </div>
                     </div>
                     <div class="uc-2-sifat">{{ $berita->sifat->nama_sifat}}</div>
-
                 </div>
 
-                <h2>
+                {{-- Main part --}}
+                <h2 class="uc-2-no-berita">
                     {{ $berita->no_berita }}
                 </h2>
 
-                {{-- Main part --}}
                     <div class="uc-2-input-field">
-                        {{-- first layer --}}
+                        {{-- First layer --}}
                         <div class="uc-2-first-layer-form">
                             <div class="uc-2-first-layer-form-1">
                                <p>Nomor Agenda: {{ $berita->no_agenda }}</p>
@@ -123,30 +120,24 @@
 
                         {{-- Third layer --}}
                         <div class="uc-2-first-layer-form-deskripsi">
-
-                            <h3> Deskripsi Singkat:</h3>
-                            <p>{{ $berita->isi_berita }}</p>
-                            {{-- <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                                dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                                 sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-                                 est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                                 modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-                                 quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
-                                 Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                                 vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                            </p>--}}
-
+                            <h3 class="uc-2-teks-deskripsi"> Deskripsi Singkat:</h3>
+                            <p  style="text-align: justify">{{ $berita->isi_berita }}</p>
                         </div>
-
-
                     </div>
 
+                    {{-- Button --}}
                     <div class="uc-2-form-footer">
                         <div class="uc-2-form-footer-back">
                             <button onclick="window.location='{{ route('koresponden.index', ['id_berita' => $berita->id]) }}'"
                                 type="button">Correspondent</button>
                         </div>
+                        @if($berita->dokumen_surat_berita)
+                            <div class="uc-2-form-footer-download">
+                                <a href="/dokumen/{{ $berita->dokumen_surat_berita }}">
+                                    <button type="button">Download</button>
+                                </a>
+                            </div>
+                        @endif
                         <div class="uc-2-form-footer-edit">
                             <button onclick="window.location='{{ route('berita.update', ['id_berita' => $berita->id]) }}'">Edit</button>
                         </div>
@@ -166,6 +157,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // SweetAlert dan hapus
         function confirmDelete(beritaId, message) {
             Swal.fire({
                 title: 'Apa anda yakin?',
@@ -182,6 +174,7 @@
             })
         }
 
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');

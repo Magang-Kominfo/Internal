@@ -17,7 +17,7 @@
             <div>
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
                     <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
@@ -62,13 +62,12 @@
             <div class="uc-2-form-berita-main" >
                     {{-- back --}}
                 <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="{{ url('dashboard-berita') }}" style="text-decoration: none"><h2>KEMBALI</h2></a>
-                    </div>
+                    <a href="{{ url('dashboard-berita') }}" style="text-decoration: none;">
+                        <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                            <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                            <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                        </div>
+                    </a>
                     <div class="uc-2-nav-description">
                         <div class="uc-2-nav-description-route">KORESPONDEN</div>
                     </div>
@@ -76,18 +75,21 @@
 
                 {{-- Search bar --}}
                 <div class="uc-2-search">
-                    <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
+                    <div class="uc-2-search-option-responsive">
+                        <input id="searchBar" class="uc-2-search-bar" type="text" placeholder="Search bar">
+                        <a href="{{ route('koresponden.form') }}" style="text-decoration: none; color:white" class="uc-2-search-add mobile">
+                            +
+                        </a>
+                    </div>
                     <div class="uc-2-search-sort">
                         <select class="uc-2-search-sort-select" id="sortSelect">
                             <option value="none" selected>Sort</option>
-                            <option value="created-desc">Terbaru dibuat</option>
-                            <option value="created-asc">Terakhir dibuat</option>
-                            <option value="updated-desc">Terbaru diperbaharui</option>
-                            <option value="updated-asc">Terakhir diperbaharui</option>
+                            <option value="updated-desc">Koresponden Terbaru</option>
+                            <option value="updated-asc">Koresponden terlama</option>
                         </select>
                     </div>
                     <a href="{{ route('koresponden.form') }}" style="text-decoration: none; color:white">
-                        <div class="uc-2-search-add">
+                        <div class="uc-2-search-add web">
                             +
                         </div>
                     </a>
@@ -95,9 +97,7 @@
 
                 <div class="uc-2-list" >
                     @foreach ($korespondens as $koresponden)
-                        <div class="uc-2-list-koresponden"
-                        data-created="{{ $koresponden->created_at }}" data-updated="{{ $koresponden->updated_at }}">
-                            {{-- data-type="{{ $email->tipe_email == 0 ? 'email-instansi' : 'email-pribadi' }}" --}}
+                        <div class="uc-2-list-koresponden" data-updated="{{ $koresponden->updated_at }}">
                             <div class="uc-2-list-koresponden-item">
 
                                 <h4>{{ $koresponden->nama_koresponden }}</h4>
@@ -117,12 +117,31 @@
                                             </h4>
                                         @endforeach
                                     </div>
+                                    <div class="uc-2-list-button web">
+                                        <h4> 
+                                            <a href="{{ route('koresponden.edit',
+                                            ['id_koresponden' => $koresponden->id], ) }}"  
+                                            style="text-decoration: none" 
+                                            class="uc-2-button-edit">Edit</a>
+                                        </h4>
+                                        <h4> 
+                                            <form  id="deleteForm{{ $koresponden->id }}" action="{{ route('koresponden.delete', ['id_koresponden' => $koresponden->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="uc-2-button-delete" 
+                                                onclick="confirmDelete('{{ $koresponden->id }}', 'Pastikan bahwa data benar benar ingin anda hapus!')">Delete</button>
+                                            </form>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="uc-2-list-button mobile">
                                     <h4>
                                         <a href="{{ route('koresponden.edit',
                                         ['id_koresponden' => $koresponden->id], ) }}"
                                         style="text-decoration: none"
                                         class="uc-2-button-edit">Edit</a>
                                     </h4>
+                                    
                                     <h4>
                                         <form  id="deleteForm{{ $koresponden->id }}" action="{{ route('koresponden.delete', ['id_koresponden' => $koresponden->id]) }}" method="POST">
                                             @csrf
@@ -145,9 +164,11 @@
         </div>
     </div>
 
-
+    {{-- Impor Kebutuhan Javascript --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Konfirmasi Hapus --}}
     <script>
         function confirmDelete(korespondenId, message) {
             Swal.fire({
@@ -197,6 +218,7 @@
         }
     </script>
 
+    {{-- Filter, sort, search, dan pagination --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const sortSelect = document.getElementById("sortSelect");
@@ -204,7 +226,6 @@
             const paginationContainer = document.getElementById("uc-2-pagination-koresponden")
             const newsItemsContainer = document.querySelector(".uc-2-list");
             const newsItems = Array.from(newsItemsContainer.querySelectorAll(".uc-2-list-koresponden"));
-
 
             const itemsPerPage = 5;
             let currentPage = 1;
@@ -218,16 +239,16 @@
                 const sortBy = sortSelect.value;
                 const searchQuery = searchInput.value.toLowerCase();
                 const isDesc = sortBy.includes("desc");
-                const sortKey = sortBy.includes("created") ? "created" : (sortBy.includes("updated") ? "updated" : null);
+                const sortKey = (sortBy.includes("updated") ? "updated" : null);
 
-                // Filter news items
+                // Filter surat berita
                 let filteredNewsItems = newsItems.filter(item => {
                     return item.textContent.toLowerCase().includes(searchQuery);
                 });
 
                 console.log(filteredNewsItems);
 
-                // Sort news items if a sorting option is selected
+                // Sort surat berita
                 if (sortKey) {
                     filteredNewsItems.sort((a, b) => {
                         const aValue = new Date(a.dataset[sortKey]);
@@ -237,7 +258,7 @@
                     });
                 }
 
-                // Pagination logic
+                // Pagination
                 const totalPages = Math.ceil(filteredNewsItems.length / itemsPerPage);
 
                 if(currentPage === 0){
@@ -250,7 +271,7 @@
                 const endIdx = startIdx + itemsPerPage;
                 const paginatedItems = filteredNewsItems.slice(startIdx, endIdx);
 
-                // Clear current items and append sorted, filtered, and paginated items
+                // Refresh untuk data baru kemudian di paginate
                 newsItemsContainer.innerHTML = '';
                 paginatedItems.forEach(item => {
                     newsItemsContainer.appendChild(item);
@@ -259,11 +280,11 @@
                 // Render pagination controls
                 renderPaginationControls(totalPages);
             }
-
-
-
+            
             function renderPaginationControls(totalPages) {
                 paginationContainer.innerHTML = '';
+
+                // Previous Pagination Button
                 if (currentPage > 1) {
                     const prevButton = document.createElement('button');
                     prevButton.textContent = '<';
@@ -275,6 +296,7 @@
                     paginationContainer.appendChild(prevButton);
                 }
 
+                // Kalkulasi Page Number 
                 const pageNumbers = [];
                 const maxVisiblePages = 3;
                 let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -295,6 +317,7 @@
                     pageNumbers.push('...', totalPages);
                 }
 
+                // Page Number
                 pageNumbers.forEach(page => {
                     const pageButton = document.createElement('button');
                     pageButton.textContent = page;
@@ -311,6 +334,7 @@
                     paginationContainer.appendChild(pageButton);
                 });
 
+                // Next Pagination Button
                 if (currentPage < totalPages) {
                     const nextButton = document.createElement('button');
                     nextButton.textContent = '>';
@@ -326,6 +350,7 @@
             filterAndSort();
         });
 
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');

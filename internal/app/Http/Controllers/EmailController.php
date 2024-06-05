@@ -122,6 +122,20 @@ class EmailController extends Controller
 
     }
 
+    public function checkDelete($id_email)
+    {
+         // Periksa apakah email digunakan di tabel lain
+         $isUsedInMengirim = Mengirim::where('id_email', $id_email)->exists();
+
+         // Jika ada record terkait di tabel lain, kembalikan respons JSON dengan pesan error
+         if ($isUsedInMengirim) {
+             return response()->json(['status' => 'error', 'message' => 'Email tidak dapat dihapus karena telah digunakan di tabel lain.']);
+         }
+ 
+         // Jika tidak ada, kembalikan respons JSON dengan status success
+         return response()->json(['status' => 'success']);
+    }
+
 
     /**
      * Show the form for creating a new resource.

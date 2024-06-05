@@ -12,6 +12,7 @@
     --bluedark: #34469A;
     --yellow: #F1DA57;
     --red-edit: #dc3545;
+    --green: #29d14b;
   
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
@@ -308,6 +309,21 @@ body{
   }
   
   
+  .uc-2-form-footer-download button{
+    padding: 10px 30px 10px 30px;
+    background-color: var(--green);
+    color: var(--black-color);
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 8px;
+    border: 2px solid var(--black-color);
+  }
+  
+  .uc-2-form-footer-download button:hover{
+    background-color:#39CDF0;
+    border: 2px solid #39CDF0;
+  }
+  
 /* dropdown user */
 .uc-2-user-navigate{
   display: flex;
@@ -406,4 +422,65 @@ body{
   color: #000;
   font-size: 16px;
 }
+
+@media only screen and (max-width: 680px) {
+
+  /* Body */
+  .uc-2-first-layer-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .uc-2-form-footer {
+    float: none;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 16px;
+  }
   
+  /* Header */
+  .uc-2-right-header{
+    gap: 10px;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .uc-2-right-header img.user{
+    gap: 10px;
+    width: 40px;
+  }
+
+  .uc-2-header .logo{
+    width: 160px;
+    height: 60px;
+    background-size: cover;
+  }
+
+  /* Back */
+  .uc-2-back-navigation h2, .uc-2-back-navigation .uc-2-nav-description-route, .uc-2-sifat{
+    font-size: 14px !important;
+  }
+
+  .uc-2-back-button{
+    width: 24px;
+  }
+
+  .uc-2-sifat{
+    font-size: 12px !important;
+  }
+
+  .uc-2-no-berita{
+    font-size: 16px !important;
+  }
+
+  .uc-2-teks-deskripsi{
+    font-size: 14px !important;
+  }
+
+  .uc-2-input-field p {
+    font-size: 12px !important;
+  }
+
+}

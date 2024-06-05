@@ -17,7 +17,7 @@
             <div>
                 <img src="{{ asset('img/logoKominfo.png') }}" alt="Kominfo" class="logo">
             </div>
-
+            {{-- Toggle User profile dan back --}}
             <div class="uc-2-right-header">
                 <a class="uc-2-user-navigate" onclick="menuToggle()">
                     <img src="{{ asset('assets/userProf.svg') }}" alt="Kominfo" class="user" >
@@ -63,102 +63,102 @@
 
                 {{-- back --}}
                 <div class="uc-2-back-navigation">
-                    <div class="uc-2-back-btn">
-                        <object
-                            data="{{ asset('assets/back-btn.svg') }}"
-                            type=""
-                        ></object>
-                        <a href="{{ route('koresponden.index', ['id_berita' => $data->id_berita]) }}
-                          " style="text-decoration: none"><h2>KEMBALI</h2></a>
-                    </div>
+                    <a href="{{ route('koresponden.index', ['id_berita' => $data->id_berita]) }}" style="text-decoration: none;">
+                        <div class="uc-2-back-btn" style="display: flex; align-items: center;">
+                            <img class="uc-2-back-button" src="{{ asset('assets/back-btn.svg') }}" alt="Back Button">
+                            <h2 style="text-decoration: none; margin-right: 8px;">KEMBALI</h2>
+                        </div>
+                    </a>
                     <div class="uc-2-nav-description">
                         <div class="uc-2-nav-description-route">Deskripsi koresponden</div>
                     </div>
                 </div>
 
-                <h4>
+                <h4 style="text-align: justify">
                     Pastikan data surat berita sesuai dengan keterangan dalam surat.
                     Isi data berita dan pilih koresponden yang akan dituju. Ingat untuk
                     meng-update kembali waktu respon oleh penerima.
                 </h4>
 
                 {{-- Main form --}}
-                    <form id="formHeader" action="{{ route('mengirim.edit' , ['id_berita' => $data->id_berita, 'id_email' => $data->id_email]) }}"  method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
+                <form id="formHeader" action="{{ route('mengirim.edit' , ['id_berita' => $data->id_berita, 'id_email' => $data->id_email]) }}"  method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
 
-                        <div class="uc-2-input-field">
-                            {{-- first layer --}}
-                            <div class="uc-2-first-layer-form">
-                                <div class="uc-2-first-layer-form-1">
-                                    <label for="tanggal_kirim_berita">Tanggal kirim Surat:</label>
-                                    <input type="datetime-local" name="tanggal_kirim_berita" id="tanggal_kirim_berita" value="{{$data->tanggal_kirim_berita }}">
-                                    <div class="error"></div>
-                                </div>
-                                <div class="uc-2-first-layer-form-1">
-                                    <label for="respon_time">Tanggal terima Surat:</label>
-                                    <input type="datetime-local" name="respon_time" id="respon_time" value="{{ $data->respon_time }}" >
-                                    <div class="error"></div>
-                                </div>
+                    <div class="uc-2-input-field">
+                        {{-- first layer --}}
+                        <div class="uc-2-first-layer-form">
+                            <div class="uc-2-first-layer-form-1">
+                                <label for="tanggal_kirim_berita">Tanggal kirim Surat:</label>
+                                <input type="datetime-local" name="tanggal_kirim_berita" id="tanggal_kirim_berita" value="{{$data->tanggal_kirim_berita }}">
+                                <div class="error"></div>
                             </div>
+                            <div class="uc-2-first-layer-form-1">
+                                <label for="respon_time">Tanggal terima Surat:</label>
+                                <input type="datetime-local" name="respon_time" id="respon_time" value="{{ $data->respon_time }}" >
+                                <div class="error"></div>
+                            </div>
+                        </div>
 
-                            <div class="uc-2-form-footer">
-                                <div class="uc-2-copy-header-footer">
-                                    <div>Created at - {{ \Carbon\Carbon::parse($data->berita->created_at)
-                                        ->locale('id')->isoFormat('DD MMMM YYYY') }}</div>
-                                    <div class="uc-2-form-footer-save">
-                                        <button id="saveBtn" type="submit">Simpan</button>
-                                    </div>
+                        <div class="uc-2-form-footer">
+                            <div class="uc-2-copy-header-footer">
+                                <div>Created at - {{ \Carbon\Carbon::parse($data->berita->created_at)
+                                    ->locale('id')->isoFormat('DD MMMM YYYY') }}</div>
+                                <div class="uc-2-form-footer-save">
+                                    <button id="saveBtn" type="submit">Simpan</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
 
 
-                    {{-- Second layer --}}
-                        <div class="uc-2-header-section">
-                            <div class="uc-2-copy-header-label">
-                                <label for="isi_berita">Header Text:</label>
-                                <button class="uc-2-copy-header-text" onclick="copyToClipboard('#uc-2-header-copy-and-paste')">Copy</button>
-                            </div>
+                {{-- Second layer --}}
+                <div class="uc-2-header-section">
+                    <div class="uc-2-copy-header-label">
+                        <label for="isi_berita">Header Text:</label>
+                        <button class="uc-2-copy-header-text" onclick="copyToClipboard('#uc-2-header-copy-and-paste')">Copy</button>
+                    </div>
 
-                            <p id="uc-2-header-copy-and-paste">Yth. {{$data->email->koresponden->nama_koresponden}}
-                                <br><br>
-                                Berikut kami lampirkan keterangan surat:
-                                <br>
-                                Nomor Surat = {{ $data->berita->no_berita }}
-                                    <br>
-                                Sifat Surat = {{ $data->berita->sifat->nama_sifat }}
-                                <br><br>
-                                Deskripsi Singkat Surat Berita<br>
-                                {{ $data->berita->isi_berita }}
-                            </p>
-                        </div>
+                    <p id="uc-2-header-copy-and-paste">Yth. {{$data->email->koresponden->nama_koresponden}}
+                        <br><br>
+                        Berikut kami lampirkan keterangan surat:
+                        <br>
+                        Nomor Surat = {{ $data->berita->no_berita }}
+                        <br>
+                        Sifat Surat = {{ $data->berita->sifat->nama_sifat }}
+                        <br><br>
+                        Deskripsi Singkat Surat Berita<br>
+                        {{ $data->berita->isi_berita }}
+                    </p>
+                </div>
             </div>
-
         </div>
     </div>
 
+    {{-- Impor Kebutuhan Javascript --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- Copy dan simpan form --}}
     <script>
+        // Copy text
+        function copyToClipboard(element) {
+            var $temp = document.createElement("textarea");
+
+            $temp.value = document.querySelector(element).innerText;
+
+            document.body.appendChild($temp);
+
+            $temp.select();
+
+            document.execCommand("copy");
+
+            document.body.removeChild($temp);
+        }
+
+        // Simpan form
         $(document).ready(function() {
-            function copyToClipboard(element) {
-
-                var $temp = document.createElement("textarea");
-
-                $temp.value = document.querySelector(element).innerText;
-
-                document.body.appendChild($temp);
-
-                $temp.select();
-
-                document.execCommand("copy");
-
-                document.body.removeChild($temp);
-            }
-
             $("#formHeader").on('submit', function(e) {
                 e.preventDefault();
 
@@ -222,11 +222,13 @@
             });
         });
 
+        // Button header toggle
         function menuToggle(){
             const toggleMenu = document.querySelector('.uc-2-dropdown-user');
             toggleMenu.classList.toggle('active');
         }
 
     </script>
+
 </body>
 </html>
