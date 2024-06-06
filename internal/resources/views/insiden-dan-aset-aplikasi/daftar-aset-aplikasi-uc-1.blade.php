@@ -289,7 +289,7 @@
                                 {{ $aset_aplikasis->links('vendor.pagination.default') }}
                             </div>
 
-                            <div>
+                            <div style="margin-top: 20px">
                                 <a href="{{ route('aset-aplikasi.export') }}" class="btn-export">Download Data Table</a>
                             </div>
                         </div>

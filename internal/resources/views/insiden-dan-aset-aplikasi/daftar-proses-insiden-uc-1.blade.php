@@ -306,7 +306,7 @@
                             <div class="pagination" style="margin-top: 20px">
                                 {{ $insidens->links('vendor.pagination.default') }}
                             </div>
-                            <div>
+                            <div style="margin-top: 20px">
                                 <a href="{{ route('proses-insiden.export') }}" class="btn-export">Download Data Table</a>
                             </div>
                         </div>

@@ -165,7 +165,7 @@
 
                                     <div class="uc-1-proses-insiden-input-field-jam-temuan">
                                         <label for="jam_temuan_insiden">Jam Temuan Insiden:</label>
-                                        <input type="time" name="jam_temuan_insiden" id="jam_temuan_insiden" value="{{ $insiden->jam_temuan_insiden }}">
+                                        <input type="time" name="jam_temuan_insiden" id="jam_temuan_insiden" value="{{ $insiden->jam_temuan_insiden ? date('H:i', strtotime($insiden->jam_temuan_insiden)) : '' }}">
                                     </div>
 
                                     <div class="uc-1-proses-insiden-input-field-tanggal-surat-tte">
@@ -191,12 +191,12 @@
 
                                     <div class="uc-1-proses-insiden-input-field-jam-temuan-dikirim">
                                         <label for="jam_temuan_dikirim_insiden">Jam Temuan Dikirim Insiden:</label>
-                                        <input type="time" name="jam_temuan_dikirim_insiden" id="jam_temuan_dikirim_insiden" value="{{ $insiden->jam_temuan_dikirim_insiden }}">
+                                        <input type="time" name="jam_temuan_dikirim_insiden" id="jam_temuan_dikirim_insiden" value="{{ $insiden->jam_temuan_dikirim_insiden ? date('H:i', strtotime($insiden->jam_temuan_dikirim_insiden)) : '' }}">
                                     </div>
 
                                     <div class="uc-1-proses-insiden-input-field-jam-insiden-diselesaikan">
                                         <label for="jam_insiden_diselesaikan">Jam Insiden Diselesaikan:</label>
-                                        <input type="time" name="jam_insiden_diselesaikan" id="jam_insiden_diselesaikan" value="{{ $insiden->jam_insiden_diselesaikan }}">
+                                        <input type="time" name="jam_insiden_diselesaikan" id="jam_insiden_diselesaikan" value="{{ $insiden->jam_insiden_diselesaikan ? date('H:i', strtotime($insiden->jam_insiden_diselesaikan)) : '' }}">
                                     </div>
 
                                     <div class="uc-1-proses-insiden-input-field-tanggal-insiden-diselesaikan">

@@ -141,12 +141,12 @@ class InsidenController extends Controller
         $insiden->resiko_insiden = $request->resiko_insiden;
         $insiden->status_insiden = $request->status_insiden;
         $insiden->tanggal_notifikasi_insiden = $request->tanggal_notifikasi_insiden;
-        $insiden->jam_temuan_insiden = $request->jam_temuan_insiden ? date('H:i', strtotime($request->jam_temuan_insiden)) : null;
+        $insiden->jam_temuan_insiden = $request->jam_temuan_insiden ? date('H:i:s', strtotime($request->jam_temuan_insiden)) : null;
         $insiden->status_setelah_unsuspend_insiden = $request->status_setelah_unsuspend_insiden;
         $insiden->tanggal_suspend_insiden = $request->tanggal_suspend_insiden;
         $insiden->tanggal_pemulihan_insiden = $request->tanggal_pemulihan_insiden;
-        $insiden->jam_temuan_dikirim_insiden = $request->jam_temuan_dikirim_insiden ? date('H:i', strtotime($request->jam_temuan_dikirim_insiden)) : null;
-        $insiden->jam_insiden_diselesaikan = $request->jam_insiden_diselesaikan ? date('H:i', strtotime($request->jam_insiden_diselesaikan)) : null;
+        $insiden->jam_temuan_dikirim_insiden = $request->jam_temuan_dikirim_insiden ? date('H:i:s', strtotime($request->jam_temuan_dikirim_insiden)) : null;
+        $insiden->jam_insiden_diselesaikan = $request->jam_insiden_diselesaikan ? date('H:i:s', strtotime($request->jam_insiden_diselesaikan)) : null;
         $insiden->keterangan_insiden = $request->keterangan_insiden;
         $insiden->tanggal_surat_tte_insiden = $request->tanggal_surat_tte_insiden;
 
