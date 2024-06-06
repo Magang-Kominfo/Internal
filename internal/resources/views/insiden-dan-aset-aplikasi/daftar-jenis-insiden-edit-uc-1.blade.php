@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/insiden-dan-aset-aplikasi-css/menambahkanJenisInsiden-uc-1.css">
-    <title>Edit Data Master</title>
+    <title>Edit Jenis Insiden</title>
 </head>
 
 <script>
@@ -97,7 +97,7 @@
                 <div class="uc-1-menambahkan-insiden-view-artikel">
                     <div class="uc-1-menambahkan-insiden-view-artikel-insiden">
                         <div class="uc-1-menambahkan-insiden-view-artikel-insiden-header">
-                            <h1>EDIT DATA MASTER</h1>
+                            <h1>EDIT JENIS INSIDEN</h1>
                         </div>
 
                         <form action="{{ route('update-jenis-insiden.update', ['id' => $jenis_insiden->id_jenis_insiden]) }}" method="post">
